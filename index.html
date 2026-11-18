@@ -7,6 +7,7 @@
 <meta property="og:title" content="Patricio Abarca">
 <meta property="og:description" content="Ingeniero industrial · IA · Energía solar. Las apps que he construido.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://patricbarca.github.io/img/patricio-abarca.jpg">
 <meta property="og:url" content="https://patricbarca.github.io/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2313202B'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-weight='700' font-size='26' fill='%23F2A93B' text-anchor='middle'%3EPA%3C/text%3E%3C/svg%3E">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -61,6 +62,9 @@ html[data-lang="es"] [lang="en"], html[data-lang="en"] [lang="es"]{display:none!
 .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;width:100%}
 .hero > *{min-width:0}
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(8vw,11vh),100px);line-height:.92;letter-spacing:-.035em;margin:12px 0 18px;text-wrap:balance}
+.id{display:flex;align-items:center;gap:clamp(16px,2.4vw,28px);margin:12px 0 18px}
+.id h1{margin:0}
+.me{width:clamp(84px,min(12vw,15vh),140px);height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 0 0 4px var(--surface),0 0 0 5px var(--line)}
 .lede{font-size:clamp(17px,2vw,21px);max-width:36ch;margin:0 0 18px;text-wrap:pretty}
 .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font:400 13px var(--f-mono);color:var(--muted);margin-bottom:22px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
@@ -160,7 +164,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
 @media (max-height:640px){
   .meta{display:none}
   .curve{display:none}
-  h1{margin:8px 0 12px}
+  .id{margin:8px 0 12px}
 }
 </style>
 
@@ -187,7 +191,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
       <div class="hero">
         <div>
           <div class="eyebrow"><span lang="es">Ingeniero industrial · IA · Energía solar</span><span lang="en">Industrial engineer · AI · Solar</span></div>
-          <h1>Patricio<br>Abarca</h1>
+          <div class="id"><img class="me" src="img/patricio-abarca.jpg" alt="Patricio Abarca" width="140" height="140"><h1>Patricio<br>Abarca</h1></div>
           <p class="lede">
             <span lang="es">Trabajo con plantas solares de gran escala y construyo software con IA: desde análisis de rendimiento hasta apps que la gente usa a diario.</span>
             <span lang="en">I work with utility-scale solar plants and build AI-powered software, from performance analytics to apps people use every day.</span>
