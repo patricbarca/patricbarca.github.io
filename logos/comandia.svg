@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Comandia">
+  <title>Comandia</title>
+  <!-- Comandia: la comanda (el papelito que va a cocina) con su borde cortado en zigzag, sobre una baldosa color tomate. -->
+  <rect width="64" height="64" rx="16" fill="#D9482B"/>
+  <path d="M19 11h26a2 2 0 0 1 2 2v34l-4 4-4-4-4 4-3-3-3 3-4-4-4 4-4-4V13a2 2 0 0 1 2-2z" fill="#FFF6EC"/>
+  <rect x="24" y="19" width="16" height="3.4" rx="1.7" fill="#D9482B"/>
+  <rect x="24" y="27" width="11" height="3.4" rx="1.7" fill="#2B1A14"/>
+  <rect x="24" y="34" width="13" height="3.4" rx="1.7" fill="#2B1A14"/></svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GeoSpots">
+  <title>GeoSpots</title>
+  <!-- GeoSpots: un plano plegado con su cuadrícula y un pin de posición encima, sobre una baldosa verde eucalipto. -->
+  <rect width="64" height="64" rx="16" fill="#17483F"/>
+  <path d="M12 20l13-5 14 5 13-5v29l-13 5-14-5-13 5z" fill="#EAF2EC"/>
+  <path d="M25 15v29M39 20v29" stroke="#B9CFC2" stroke-width="1.6"/>
+  <path d="M12 32l13-5 14 5 13-5" fill="none" stroke="#B9CFC2" stroke-width="1.6"/>
+  <path d="M32 10c-5.5 0-9.5 4-9.5 9.3 0 6.6 9.5 15.7 9.5 15.7s9.5-9.1 9.5-15.7C41.5 14 37.5 10 32 10z" fill="#F2A93B" stroke="#17483F" stroke-width="2"/>
+  <circle cx="32" cy="19.3" r="3.4" fill="#17483F"/>
+</svg>

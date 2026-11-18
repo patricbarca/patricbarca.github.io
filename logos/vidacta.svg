@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Vidacta: baldosa + triángulo de play invertido, que también forma la V. -->
+  <rect x="1" y="1" width="30" height="30" rx="9" fill="#111112"/>
+  <path d="M9.6 10.4h12.8L16 21.6z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round"/>
+</svg>

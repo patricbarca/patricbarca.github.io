@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Patricio Abarca: ingeniero industrial en Brisbane. Energía solar, IA y las apps que he construido.">
+<meta property="og:title" content="Patricio Abarca">
+<meta property="og:description" content="Ingeniero industrial · IA · Energía solar. Las apps que he construido.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://patricbarca.github.io/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2313202B'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-weight='700' font-size='26' fill='%23F2A93B' text-anchor='middle'%3EPA%3C/text%3E%3C/svg%3E">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Patricio Abarca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: dos vistas. Inicio = una sola pantalla (presentación + curva de un día solar + cinta de apps que corre sola).
+   What I Built (#built) = el detalle de cada app, filtrable, y "Sobre mí" al final. */
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --ink:#13202B; --muted:#5A6873; --line:#D9DFE4;
+  --sun:#C9780A; --sun-soft:#FBEBD2; --live:#1E7F55; --live-soft:#DDF1E7; --beta:#2F5FB3; --beta-soft:#E1EAF8;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E151B; --surface:#151F27; --ink:#E8EDF1; --muted:#97A5B0; --line:#26333D;
+  --sun:#F2A93B; --sun-soft:#3A2A12; --live:#5CCB97; --live-soft:#143327; --beta:#86A9EE; --beta-soft:#1B2943; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E151B; --surface:#151F27; --ink:#E8EDF1; --muted:#97A5B0; --line:#26333D;
+  --sun:#F2A93B; --sun-soft:#3A2A12; --live:#5CCB97; --live-soft:#143327; --beta:#86A9EE; --beta-soft:#1B2943; color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:4px}
+html[data-lang="es"] [lang="en"], html[data-lang="en"] [lang="es"]{display:none!important}
+
+/* top bar (shared) */
+.top{display:flex;justify-content:space-between;align-items:center;padding-block:18px;gap:12px}
+.mark{font:500 13px var(--f-mono);letter-spacing:.06em;color:var(--ink);text-decoration:none}
+.mark span{color:var(--muted);font-weight:400}
+.nav{display:flex;align-items:center;gap:8px}
+.nav a.tab{font:600 14px var(--f-body);text-decoration:none;padding:8px 12px;border-radius:8px;color:var(--muted)}
+.nav a.tab[aria-current="page"]{color:var(--ink);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.langs{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.langs button{font:500 12px var(--f-mono);border:0;background:none;color:var(--muted);padding:5px 10px;border-radius:999px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+.eyebrow{font:500 12px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--sun)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--f-body);text-decoration:none;padding:12px 18px;border-radius:10px;border:1px solid var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:hover{transform:translateY(-1px)}
+
+/* ===== HOME: one screen ===== */
+#home{height:100%;display:flex;flex-direction:column;overflow:hidden}
+.home-main{flex:1;min-height:0;display:flex;align-items:center}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;width:100%}
+.hero > *{min-width:0}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(8vw,11vh),100px);line-height:.92;letter-spacing:-.035em;margin:12px 0 18px;text-wrap:balance}
+.lede{font-size:clamp(17px,2vw,21px);max-width:36ch;margin:0 0 18px;text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font:400 13px var(--f-mono);color:var(--muted);margin-bottom:22px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+
+.curve{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 16px 10px;margin:0}
+.curve-head{display:flex;justify-content:space-between;font:400 12px var(--f-mono);color:var(--muted);margin-bottom:6px}
+.curve-head b{color:var(--ink);font-weight:500}
+.curve svg{display:block;width:100%;height:auto}
+.curve .axis text{font:400 10px var(--f-mono);fill:var(--muted)}
+.curve .grid line{stroke:var(--line)}
+.curve .area{fill:var(--sun-soft)}
+.curve .line{fill:none;stroke:var(--sun);stroke-width:2.2}
+.curve .dot{fill:var(--surface);stroke:var(--ink);stroke-width:1.6}
+.curve .lbl{font:500 10.5px var(--f-body);fill:var(--ink)}
+.curve-foot{font-size:12.5px;color:var(--muted);margin:6px 0 2px}
+
+/* marquee */
+.belt{border-top:1px solid var(--line);padding-block:14px 18px}
+.belt-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.belt-head a{font:600 14px var(--f-body);text-decoration:none}
+.belt-head a:hover{color:var(--sun)}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.track{display:flex;gap:12px;width:max-content;animation:belt 48s linear infinite}
+.marquee:hover .track,.marquee:focus-within .track{animation-play-state:paused}
+@keyframes belt{to{transform:translateX(calc(-50% - 6px))}}
+.chip{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 16px 10px 10px;text-decoration:none;width:260px;flex:none}
+.chip:hover{border-color:var(--ink)}
+.chip img{width:44px;height:44px;border-radius:11px;flex:none}
+.chip img.bare{border-radius:50%}
+.chip b{display:block;font:700 16px var(--f-display);letter-spacing:-.01em;line-height:1.15}
+.chip small{display:block;font-size:12.5px;color:var(--muted);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip > span{min-width:0}
+@media (prefers-reduced-motion:reduce){
+  .track{animation:none}
+  .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .track .dup{display:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  .curve .line{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.6s .2s ease-out forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
+
+/* ===== WHAT I BUILT ===== */
+#built .page-head{padding-block:24px 8px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+h2{font-family:var(--f-display);font-weight:800;font-size:clamp(38px,6vw,68px);letter-spacing:-.03em;line-height:.95;margin:8px 0 10px}
+.sub{color:var(--muted);max-width:52ch;margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.filters .n{font-family:var(--f-mono);font-size:11px;opacity:.65;margin-left:4px}
+
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding-block:24px 48px}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0;scroll-margin-top:16px}
+.app:target{border-color:var(--sun);box-shadow:0 0 0 3px var(--sun-soft)}
+.app-head{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center}
+.app-head img{width:56px;height:56px;border-radius:14px;display:block}
+.app-head img.bare{border-radius:50%}
+.app h3{font-family:var(--f-display);font-weight:700;font-size:25px;letter-spacing:-.015em;margin:0;line-height:1.1}
+.app .tag{font-size:13.5px;color:var(--muted);margin:2px 0 0}
+.pill{font:500 11px var(--f-mono);letter-spacing:.04em;padding:4px 9px;border-radius:999px;white-space:nowrap;align-self:start}
+.pill.live{background:var(--live-soft);color:var(--live)}
+.pill.beta{background:var(--beta-soft);color:var(--beta)}
+.pill.dev{background:var(--sun-soft);color:var(--sun)}
+.app p.desc{margin:0;text-wrap:pretty}
+.feats{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.feats li{display:grid;grid-template-columns:14px 1fr;gap:10px;font-size:14.5px;line-height:1.45}
+.feats li::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--sun);margin-top:7px}
+.stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack span{font:400 11.5px var(--f-mono);color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 7px}
+.foot{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.link{font:600 14px var(--f-body);text-decoration:none;color:var(--ink)}
+.link:hover{color:var(--sun)}
+.link.none{color:var(--muted);font-weight:500}
+
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;border-top:1px solid var(--line);padding-block:40px 32px}
+.about > *{min-width:0}
+.about h3{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:-.02em;margin:6px 0 18px}
+.about p{margin:0 0 14px;max-width:62ch}
+.facts{margin:0}
+.facts div{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.facts dt{font:400 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.facts dd{margin:0;font-weight:500}
+footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font:400 13px var(--f-mono);color:var(--muted)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .curve{display:none}
+  .list{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:20px}
+}
+@media (max-width:560px){
+  .nav a.tab{padding:8px 8px}
+  .mark span{display:none}
+  .meta{display:none}
+  .chip{width:220px}
+}
+@media (max-height:640px){
+  .meta{display:none}
+  .curve{display:none}
+  h1{margin:8px 0 12px}
+}
+</style>
+
+</head>
+<body>
+<!-- ============ INICIO ============ -->
+<div id="home">
+  <div class="wrap">
+    <header class="top">
+      <a class="mark" href="#">PA <span>· Brisbane, QLD</span></a>
+      <div class="nav">
+        <a class="tab" href="#" aria-current="page"><span lang="es">Inicio</span><span lang="en">Home</span></a>
+        <a class="tab" href="#built">What I Built</a>
+        <div class="langs" role="group" aria-label="Idioma / Language">
+          <button id="lang-es-1" type="button" data-set="es">ES</button>
+          <button id="lang-en-1" type="button" data-set="en">EN</button>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <main class="home-main">
+    <div class="wrap">
+      <div class="hero">
+        <div>
+          <div class="eyebrow"><span lang="es">Ingeniero industrial · IA · Energía solar</span><span lang="en">Industrial engineer · AI · Solar</span></div>
+          <h1>Patricio<br>Abarca</h1>
+          <p class="lede">
+            <span lang="es">Trabajo con plantas solares de gran escala y construyo software con IA: desde análisis de rendimiento hasta apps que la gente usa a diario.</span>
+            <span lang="en">I work with utility-scale solar plants and build AI-powered software, from performance analytics to apps people use every day.</span>
+          </p>
+          <div class="meta">
+            <span>Brisbane, Australia</span>
+            <span lang="es">Máster en IA · La Trobe University</span><span lang="en">Master of AI · La Trobe University</span>
+            <span>ES / EN</span>
+          </div>
+          <div class="cta">
+            <a class="btn primary" href="#built">What I Built →</a>
+            <a class="btn" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <figure class="curve" aria-label="Curva de generación de un día solar con los proyectos marcados">
+          <div class="curve-head"><span><b lang="es">Curva de un día solar</b><b lang="en">One solar day</b></span><span>kW · 06:00–18:00</span></div>
+          <svg viewBox="0 0 400 220" role="img">
+            <g class="grid"><line x1="20" y1="190" x2="380" y2="190"/><line x1="20" y1="130" x2="380" y2="130"/><line x1="20" y1="70" x2="380" y2="70"/></g>
+            <path class="area" d="M20 190 C 80 188, 120 60, 200 40 C 280 60, 320 188, 380 190 Z"/>
+            <path class="line" d="M20 190 C 80 188, 120 60, 200 40 C 280 60, 320 188, 380 190"/>
+            <g>
+              <circle class="dot" cx="78" cy="172" r="4.5"/><text class="lbl" x="68" y="160" text-anchor="end">Desliza</text>
+              <circle class="dot" cx="120" cy="104" r="4.5"/><text class="lbl" x="112" y="96" text-anchor="end">Cachos</text>
+              <circle class="dot" cx="160" cy="58" r="4.5"/><text class="lbl" x="152" y="50" text-anchor="end">Settlia</text>
+              <circle class="dot" cx="200" cy="40" r="5.5"/><text class="lbl" x="200" y="28" text-anchor="middle">HeliOS</text>
+              <circle class="dot" cx="242" cy="54" r="4.5"/><text class="lbl" x="250" y="48">HeyMesa</text>
+              <circle class="dot" cx="282" cy="98" r="4.5"/><text class="lbl" x="290" y="92">GeoSpots</text>
+              <circle class="dot" cx="322" cy="160" r="4.5"/><text class="lbl" x="330" y="154">Vidacta</text>
+            </g>
+            <g class="axis"><text x="20" y="208">06</text><text x="110" y="208">09</text><text x="200" y="208" text-anchor="middle">12</text><text x="290" y="208">15</text><text x="380" y="208" text-anchor="end">18</text></g>
+          </svg>
+          <figcaption class="curve-foot"><span lang="es">Mi trabajo diario: medir cuánta energía rinde una planta frente a lo esperado. Lo demás lo construyo en las horas que quedan.</span><span lang="en">My day job: measuring how much energy a plant delivers against expectation. Everything else gets built in the hours left over.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </main>
+
+  <div class="belt">
+    <div class="wrap">
+      <div class="belt-head">
+        <span class="eyebrow"><span lang="es">10 apps construidas</span><span lang="en">10 apps built</span></span>
+        <a href="#built"><span lang="es">Ver el detalle →</span><span lang="en">See the details →</span></a>
+      </div>
+    </div>
+    <div class="marquee" aria-label="Apps"><div class="track" id="track"></div></div>
+  </div>
+</div>
+
+<!-- ============ WHAT I BUILT ============ -->
+<div id="built" hidden>
+  <div class="wrap">
+    <header class="top">
+      <a class="mark" href="#">PA <span>· Brisbane, QLD</span></a>
+      <div class="nav">
+        <a class="tab" href="#"><span lang="es">Inicio</span><span lang="en">Home</span></a>
+        <a class="tab" href="#built" aria-current="page">What I Built</a>
+        <div class="langs" role="group" aria-label="Idioma / Language">
+          <button id="lang-es-2" type="button" data-set="es">ES</button>
+          <button id="lang-en-2" type="button" data-set="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <div class="eyebrow"><span lang="es">Portafolio</span><span lang="en">Portfolio</span></div>
+        <h2>What I Built</h2>
+        <p class="sub"><span lang="es">Diez productos hechos de principio a fin, del diseño al despliegue. Algunos ya tienen usuarios; otros están en camino.</span><span lang="en">Ten products built end to end, from design to deployment. Some already have users; others are on their way.</span></p>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrar">
+        <button id="f-all" type="button" data-f="all" aria-pressed="true"><span lang="es">Todas</span><span lang="en">All</span><span class="n" data-count="all"></span></button>
+        <button id="f-live" type="button" data-f="live" aria-pressed="false"><span lang="es">En producción</span><span lang="en">Live</span><span class="n" data-count="live"></span></button>
+        <button id="f-beta" type="button" data-f="beta" aria-pressed="false"><span lang="es">Piloto</span><span lang="en">Pilot</span><span class="n" data-count="beta"></span></button>
+        <button id="f-dev" type="button" data-f="dev" aria-pressed="false"><span lang="es">En desarrollo</span><span lang="en">In development</span><span class="n" data-count="dev"></span></button>
+      </div>
+    </div>
+
+    <div class="list" id="list"></div>
+
+    <section class="about" aria-label="Sobre mí">
+      <div>
+        <div class="eyebrow"><span lang="es">Sobre mí</span><span lang="en">About</span></div>
+        <h3><span lang="es">Energía y software</span><span lang="en">Energy and software</span></h3>
+        <dl class="facts">
+          <div><dt><span lang="es">Base</span><span lang="en">Based in</span></dt><dd>Brisbane, Australia</dd></div>
+          <div><dt><span lang="es">Formación</span><span lang="en">Education</span></dt><dd><span lang="es">Ingeniería Industrial · Máster en IA (La Trobe, en curso) · Data Science &amp; AI (Institute of Data, UTS)</span><span lang="en">Industrial Engineering · Master of AI (La Trobe, in progress) · Data Science &amp; AI (Institute of Data, UTS)</span></dd></div>
+          <div><dt><span lang="es">Enfoque</span><span lang="en">Focus</span></dt><dd><span lang="es">Operación y rendimiento solar, análisis de datos, IA aplicada</span><span lang="en">Solar operations and performance, data analysis, applied AI</span></dd></div>
+          <div><dt><span lang="es">Idiomas</span><span lang="en">Languages</span></dt><dd><span lang="es">Español e inglés</span><span lang="en">Spanish and English</span></dd></div>
+        </dl>
+      </div>
+      <div>
+        <p lang="es">Trabajo entre dos mundos que rara vez se juntan: la operación de plantas solares de gran escala y el software que hace que su rendimiento se pueda medir y defender. Construyo plataformas de análisis que toman datos en vivo y los convierten en los números con los que opera el negocio.</p>
+        <p lang="es">Fuera de eso, uso la IA para construir productos completos de principio a fin. También hago fotografía, que me enseña a mirar patrones, luz y lo que de verdad hay.</p>
+        <p lang="en">I work between two worlds that rarely meet: the operation of utility-scale solar plants, and the software that makes their performance measurable and defensible. I build analytics platforms that take live data and turn it into the numbers the business runs on.</p>
+        <p lang="en">Beyond that, I use AI to build complete products end to end. I also do photography, which keeps teaching me to look at patterns, light, and what's actually there.</p>
+        <div class="cta"><a class="btn primary" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener"><span lang="es">Conectemos en LinkedIn ↗</span><span lang="en">Connect on LinkedIn ↗</span></a></div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Patricio Abarca</span>
+      <span>linkedin.com/in/patricioabarca</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function(){
+  var ST={live:{es:'En producción',en:'Live'},beta:{es:'Piloto',en:'Pilot'},dev:{es:'En desarrollo',en:'In development'}};
+  var APPS=[
+    {id:'settlia',name:'Settlia',logo:'settlia.png',s:'live',
+     tag:{es:'Gastos compartidos',en:'Shared expenses'},
+     desc:{es:'Reparte gastos en grupo sin discutir: viajes, casa compartida o una cena. En producción en la App Store y la web, con valoración de 5★.',en:'Split group expenses without the arguments: trips, shared houses or a dinner out. Live on the App Store and the web, rated 5★.'},
+     feats:{es:['Escanea boletas con IA y reparte cada ítem','Registra gastos por voz e importa extractos bancarios','Calcula quién le debe a quién, en cualquier moneda'],en:['Scans receipts with AI and splits each item','Logs spending by voice and imports bank statements','Works out who owes whom, in any currency']},
+     stack:['React','Capacitor','Supabase','Stripe','RevenueCat'],
+     links:[['settlia.app','https://settlia.app'],['App Store','https://apps.apple.com/app/id6787267468']]},
+    {id:'heymesa',name:'HeyMesa',logo:'heymesa.svg',s:'live',
+     tag:{es:'Conserje de restaurantes con IA',en:'AI restaurant concierge'},
+     desc:{es:'Le dices ciudad, día, hora, cuántos son y qué se te antoja, y te recomienda restaurantes reales en Australia y te ayuda a reservar.',en:'Tell it the city, day, time, party size and what you feel like, and it recommends real restaurants in Australia and helps you book.'},
+     feats:{es:['Recomendaciones con datos reales de Google Places','Te guía hasta la reserva y te la recuerda','En inglés y español, instalable como app'],en:['Recommendations from live Google Places data','Guides you to the booking and reminds you','English and Spanish, installable as an app']},
+     stack:['Claude','Google Places','Supabase','PWA'],
+     links:[['heymesa.app','https://heymesa.app']]},
+    {id:'cachos',name:'Cachos',logo:'cachos.svg',s:'live',
+     tag:{es:'Juego multijugador en 3D',en:'3D multiplayer game'},
+     desc:{es:'El Cacho chileno (dudo) en el navegador, para jugar con amigos donde estén, sin instalar nada.',en:'Chile’s classic dice game, Cacho, in the browser, to play with friends wherever they are, nothing to install.'},
+     feats:{es:['Mesas privadas con link de invitación','Dados y cachos en 3D con las reglas chilenas (el paso, la siciliana)','Voz y video entre jugadores, en español e inglés'],en:['Private tables with an invite link','3D dice and cups with Chilean rules','Voice and video between players, in Spanish and English']},
+     stack:['Node.js','Three.js','WebSockets','WebRTC'],
+     links:[['cachos.app','https://cachos.app']]},
+    {id:'desliza',name:'Desliza',logo:'deslia.png',s:'live',
+     tag:{es:'La Biblia deslizando',en:'The Bible, one swipe at a time'},
+     desc:{es:'Lee la Biblia versículo a versículo como un feed, con contexto para entender cada pasaje.',en:'Read the Bible verse by verse like a feed, with context to understand each passage.'},
+     feats:{es:['Feed vertical, un versículo por pantalla','Explicaciones con IA de los 66 libros en 5 idiomas','Línea de tiempo y fichas de personajes'],en:['Vertical feed, one verse per screen','AI explanations of all 66 books in 5 languages','Timeline and character cards']},
+     stack:['PWA',{es:'IA · 5 idiomas',en:'AI · 5 languages'}],
+     links:[[{es:'Abrir Desliza',en:'Open Desliza'},'https://patricbarca.github.io/desliza/']]},
+    {id:'geospots',name:'GeoSpots',logo:'geospots.svg',s:'live',
+     tag:{es:'Planos GeoPDF con GPS',en:'GeoPDF maps with GPS'},
+     desc:{es:'Abre planos PDF georreferenciados en el teléfono y muestra dónde estás parado. Pensada para trabajo en terreno en Australia.',en:'Open georeferenced PDF maps on your phone and see exactly where you’re standing. Built for fieldwork in Australia.'},
+     feats:{es:['Lee la georreferencia del PDF y lo pone sobre el mapa','GPS en vivo con precisión y coordenadas MGA2020','Pines con notas, recorridos y exportación a KML, sin señal'],en:['Reads the PDF’s georeference and places it on the map','Live GPS with accuracy and MGA2020 coordinates','Pins with notes, tracks and KML export, offline']},
+     stack:['PWA','MapLibre','pdf.js','IndexedDB'],
+     links:[[{es:'Abrir GeoSpots',en:'Open GeoSpots'},'https://patricbarca.github.io/geoplano/']]},
+    {id:'manifest',name:'ManifestLifeAI',logo:'manifest.png',s:'live',
+     tag:{es:'Videos de IA personalizados',en:'Personalised AI videos'},
+     desc:{es:'Subes unas selfies, escribes tus deseos y recibes un video de unos 2 minutos en el que te ves viviéndolos.',en:'Upload a few selfies, write your goals, and get a two-minute video of yourself living them.'},
+     feats:{es:['Guion, voz, respiración guiada y afirmaciones','Imágenes y animación generadas con IA','Market de plantillas para creadores'],en:['Script, voiceover, guided breathing and affirmations','AI-generated images and motion','Template marketplace for creators']},
+     stack:['Next.js','Supabase','fal','ffmpeg','Stripe'],
+     links:[['manifestlife.ai','https://manifestlife.ai']]},
+    {id:'comandia',name:'Comandia',logo:'comandia.svg',s:'beta',
+     tag:{es:'Caja, cocina e inventario',en:'Point of sale, kitchen and stock'},
+     desc:{es:'Sistema para cafés y restaurantes, en piloto con un café.',en:'A system for cafés and restaurants, piloting with a café.'},
+     feats:{es:['Mesas y pedidos desde el teléfono del garzón','Pantalla de cocina y barra, y cobro con propina','Inventario que se descuenta por receta y arma la lista de compras'],en:['Tables and orders from the waiter’s phone','Kitchen and bar screen, and checkout with tips','Recipe-based stock that builds the shopping list']},
+     stack:['Web app',{es:'Inventario por receta',en:'Recipe-based stock'}],
+     links:[]},
+    {id:'helios',name:'HeliOS',logo:'helios.svg',bare:true,s:'dev',
+     tag:{es:'Gemelo digital para plantas solares',en:'Digital twin for solar plants'},
+     desc:{es:'Una vista 3D de la planta solar con sus datos de operación, para que el equipo técnico vea y resuelva todo en un solo lugar.',en:'A 3D view of the solar plant with its operating data, so the technical team can see and act on everything in one place.'},
+     feats:{es:['Gemelo digital 3D con datos SCADA','Alarmas, órdenes de trabajo e inventario de mantenimiento','Asistente de IA con voz para el equipo técnico'],en:['3D digital twin with SCADA data','Alarms, work orders and maintenance stock','Voice AI assistant for the technical team']},
+     stack:['Python','Three.js','SCADA',{es:'IA con voz',en:'Voice AI'}],
+     links:[]},
+    {id:'solarai',name:'SolarAI Analytics',logo:'solarai.svg',bare:true,s:'dev',
+     tag:{es:'Análisis de rendimiento fotovoltaico',en:'PV performance analytics'},
+     desc:{es:'Un servicio para plantas solares que convierte los datos de operación en indicadores claros y defendibles.',en:'A service for solar plants that turns operating data into clear, defensible metrics.'},
+     feats:{es:['Performance Ratio frente a lo esperado y disponibilidad','Detección de fallas en inversores, strings y trackers','Informes automáticos diarios y mensuales'],en:['Performance Ratio against expectation, and availability','Fault detection across inverters, strings and trackers','Automated daily and monthly reports']},
+     stack:['Python','Performance Ratio',{es:'Informes PDF',en:'PDF reports'}],
+     links:[]},
+    {id:'vidacta',name:'Vidacta',logo:'vidacta.svg',s:'dev',
+     tag:{es:'De video a curso interactivo',en:'From video to interactive course'},
+     desc:{es:'Pegas un link de YouTube y sale un curso interactivo en español o inglés, aunque el video esté en otro idioma.',en:'Paste a YouTube link and get an interactive course in Spanish or English, even if the video is in another language.'},
+     feats:{es:['Módulos con lo esencial y ejercicios corregidos','Tutor de IA que cita el minuto exacto del video','Certificado al terminar, con página de verificación'],en:['Modules with the essentials and graded exercises','AI tutor that cites the exact minute of the video','Certificate at the end, with a verification page']},
+     stack:['Python','Whisper','Claude'],
+     links:[]}
+  ];
+  var NOLINK={beta:{es:'En piloto con un café',en:'Piloting with a café'},dev:{es:'Próximamente',en:'Coming soon'}};
+
+  function t(v){ if(typeof v==='string') return esc(v); return '<span lang="es">'+esc(v.es)+'</span><span lang="en">'+esc(v.en)+'</span>'; }
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function img(a,size){return '<img src="logos/'+a.logo+'" alt="" width="'+size+'" height="'+size+'"'+(a.bare?' class="bare"':'')+'>';}
+
+  // marquee (two copies for a seamless loop)
+  var chips=APPS.map(function(a){return '<a class="chip" href="#app-'+a.id+'">'+img(a,44)+'<span><b>'+esc(a.name)+'</b><small>'+t(a.tag)+'</small></span></a>';}).join('');
+  var dup=APPS.map(function(a){return '<a class="chip dup" href="#app-'+a.id+'" tabindex="-1" aria-hidden="true">'+img(a,44)+'<span><b>'+esc(a.name)+'</b><small>'+t(a.tag)+'</small></span></a>';}).join('');
+  document.getElementById('track').innerHTML=chips+dup;
+
+  // detail list
+  document.getElementById('list').innerHTML=APPS.map(function(a){
+    var feats='<ul class="feats">'+a.feats.es.map(function(f,i){return '<li><span><span lang="es">'+esc(f)+'</span><span lang="en">'+esc(a.feats.en[i])+'</span></span></li>';}).join('')+'</ul>';
+    var stack='<div class="stack">'+a.stack.map(function(s){return '<span>'+t(s)+'</span>';}).join('')+'</div>';
+    var links=a.links.length?a.links.map(function(l){return '<a class="link" href="'+l[1]+'" target="_blank" rel="noopener">'+t(l[0])+' ↗</a>';}).join(''):'<span class="link none">'+t(NOLINK[a.s])+'</span>';
+    return '<article class="app" id="app-'+a.id+'" data-s="'+a.s+'">'+
+      '<div class="app-head">'+img(a,56).replace('<img','<img alt="Logo de '+esc(a.name)+'"').replace(' alt=""','')+'<div><h3>'+esc(a.name)+'</h3><p class="tag">'+t(a.tag)+'</p></div><span class="pill '+a.s+'">'+t(ST[a.s])+'</span></div>'+
+      '<p class="desc">'+t(a.desc)+'</p>'+feats+stack+'<div class="foot">'+links+'</div></article>';
+  }).join('');
+
+  // counts
+  var counts={all:APPS.length,live:0,beta:0,dev:0};
+  APPS.forEach(function(a){counts[a.s]++;});
+  document.querySelectorAll('[data-count]').forEach(function(el){el.textContent=counts[el.dataset.count];});
+
+  // filters
+  var cards=[].slice.call(document.querySelectorAll('#list .app'));
+  document.querySelectorAll('.filters button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.dataset.f;
+      document.querySelectorAll('.filters button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      cards.forEach(function(c){c.hidden=!(f==='all'||c.dataset.s===f);});
+    });
+  });
+
+  // language
+  var root=document.documentElement;
+  function setLang(l){
+    root.setAttribute('data-lang',l);root.lang=l;
+    document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l?'true':'false');});
+    try{localStorage.setItem('pa-lang',l);}catch(e){}
+  }
+  var saved=null;try{saved=localStorage.getItem('pa-lang');}catch(e){}
+  if(saved!=='es'&&saved!=='en'){saved=(navigator.language||'es').toLowerCase().indexOf('es')===0?'es':'en';}
+  setLang(saved);
+  document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set);});});
+
+  // views
+  var home=document.getElementById('home'), built=document.getElementById('built');
+  function route(){
+    var h=(location.hash||'').slice(1);
+    var showBuilt=(h==='built'||h.indexOf('app-')===0);
+    home.hidden=showBuilt; built.hidden=!showBuilt;
+    if(showBuilt){
+      cards.forEach(function(c){c.hidden=false;});
+      document.querySelectorAll('.filters button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.f==='all'?'true':'false');});
+      var target=h.indexOf('app-')===0?document.getElementById(h):null;
+      if(target){requestAnimationFrame(function(){target.scrollIntoView({block:'start'});});}
+      else{window.scrollTo(0,0);}
+    } else { window.scrollTo(0,0); }
+  }
+  window.addEventListener('hashchange',route);
+  route();
+})();
+</script>
+
+</body>
+</html>
