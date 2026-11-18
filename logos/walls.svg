@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Walls">
+  <title>Walls</title>
+  <!-- Walls: el documento arriba, sus secciones en tres columnas de tarjetas, y un trazo de lápiz abajo. -->
+  <rect width="64" height="64" rx="16" fill="#4054C8"/>
+  <rect x="14" y="11" width="36" height="9" rx="3" fill="#FFFFFF"/>
+  <path d="M32 20v6M32 23H20v3M32 23h12v3" fill="none" stroke="#C9CFF5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="14" y="27" width="12" height="8" rx="2.2" fill="#D3F5DC"/>
+  <rect x="14" y="37.5" width="12" height="8" rx="2.2" fill="#D3F5DC"/>
+  <rect x="26.5" y="27" width="11" height="8" rx="2.2" fill="#FFF1B8"/>
+  <rect x="26.5" y="37.5" width="11" height="12" rx="2.2" fill="#FFF1B8"/>
+  <rect x="38" y="27" width="12" height="8" rx="2.2" fill="#FFE0E0"/>
+  <rect x="38" y="37.5" width="12" height="8" rx="2.2" fill="#FFE0E0"/>
+  <path d="M13 54.5c4-4 7 3 11 0s7-3 10 0 7 2 11-1 5-1 6 0" fill="none" stroke="#FFD43B" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

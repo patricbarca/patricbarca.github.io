@@ -229,7 +229,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   <div class="belt">
     <div class="wrap">
       <div class="belt-head">
-        <span class="eyebrow"><span lang="es">10 apps construidas</span><span lang="en">10 apps built</span></span>
+        <span class="eyebrow"><span lang="es">11 apps construidas</span><span lang="en">11 apps built</span></span>
         <a href="#built"><span lang="es">Ver el detalle →</span><span lang="en">See the details →</span></a>
       </div>
     </div>
@@ -256,7 +256,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
       <div>
         <div class="eyebrow"><span lang="es">Portafolio</span><span lang="en">Portfolio</span></div>
         <h2>What I Built</h2>
-        <p class="sub"><span lang="es">Diez productos hechos de principio a fin, del diseño al despliegue. Algunos ya tienen usuarios; otros están en camino.</span><span lang="en">Ten products built end to end, from design to deployment. Some already have users; others are on their way.</span></p>
+        <p class="sub"><span lang="es">Once productos hechos de principio a fin, del diseño al despliegue. Algunos ya tienen usuarios; otros están en camino.</span><span lang="en">Eleven products built end to end, from design to deployment. Some already have users; others are on their way.</span></p>
       </div>
       <div class="filters" role="group" aria-label="Filtrar">
         <button id="f-all" type="button" data-f="all" aria-pressed="true"><span lang="es">Todas</span><span lang="en">All</span><span class="n" data-count="all"></span></button>
@@ -329,6 +329,12 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
      feats:{es:['Lee la georreferencia del PDF y lo pone sobre el mapa','GPS en vivo con precisión y coordenadas MGA2020','Pines con notas, recorridos y exportación a KML, sin señal'],en:['Reads the PDF’s georeference and places it on the map','Live GPS with accuracy and MGA2020 coordinates','Pins with notes, tracks and KML export, offline']},
      stack:['PWA','MapLibre','pdf.js','IndexedDB'],
      links:[[{es:'Abrir GeoSpots',en:'Open GeoSpots'},'https://patricbarca.github.io/geospots/']]},
+    {id:'walls',name:'Walls',logo:'walls.svg',s:'live',
+     tag:{es:'Contratos y documentos en un muro',en:'Contracts and documents on a wall'},
+     desc:{es:'Sube un contrato o documento y lo descompone en sus secciones importantes, cada una como un muro de tarjetas que te lleva al lugar exacto del texto original.',en:'Upload a contract or document and it breaks it into its key sections, each one a wall of cards that takes you to the exact spot in the original text.'},
+     feats:{es:['Mapea dónde aparece cada referencia en cada sección, y compara varios contratos lado a lado','Notas a mano con lápiz en el iPad, imágenes y flechas sobre el muro','Lo mismo en la compu, el iPad o el teléfono, con chat de IA sobre el documento'],en:['Maps where each reference appears in every section, and compares contracts side by side','Handwritten Apple Pencil notes on the iPad, plus images and arrows on the wall','Same wall on computer, iPad or phone, with an AI chat about the document']},
+     stack:['Claude','pdf.js',{es:'Lienzo infinito',en:'Infinite canvas'},{es:'Lápiz y tinta',en:'Pencil ink'}],
+     links:[],nolink:{es:'Demo a pedido',en:'Demo on request'}},
     {id:'manifest',name:'ManifestLifeAI',logo:'manifest.png',s:'live',
      tag:{es:'Videos de IA personalizados',en:'Personalised AI videos'},
      desc:{es:'Subes unas selfies, escribes tus deseos y recibes un video de unos 2 minutos en el que te ves viviéndolos.',en:'Upload a few selfies, write your goals, and get a two-minute video of yourself living them.'},
@@ -375,7 +381,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   document.getElementById('list').innerHTML=APPS.map(function(a){
     var feats='<ul class="feats">'+a.feats.es.map(function(f,i){return '<li><span><span lang="es">'+esc(f)+'</span><span lang="en">'+esc(a.feats.en[i])+'</span></span></li>';}).join('')+'</ul>';
     var stack='<div class="stack">'+a.stack.map(function(s){return '<span>'+t(s)+'</span>';}).join('')+'</div>';
-    var links=a.links.length?a.links.map(function(l){return '<a class="link" href="'+l[1]+'" target="_blank" rel="noopener">'+t(l[0])+' ↗</a>';}).join(''):'<span class="link none">'+t(NOLINK[a.s])+'</span>';
+    var links=a.links.length?a.links.map(function(l){return '<a class="link" href="'+l[1]+'" target="_blank" rel="noopener">'+t(l[0])+' ↗</a>';}).join(''):'<span class="link none">'+t(a.nolink||NOLINK[a.s])+'</span>';
     return '<article class="app" id="app-'+a.id+'" data-s="'+a.s+'">'+
       '<div class="app-head">'+img(a,56).replace('<img','<img alt="Logo de '+esc(a.name)+'"').replace(' alt=""','')+'<div><h3>'+esc(a.name)+'</h3><p class="tag">'+t(a.tag)+'</p></div><span class="pill '+a.s+'">'+t(ST[a.s])+'</span></div>'+
       '<p class="desc">'+t(a.desc)+'</p>'+feats+stack+'<div class="foot">'+links+'</div></article>';
