@@ -172,6 +172,31 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
 .vclose{position:absolute;top:-44px;right:0;font:600 14px var(--f-body);color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
 .vclose:hover{background:rgba(255,255,255,.22)}
 
+/* Let's talk: formulario de consulta en una ventana; lo envía Web3Forms a mi correo */
+.btn.talk{background:var(--sun);border-color:var(--sun);color:#1B1206;cursor:pointer}
+button.btn{cursor:pointer}
+.tmodal{position:fixed;inset:0;z-index:60;background:rgba(6,10,14,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.tbox{position:relative;width:min(100%,520px);max-height:calc(100dvh - 32px);overflow-y:auto;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:26px 24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.tbox h2{font:700 28px/1.1 var(--f-display);margin:6px 0 6px}
+.tbox .lead{color:var(--muted);margin:0 0 18px;font-size:15px}
+.tx{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:999px;border:0;background:var(--bg);color:var(--ink);font-size:16px;cursor:pointer}
+.tform{display:grid;gap:12px}
+.tform .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tform label{display:grid;gap:5px;font:600 13px var(--f-body)}
+.tform label span.opt{font-weight:400;color:var(--muted)}
+.tform input,.tform select,.tform textarea{font:400 16px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+.tform textarea{min-height:120px;resize:vertical}
+.tform input:focus,.tform select:focus,.tform textarea:focus{outline:2px solid var(--sun);outline-offset:1px;border-color:transparent}
+.tform .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.tform .send{justify-content:center;width:100%;margin-top:4px}
+.tform .send[disabled]{opacity:.6;cursor:wait}
+.tmsg{margin:2px 0 0;font-size:14px;min-height:1.2em}
+.tmsg.err{color:#C0392B}
+.tdone{text-align:center;padding:18px 0 6px}
+.tdone .ok{width:56px;height:56px;border-radius:999px;margin:0 auto 12px;display:grid;place-items:center;background:var(--live-soft);color:var(--live);font-size:26px}
+.tdone p{color:var(--muted);margin:6px 0 18px}
+@media (max-width:560px){.tform .row{grid-template-columns:1fr}.tbox{padding:22px 18px 18px}.tbox h2{font-size:24px}}
+
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;gap:10px}
   .stage{width:min(64vw,31vh,300px)}
@@ -240,6 +265,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
           </div>
           <div class="cta">
             <a class="btn primary" href="#built">What I Built →</a>
+            <button class="btn talk" type="button" data-talk>Let’s talk</button>
             <button class="btn play" type="button" id="play"><span aria-hidden="true">▶</span> <span lang="es">Presentación</span><span lang="en">Watch intro</span></button>
             <a class="btn" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
@@ -306,7 +332,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
         <p lang="es">Fuera de eso, uso la IA para construir productos completos de principio a fin. También hago fotografía, que me enseña a mirar patrones, luz y lo que de verdad hay.</p>
         <p lang="en">I work between two worlds that rarely meet: the operation of utility-scale solar plants, and the software that makes their performance measurable and defensible. I build analytics platforms that take live data and turn it into the numbers the business runs on.</p>
         <p lang="en">Beyond that, I use AI to build complete products end to end. I also do photography, which keeps teaching me to look at patterns, light, and what's actually there.</p>
-        <div class="cta"><a class="btn primary" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener"><span lang="es">Conectemos en LinkedIn ↗</span><span lang="en">Connect on LinkedIn ↗</span></a></div>
+        <div class="cta"><button class="btn primary" type="button" data-talk>Let’s talk</button><a class="btn" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener"><span lang="es">Conectemos en LinkedIn ↗</span><span lang="en">Connect on LinkedIn ↗</span></a></div>
       </div>
     </section>
 
@@ -321,6 +347,41 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   <div class="vbox">
     <button class="vclose" type="button" id="vclose"><span lang="es">Cerrar ✕</span><span lang="en">Close ✕</span></button>
     <video id="vid" controls playsinline preload="none" poster="video/poster.jpg"></video>
+  </div>
+</div>
+
+<div class="tmodal" id="tmodal" hidden role="dialog" aria-modal="true" aria-labelledby="ttitle">
+  <div class="tbox">
+    <button class="tx" type="button" id="tclose" aria-label="Cerrar / Close">✕</button>
+    <div id="tformwrap">
+      <div class="eyebrow"><span lang="es">Contacto</span><span lang="en">Contact</span></div>
+      <h2 id="ttitle">Let’s talk</h2>
+      <p class="lead"><span lang="es">Cuéntame tu idea o tu proyecto: IA, datos solares o una app. Te respondo por correo.</span><span lang="en">Tell me about your idea or project: AI, solar data or an app. I’ll reply by email.</span></p>
+      <form class="tform" id="tform" novalidate>
+        <div class="row">
+          <label><span lang="es">Nombre</span><span lang="en">Name</span><input name="name" autocomplete="name" required maxlength="120"></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+        </div>
+        <label><span><span lang="es">Sobre qué</span><span lang="en">About</span></span>
+          <select name="topic">
+            <option value="Proyecto con IA / AI project" data-es="Un proyecto con IA" data-en="An AI project">Un proyecto con IA</option>
+            <option value="Datos solares / Solar data" data-es="Análisis de datos solares" data-en="Solar data analysis">Análisis de datos solares</option>
+            <option value="Construir una app / Build an app" data-es="Construir una app juntos" data-en="Building an app together">Construir una app juntos</option>
+            <option value="Otro / Other" data-es="Otra cosa" data-en="Something else">Otra cosa</option>
+          </select>
+        </label>
+        <label><span lang="es">Mensaje</span><span lang="en">Message</span><textarea name="message" required maxlength="5000"></textarea></label>
+        <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn primary send" type="submit" id="tsend"><span lang="es">Enviar consulta</span><span lang="en">Send message</span></button>
+        <p class="tmsg" id="tmsg" role="status"></p>
+      </form>
+    </div>
+    <div class="tdone" id="tdone" hidden>
+      <div class="ok" aria-hidden="true">✓</div>
+      <h2><span lang="es">¡Gracias!</span><span lang="en">Thanks!</span></h2>
+      <p><span lang="es">Recibí tu mensaje. Te respondo pronto por correo.</span><span lang="en">I got your message and will reply by email soon.</span></p>
+      <button class="btn" type="button" id="tok"><span lang="es">Cerrar</span><span lang="en">Close</span></button>
+    </div>
   </div>
 </div>
 
@@ -445,6 +506,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   function setLang(l){
     root.setAttribute('data-lang',l);root.lang=l;
     document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l?'true':'false');});
+    document.querySelectorAll('option[data-es]').forEach(function(o){o.textContent=o.getAttribute('data-'+l);});
     try{localStorage.setItem('pa-lang',l);}catch(e){}
   }
   var saved=null;try{saved=localStorage.getItem('pa-lang');}catch(e){}
@@ -465,6 +527,39 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   document.getElementById('vclose').addEventListener('click',closeVideo);
   vm.addEventListener('click',function(e){ if(e.target===vm) closeVideo(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!vm.hidden) closeVideo(); });
+
+  // Let's talk: the form is sent by Web3Forms (free plan) to Pat's inbox; the access key is public by design
+  var W3F_KEY='1bce3f55-e2b2-499d-a714-9e0bb17b751d';
+  var tm=document.getElementById('tmodal'), tf=document.getElementById('tform'), tmsg=document.getElementById('tmsg'), tsend=document.getElementById('tsend'), lastTalk=null;
+  function L(es,en){return root.getAttribute('data-lang')==='en'?en:es;}
+  function openTalk(e){
+    lastTalk=e&&e.currentTarget||null;
+    document.getElementById('tformwrap').hidden=false; document.getElementById('tdone').hidden=true;
+    tmsg.textContent=''; tmsg.className='tmsg'; tm.hidden=false;
+    setTimeout(function(){tf.elements.name.focus();},30);
+  }
+  function closeTalk(){ tm.hidden=true; if(lastTalk){lastTalk.focus();} }
+  document.querySelectorAll('[data-talk]').forEach(function(b){b.addEventListener('click',openTalk);});
+  document.getElementById('tclose').addEventListener('click',closeTalk);
+  document.getElementById('tok').addEventListener('click',closeTalk);
+  tm.addEventListener('click',function(e){ if(e.target===tm) closeTalk(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!tm.hidden) closeTalk(); });
+  tf.addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=tf.elements, name=f.name.value.trim(), email=f.email.value.trim(), msg=f.message.value.trim();
+    tmsg.className='tmsg err';
+    if(!name||!email||!msg){tmsg.textContent=L('Completa nombre, email y mensaje.','Please fill in name, email and message.');return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){tmsg.textContent=L('Revisa el email.','Please check the email address.');f.email.focus();return;}
+    if(f.botcheck.checked){return;}
+    tsend.disabled=true; tmsg.className='tmsg'; tmsg.textContent=L('Enviando…','Sending…');
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:W3F_KEY,subject:'Let’s talk: '+name+' ('+f.topic.value+')',from_name:'patricbarca.github.io',
+        name:name,email:email,replyto:email,topic:f.topic.value,message:msg,language:root.getAttribute('data-lang'),botcheck:''})})
+    .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||!j.success){throw new Error(j.message||r.status);}});})
+    .then(function(){tf.reset();document.getElementById('tformwrap').hidden=true;document.getElementById('tdone').hidden=false;document.getElementById('tok').focus();})
+    .catch(function(){tmsg.className='tmsg err';tmsg.innerHTML=L('No se pudo enviar. Prueba de nuevo o escríbeme por <a href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn</a>.','It couldn’t be sent. Try again or message me on <a href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn</a>.');})
+    .then(function(){tsend.disabled=false;});
+  });
 
   // views
   var home=document.getElementById('home'), built=document.getElementById('built');
