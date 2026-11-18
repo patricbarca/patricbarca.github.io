@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Patricio Abarca: ingeniero industrial en Brisbane. Energía solar, IA y las apps que he construido.">
+<meta name="description" content="Patricio Abarca construye aplicaciones y trabaja con inteligencia artificial. Estas son las apps que ha lanzado.">
 <meta property="og:title" content="Patricio Abarca">
-<meta property="og:description" content="Ingeniero industrial · IA · Energía solar. Las apps que he construido.">
+<meta property="og:description" content="Construyo aplicaciones y trabajo con IA. Las apps que he lanzado.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://patricbarca.github.io/img/patricio-abarca.jpg">
 <meta property="og:url" content="https://patricbarca.github.io/">
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: dos vistas. Inicio = una sola pantalla (presentación + curva de un día solar + cinta de apps que corre sola).
+/* Layout: dos vistas. Inicio = una sola pantalla (las apps orbitando mi foto + presentación + cinta de apps que corre sola).
    What I Built (#built) = el detalle de cada app, filtrable, y "Sobre mí" al final. */
 :root{
   --bg:#F3F5F7; --surface:#FFFFFF; --ink:#13202B; --muted:#5A6873; --line:#D9DFE4;
@@ -59,27 +59,46 @@ html[data-lang="es"] [lang="en"], html[data-lang="en"] [lang="es"]{display:none!
 /* ===== HOME: one screen ===== */
 #home{height:100%;display:flex;flex-direction:column;overflow:hidden}
 .home-main{flex:1;min-height:0;display:flex;align-items:center}
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;width:100%}
+.hero{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(24px,5vw,64px);align-items:center;width:100%}
 .hero > *{min-width:0}
-h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(8vw,11vh),100px);line-height:.92;letter-spacing:-.035em;margin:12px 0 18px;text-wrap:balance}
-.id{display:flex;align-items:center;gap:clamp(16px,2.4vw,28px);margin:12px 0 18px}
-.id h1{margin:0}
-.me{width:clamp(84px,min(12vw,15vh),140px);height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 0 0 4px var(--surface),0 0 0 5px var(--line)}
-.lede{font-size:clamp(17px,2vw,21px);max-width:36ch;margin:0 0 18px;text-wrap:pretty}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(7.4vw,10.5vh),96px);line-height:.92;letter-spacing:-.035em;margin:14px 0 18px;text-wrap:balance}
+.lede{font-size:clamp(17px,2vw,21px);max-width:34ch;margin:0 0 18px;text-wrap:pretty}
+.lede b{font-weight:600}
 .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font:400 13px var(--f-mono);color:var(--muted);margin-bottom:22px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 
-.curve{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 16px 10px;margin:0}
-.curve-head{display:flex;justify-content:space-between;font:400 12px var(--f-mono);color:var(--muted);margin-bottom:6px}
-.curve-head b{color:var(--ink);font-weight:500}
-.curve svg{display:block;width:100%;height:auto}
-.curve .axis text{font:400 10px var(--f-mono);fill:var(--muted)}
-.curve .grid line{stroke:var(--line)}
-.curve .area{fill:var(--sun-soft)}
-.curve .line{fill:none;stroke:var(--sun);stroke-width:2.2}
-.curve .dot{fill:var(--surface);stroke:var(--ink);stroke-width:1.6}
-.curve .lbl{font:500 10.5px var(--f-body);fill:var(--ink)}
-.curve-foot{font-size:12.5px;color:var(--muted);margin:6px 0 2px}
+/* stage: mi foto al centro y las apps orbitando; cada pocos segundos una se destaca y abajo dice qué hace */
+.stage-col{display:flex;flex-direction:column;align-items:center;gap:12px}
+.stage{position:relative;width:min(100%,56vh,470px);aspect-ratio:1;container-type:inline-size}
+.ring{position:absolute;border-radius:50%;pointer-events:none}
+.ring.r1{inset:9cqw;border:1.5px dashed var(--line)}
+.ring.r2{inset:22cqw;background:radial-gradient(circle,var(--sun-soft) 0,transparent 70%)}
+.spark{position:absolute;inset:9cqw;border-radius:50%;pointer-events:none}
+.spark::before{content:"";position:absolute;left:50%;top:0;width:2.2cqw;height:2.2cqw;margin:-1.1cqw;border-radius:50%;background:var(--sun);box-shadow:0 0 0 1.4cqw var(--sun-soft)}
+.stage .me{position:absolute;left:30cqw;top:30cqw;width:40cqw;height:40cqw;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1.2cqw var(--surface),0 0 0 calc(1.2cqw + 1px) var(--line),0 18px 40px -18px rgba(19,32,43,.45)}
+.orbit{position:absolute;inset:0}
+.orb{position:absolute;left:50%;top:50%;width:15cqw;height:15cqw;margin:-7.5cqw 0 0 -7.5cqw;transform:rotate(var(--a)) translateY(-41cqw) rotate(calc(-1 * var(--a)))}
+.orb > span{display:block;width:100%;height:100%}
+.orb img{display:block;width:100%;height:100%;border-radius:24%;background:var(--surface);box-shadow:0 6px 18px -8px rgba(19,32,43,.5);transition:transform .45s cubic-bezier(.3,1.5,.5,1),box-shadow .45s}
+.orb img.bare{border-radius:50%}
+.orb.on img{transform:scale(1.32);box-shadow:0 0 0 .9cqw var(--surface),0 0 0 1.6cqw var(--sun),0 10px 26px -8px rgba(19,32,43,.55)}
+.orb:focus-visible{outline:none}
+.orb:focus-visible img{outline:2px solid var(--sun);outline-offset:3px}
+.spot{margin:0;min-height:1.5em;font-size:15px;text-align:center;color:var(--muted);max-width:40ch}
+.spot b{font:700 16px var(--f-display);color:var(--ink);letter-spacing:-.01em}
+.spot .in{display:inline-block}
+@media (prefers-reduced-motion:no-preference){
+  .orbit{animation:spin 80s linear infinite}
+  .orb > span{animation:spin 80s linear infinite reverse}
+  .spark{animation:spin 9s linear infinite}
+  .stage:hover .orbit,.stage:hover .orb > span,.stage:focus-within .orbit,.stage:focus-within .orb > span{animation-play-state:paused}
+  .orb img{animation:bob 4s ease-in-out infinite;animation-delay:var(--d)}
+  .orb.on img{animation:none}
+  .spot .in{animation:rise .5s ease-out}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes bob{50%{transform:translateY(-1.6cqw)}}
+  @keyframes rise{from{opacity:.35;transform:translateY(6px)}}
+}
 
 /* marquee */
 .belt{border-top:1px solid var(--line);padding-block:14px 18px}
@@ -101,10 +120,6 @@ h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(8vw,11v
   .track{animation:none}
   .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
   .track .dup{display:none}
-}
-@media (prefers-reduced-motion:no-preference){
-  .curve .line{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.6s .2s ease-out forwards}
-  @keyframes draw{to{stroke-dashoffset:0}}
 }
 
 /* ===== WHAT I BUILT ===== */
@@ -150,8 +165,10 @@ h2{font-family:var(--f-display);font-weight:800;font-size:clamp(38px,6vw,68px);l
 footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font:400 13px var(--f-mono);color:var(--muted)}
 
 @media (max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .curve{display:none}
+  .hero{grid-template-columns:1fr;gap:10px}
+  .stage{width:min(64vw,31vh,300px)}
+  .spot{font-size:13.5px}
+  .spot b{font-size:14.5px}
   .list{grid-template-columns:1fr}
   .about{grid-template-columns:1fr;gap:20px}
 }
@@ -160,11 +177,15 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   .mark span{display:none}
   .meta{display:none}
   .chip{width:220px}
+  h1{font-size:clamp(34px,10.4vw,44px);margin:8px 0 10px}
+  h1 br{display:none}
+  .lede{font-size:16px;margin-bottom:14px}
+  .btn{padding:10px 16px}
 }
 @media (max-height:640px){
   .meta{display:none}
-  .curve{display:none}
-  .id{margin:8px 0 12px}
+  .spot{display:none}
+  h1{margin:8px 0 12px}
 }
 </style>
 
@@ -189,43 +210,31 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   <main class="home-main">
     <div class="wrap">
       <div class="hero">
+        <div class="stage-col">
+          <div class="stage" id="stage">
+            <div class="ring r2"></div><div class="ring r1"></div><div class="spark"></div>
+            <img class="me" src="img/patricio-abarca.jpg" alt="Patricio Abarca" width="188" height="188">
+            <div class="orbit" id="orbit"></div>
+          </div>
+          <p class="spot" id="spot" aria-live="polite"></p>
+        </div>
         <div>
-          <div class="eyebrow"><span lang="es">Ingeniero industrial · IA · Energía solar</span><span lang="en">Industrial engineer · AI · Solar</span></div>
-          <div class="id"><img class="me" src="img/patricio-abarca.jpg" alt="Patricio Abarca" width="140" height="140"><h1>Patricio<br>Abarca</h1></div>
+          <div class="eyebrow"><span lang="es">Construyo apps · Trabajo con IA</span><span lang="en">I build apps · I work with AI</span></div>
+          <h1>Patricio<br> Abarca</h1>
           <p class="lede">
-            <span lang="es">Trabajo con plantas solares de gran escala y construyo software con IA: desde análisis de rendimiento hasta apps que la gente usa a diario.</span>
-            <span lang="en">I work with utility-scale solar plants and build AI-powered software, from performance analytics to apps people use every day.</span>
+            <span lang="es"><b>Construyo aplicaciones y trabajo con inteligencia artificial.</b> De la idea a la app publicada: agentes que reservan mesas, apps que reparten gastos y cursos que salen de un video.</span>
+            <span lang="en"><b>I build apps and work with artificial intelligence.</b> From the idea to the shipped app: agents that book tables, apps that split expenses and courses made from a video.</span>
           </p>
           <div class="meta">
             <span>Brisbane, Australia</span>
             <span lang="es">Máster en IA · La Trobe University</span><span lang="en">Master of AI · La Trobe University</span>
-            <span>ES / EN</span>
+            <span lang="es">Ingeniero industrial</span><span lang="en">Industrial engineer</span>
           </div>
           <div class="cta">
             <a class="btn primary" href="#built">What I Built →</a>
             <a class="btn" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
         </div>
-
-        <figure class="curve" aria-label="Curva de generación de un día solar con los proyectos marcados">
-          <div class="curve-head"><span><b lang="es">Curva de un día solar</b><b lang="en">One solar day</b></span><span>kW · 06:00–18:00</span></div>
-          <svg viewBox="0 0 400 220" role="img">
-            <g class="grid"><line x1="20" y1="190" x2="380" y2="190"/><line x1="20" y1="130" x2="380" y2="130"/><line x1="20" y1="70" x2="380" y2="70"/></g>
-            <path class="area" d="M20 190 C 80 188, 120 60, 200 40 C 280 60, 320 188, 380 190 Z"/>
-            <path class="line" d="M20 190 C 80 188, 120 60, 200 40 C 280 60, 320 188, 380 190"/>
-            <g>
-              <circle class="dot" cx="78" cy="172" r="4.5"/><text class="lbl" x="68" y="160" text-anchor="end">Desliza</text>
-              <circle class="dot" cx="120" cy="104" r="4.5"/><text class="lbl" x="112" y="96" text-anchor="end">Cachos</text>
-              <circle class="dot" cx="160" cy="58" r="4.5"/><text class="lbl" x="152" y="50" text-anchor="end">Settlia</text>
-              <circle class="dot" cx="200" cy="40" r="5.5"/><text class="lbl" x="200" y="28" text-anchor="middle">Walls</text>
-              <circle class="dot" cx="242" cy="54" r="4.5"/><text class="lbl" x="250" y="48">HeyMesa</text>
-              <circle class="dot" cx="282" cy="98" r="4.5"/><text class="lbl" x="290" y="92">GeoSpots</text>
-              <circle class="dot" cx="322" cy="160" r="4.5"/><text class="lbl" x="330" y="154">Vidacta</text>
-            </g>
-            <g class="axis"><text x="20" y="208">06</text><text x="110" y="208">09</text><text x="200" y="208" text-anchor="middle">12</text><text x="290" y="208">15</text><text x="380" y="208" text-anchor="end">18</text></g>
-          </svg>
-          <figcaption class="curve-foot"><span lang="es">Mi trabajo diario: medir cuánta energía rinde una planta frente a lo esperado. Lo demás lo construyo en las horas que quedan.</span><span lang="en">My day job: measuring how much energy a plant delivers against expectation. Everything else gets built in the hours left over.</span></figcaption>
-        </figure>
       </div>
     </div>
   </main>
@@ -368,6 +377,27 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   var chips=APPS.map(function(a){return '<a class="chip" href="#app-'+a.id+'">'+img(a,44)+'<span><b>'+esc(a.name)+'</b><small>'+t(a.tag)+'</small></span></a>';}).join('');
   var dup=APPS.map(function(a){return '<a class="chip dup" href="#app-'+a.id+'" tabindex="-1" aria-hidden="true">'+img(a,44)+'<span><b>'+esc(a.name)+'</b><small>'+t(a.tag)+'</small></span></a>';}).join('');
   document.getElementById('track').innerHTML=chips+dup;
+
+  // orbit around the photo: one app is highlighted at a time and the caption says what it does
+  var orbit=document.getElementById('orbit'), spot=document.getElementById('spot'), stage=document.getElementById('stage');
+  orbit.innerHTML=APPS.map(function(a,i){
+    return '<a class="orb" href="#app-'+a.id+'" style="--a:'+(i*360/APPS.length)+'deg;--d:'+(-i*0.45)+'s" aria-label="'+esc(a.name)+'"><span>'+img(a,72)+'</span></a>';
+  }).join('');
+  var orbs=[].slice.call(orbit.querySelectorAll('.orb')), cur=-1, held=false;
+  function show(i){
+    if(i===cur) return; cur=i;
+    orbs.forEach(function(o,k){o.classList.toggle('on',k===i);});
+    var a=APPS[i];
+    spot.innerHTML='<span class="in"><b>'+esc(a.name)+'</b> · '+t(a.tag)+'</span>';
+  }
+  show(0);
+  setInterval(function(){ if(!held && !document.hidden) show((cur+1)%APPS.length); },2600);
+  orbs.forEach(function(o,k){
+    o.addEventListener('mouseenter',function(){show(k);});
+    o.addEventListener('focus',function(){show(k);});
+  });
+  stage.addEventListener('mouseenter',function(){held=true;});
+  stage.addEventListener('mouseleave',function(){held=false;});
 
   // detail list
   document.getElementById('list').innerHTML=APPS.map(function(a){
