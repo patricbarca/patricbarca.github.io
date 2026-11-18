@@ -64,7 +64,7 @@ html[data-lang="es"] [lang="en"], html[data-lang="en"] [lang="es"]{display:none!
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(7.4vw,10.5vh),96px);line-height:.92;letter-spacing:-.035em;margin:14px 0 18px;text-wrap:balance}
 .lede{font-size:clamp(16px,1.8vw,20px);max-width:38ch;margin:0 0 18px;text-wrap:pretty}
 .lede b{font-weight:600}
-.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font:400 13px var(--f-mono);color:var(--muted);margin-bottom:22px}
+.meta{display:flex;flex-direction:column;gap:2px;font:400 13px var(--f-mono);color:var(--muted);margin-bottom:22px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 
 /* stage: mi foto al centro y las apps orbitando; cada pocos segundos una se destaca y abajo dice qué hace */
@@ -210,8 +210,7 @@ button.btn{cursor:pointer}
   .nav a.tab{padding:8px 8px}
   .mark span{display:none}
   /* en el teléfono la formación va en una línea compacta (sin Brisbane, que ya está arriba en escritorio) */
-  .meta{font-size:11px;gap:2px 10px;margin-bottom:12px;line-height:1.4}
-  .meta .m-city{display:none}
+  .meta{font-size:11px;gap:0;margin:-4px 0 10px;line-height:1.35}
   .stage{width:min(58vw,28vh,300px)}
   .chip{width:220px}
   h1{font-size:clamp(34px,10.4vw,44px);margin:8px 0 10px}
@@ -265,10 +264,9 @@ button.btn{cursor:pointer}
             <span lang="en"><b>I build agentic AI apps:</b> agents that book tables, apps that split expenses and courses made from a video. <b>In my day job I analyse data</b> on the performance of solar plants and a project portfolio.</span>
           </p>
           <div class="meta">
-            <span class="m-city">Brisbane, Australia</span>
             <span lang="es">Máster en IA · La Trobe University</span><span lang="en">Master of AI · La Trobe University</span>
-            <span>Data Science &amp; AI · UTS</span>
-            <span lang="es">Ingeniero industrial</span><span lang="en">Industrial engineer</span>
+            <span>Data Science and AI · UTS</span>
+            <span lang="es">Ingeniero industrial</span><span lang="en">Industrial Engineer</span>
           </div>
           <div class="cta">
             <a class="btn primary" href="#built">What I Built →</a>
