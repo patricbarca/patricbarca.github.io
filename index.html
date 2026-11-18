@@ -164,6 +164,14 @@ h2{font-family:var(--f-display);font-weight:800;font-size:clamp(38px,6vw,68px);l
 .facts dd{margin:0;font-weight:500}
 footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font:400 13px var(--f-mono);color:var(--muted)}
 
+/* video de presentación (hecho con Google Flow) en una ventana encima de la página */
+.btn.play{background:none;color:var(--ink);cursor:pointer}
+.vmodal{position:fixed;inset:0;z-index:50;background:rgba(6,10,14,.88);display:flex;align-items:center;justify-content:center;padding:16px}
+.vbox{position:relative;width:min(100%,1100px,calc((100vh - 96px) * 16 / 9))}
+.vbox video{display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#000}
+.vclose{position:absolute;top:-44px;right:0;font:600 14px var(--f-body);color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
+.vclose:hover{background:rgba(255,255,255,.22)}
+
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;gap:10px}
   .stage{width:min(64vw,31vh,300px)}
@@ -232,6 +240,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
           </div>
           <div class="cta">
             <a class="btn primary" href="#built">What I Built →</a>
+            <button class="btn play" type="button" id="play"><span aria-hidden="true">▶</span> <span lang="es">Presentación</span><span lang="en">Watch intro</span></button>
             <a class="btn" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
         </div>
@@ -305,6 +314,13 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
       <span>© 2026 Patricio Abarca</span>
       <span>linkedin.com/in/patricioabarca</span>
     </footer>
+  </div>
+</div>
+
+<div class="vmodal" id="vmodal" hidden role="dialog" aria-modal="true" aria-label="Presentación / Intro">
+  <div class="vbox">
+    <button class="vclose" type="button" id="vclose"><span lang="es">Cerrar ✕</span><span lang="en">Close ✕</span></button>
+    <video id="vid" controls playsinline preload="none" poster="video/poster.jpg"></video>
   </div>
 </div>
 
@@ -435,6 +451,21 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   if(saved!=='es'&&saved!=='en'){saved=(navigator.language||'es').toLowerCase().indexOf('es')===0?'es':'en';}
   setLang(saved);
   document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set);});});
+
+  // intro video: opens over the page, with sound since the visitor asked for it
+  var vm=document.getElementById('vmodal'), vid=document.getElementById('vid'), playBtn=document.getElementById('play');
+  function openVideo(){
+    var l=root.getAttribute('data-lang')==='en'?'en':'es';
+    var src='video/presentacion-'+l+'.mp4';
+    if(vid.getAttribute('src')!==src){vid.setAttribute('src',src);}
+    vm.hidden=false; document.getElementById('vclose').focus();
+    var p=vid.play(); if(p&&p.catch){p.catch(function(){});}
+  }
+  function closeVideo(){ vid.pause(); vm.hidden=true; playBtn.focus(); }
+  playBtn.addEventListener('click',openVideo);
+  document.getElementById('vclose').addEventListener('click',closeVideo);
+  vm.addEventListener('click',function(e){ if(e.target===vm) closeVideo(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!vm.hidden) closeVideo(); });
 
   // views
   var home=document.getElementById('home'), built=document.getElementById('built');
