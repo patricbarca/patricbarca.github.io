@@ -171,6 +171,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
 .vbox video{display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#000}
 .vclose{position:absolute;top:-44px;right:0;font:600 14px var(--f-body);color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
 .vclose:hover{background:rgba(255,255,255,.22)}
+.vunmute{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:8px;font:600 16px var(--f-body);color:#1B1206;background:#F2A93B;border:0;border-radius:999px;padding:12px 20px;cursor:pointer;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.4)}
 
 /* Let's talk: formulario de consulta en una ventana; lo envía Web3Forms a mi correo */
 .btn.talk{background:var(--sun);border-color:var(--sun);color:#1B1206;cursor:pointer}
@@ -347,6 +348,7 @@ button.btn{cursor:pointer}
   <div class="vbox">
     <button class="vclose" type="button" id="vclose"><span lang="es">Cerrar ✕</span><span lang="en">Close ✕</span></button>
     <video id="vid" controls playsinline preload="none" poster="video/poster.jpg"></video>
+    <button class="vunmute" type="button" id="vunmute" hidden><span aria-hidden="true">🔊</span> <span lang="es">Activar sonido</span><span lang="en">Tap for sound</span></button>
   </div>
 </div>
 
@@ -516,12 +518,19 @@ button.btn{cursor:pointer}
 
   // intro video (English only, made with fal: HeyGen avatar, Kling, ElevenLabs, Sonilo): opens over the page, with sound since the visitor asked for it
   var vm=document.getElementById('vmodal'), vid=document.getElementById('vid'), playBtn=document.getElementById('play');
-  function openVideo(){
+  // it also opens by itself once per visit, muted (browsers block sound until the visitor taps), with a big "sound on" button
+  var unm=document.getElementById('vunmute');
+  function openVideo(e){
+    var auto=e===true;
     var src='video/presentation-en.mp4';
     if(vid.getAttribute('src')!==src){vid.setAttribute('src',src);}
+    vid.muted=auto; unm.hidden=!auto;
     vm.hidden=false; document.getElementById('vclose').focus();
     var p=vid.play(); if(p&&p.catch){p.catch(function(){});}
   }
+  unm.addEventListener('click',function(){ vid.muted=false; unm.hidden=true; vid.currentTime=0; vid.play(); });
+  vid.addEventListener('volumechange',function(){ if(!vid.muted){unm.hidden=true;} });
+  vid.addEventListener('ended',function(){ if(!unm.hidden){closeVideo();} });
   function closeVideo(){ vid.pause(); vm.hidden=true; playBtn.focus(); }
   playBtn.addEventListener('click',openVideo);
   document.getElementById('vclose').addEventListener('click',closeVideo);
@@ -577,6 +586,11 @@ button.btn{cursor:pointer}
   }
   window.addEventListener('hashchange',route);
   route();
+  var seen=false; try{seen=sessionStorage.getItem('pa-intro')==='1';}catch(e){}
+  if(!seen&&!home.hidden){
+    try{sessionStorage.setItem('pa-intro','1');}catch(e){}
+    setTimeout(function(){ if(!home.hidden&&vm.hidden&&tm.hidden){openVideo(true);} },1200);
+  }
 })();
 </script>
 
