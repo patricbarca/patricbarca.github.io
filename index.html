@@ -209,13 +209,18 @@ button.btn{cursor:pointer}
 @media (max-width:560px){
   .nav a.tab{padding:8px 8px}
   .mark span{display:none}
-  .meta{display:none}
+  /* en el teléfono la formación va en una línea compacta (sin Brisbane, que ya está arriba en escritorio) */
+  .meta{font-size:11px;gap:2px 10px;margin-bottom:12px;line-height:1.4}
+  .meta .m-city{display:none}
+  .stage{width:min(58vw,28vh,300px)}
   .chip{width:220px}
   h1{font-size:clamp(34px,10.4vw,44px);margin:8px 0 10px}
   h1 br{display:none}
   .lede{font-size:16px;margin-bottom:14px}
   .btn{padding:10px 16px}
 }
+/* teléfonos bajos (p. ej. iPhone SE): sin la línea de formación para que la portada quepa */
+@media (max-width:560px) and (max-height:740px){.meta{display:none}.spot{display:none}.stage{width:min(58vw,23vh,300px)}}
 @media (max-height:640px){
   .meta{display:none}
   .spot{display:none}
@@ -260,7 +265,7 @@ button.btn{cursor:pointer}
             <span lang="en"><b>I build agentic AI apps:</b> agents that book tables, apps that split expenses and courses made from a video. <b>In my day job I analyse data</b> on the performance of solar plants and a project portfolio.</span>
           </p>
           <div class="meta">
-            <span>Brisbane, Australia</span>
+            <span class="m-city">Brisbane, Australia</span>
             <span lang="es">Máster en IA · La Trobe University</span><span lang="en">Master of AI · La Trobe University</span>
             <span>Data Science &amp; AI · UTS</span>
             <span lang="es">Ingeniero industrial</span><span lang="en">Industrial engineer</span>
