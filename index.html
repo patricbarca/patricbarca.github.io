@@ -452,11 +452,10 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
   setLang(saved);
   document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set);});});
 
-  // intro video: opens over the page, with sound since the visitor asked for it
+  // intro video (English only, made with fal: HeyGen avatar, Kling, ElevenLabs, Sonilo): opens over the page, with sound since the visitor asked for it
   var vm=document.getElementById('vmodal'), vid=document.getElementById('vid'), playBtn=document.getElementById('play');
   function openVideo(){
-    var l=root.getAttribute('data-lang')==='en'?'en':'es';
-    var src='video/presentacion-'+l+'.mp4';
+    var src='video/presentation-en.mp4';
     if(vid.getAttribute('src')!==src){vid.setAttribute('src',src);}
     vm.hidden=false; document.getElementById('vclose').focus();
     var p=vid.play(); if(p&&p.catch){p.catch(function(){});}
