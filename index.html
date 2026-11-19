@@ -198,6 +198,70 @@ button.btn{cursor:pointer}
 .tdone p{color:var(--muted);margin:6px 0 18px}
 @media (max-width:560px){.tform .row{grid-template-columns:1fr}.tbox{padding:22px 18px 18px}.tbox h2{font-size:24px}}
 
+/* Servicios + chat animado. El chat es una demo con respuestas escritas de antemano (sin IA ni costo por uso):
+   muestra cómo se ve un chatbot web y cuenta los servicios. */
+.svc{border-top:1px solid var(--line);padding-block:36px 40px}
+.svc h3{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:-.02em;margin:6px 0 8px}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.svc-card{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;cursor:pointer}
+.svc-card:hover{border-color:var(--sun)}
+.svc-card .ic{width:40px;height:40px;border-radius:11px;background:var(--sun-soft);color:var(--sun);display:grid;place-items:center}
+.svc-card b{display:block;font:700 16px/1.2 var(--f-display);letter-spacing:-.01em;margin-bottom:3px}
+.svc-card small{display:block;font-size:13.5px;line-height:1.4;color:var(--muted)}
+.ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.cb-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 30px -10px rgba(19,32,43,.6)}
+.cb-fab svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cb-fab::after{content:"";position:absolute;top:3px;right:3px;width:12px;height:12px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 2px var(--bg)}
+.cb-fab[aria-expanded="true"]::after{display:none}
+.cb-tease{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 70px);z-index:40;display:flex;align-items:center;gap:6px;max-width:min(300px,calc(100vw - 32px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px 16px 4px 16px;padding:10px 8px 10px 14px;box-shadow:0 14px 34px -14px rgba(19,32,43,.5);font:500 14.5px/1.35 var(--f-body)}
+.cb-tease button.go{all:unset;cursor:pointer;flex:1}
+.cb-tease button.x{border:0;background:none;color:var(--muted);font-size:14px;width:26px;height:26px;border-radius:50%;cursor:pointer;flex:none}
+.cb{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 72px);z-index:45;width:min(380px,calc(100vw - 32px));height:min(580px,calc(100dvh - 110px));display:flex;flex-direction:column;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px -18px rgba(6,10,14,.55);transform-origin:bottom right}
+.cb-h{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;background:var(--ink);color:var(--bg)}
+.cb-h img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none}
+.cb-h b{display:block;font:700 15px/1.2 var(--f-display)}
+.cb-h small{display:flex;align-items:center;gap:6px;font:400 11.5px var(--f-mono);opacity:.8}
+.cb-h small::before{content:"";width:7px;height:7px;border-radius:50%;background:#5CCB97}
+.cb-h .x{margin-left:auto;border:0;background:rgba(127,127,127,.25);color:inherit;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;flex:none}
+.cb-b{flex:1;min-height:0;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--bg);overscroll-behavior:contain}
+.cb-m{max-width:86%;padding:9px 13px;border-radius:16px;font-size:14.5px;line-height:1.45;text-wrap:pretty}
+.cb-m.bot{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:5px}
+.cb-m.me{align-self:flex-end;background:var(--ink);color:var(--bg);border-bottom-right-radius:5px}
+.cb-dots{align-self:flex-start;display:flex;gap:4px;padding:13px 14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;border-bottom-left-radius:5px}
+.cb-dots i{width:7px;height:7px;border-radius:50%;background:var(--muted);opacity:.5}
+.cb-q{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.cb-q button{font:600 13px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--sun);border-radius:999px;padding:7px 12px;cursor:pointer}
+.cb-q button:hover{background:var(--sun-soft)}
+.cb-q button.go{background:var(--sun);border-color:var(--sun);color:#1B1206}
+.cb-f{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:var(--surface)}
+.cb-f input{flex:1;min-width:0;font:400 16px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:9px 14px}
+.cb-f input:focus{outline:2px solid var(--sun);outline-offset:1px;border-color:transparent}
+.cb-f button{flex:none;width:42px;height:42px;border-radius:50%;border:0;background:var(--sun);color:#1B1206;cursor:pointer;display:grid;place-items:center}
+.cb-f button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion:no-preference){
+  .cb-fab::before{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 var(--sun);animation:cbping 2.6s ease-out infinite}
+  .cb-fab[aria-expanded="true"]::before{animation:none}
+  .cb:not([hidden]){animation:cbin .22s ease-out}
+  .cb-tease:not([hidden]){animation:cbup .35s cubic-bezier(.3,1.4,.5,1)}
+  .cb-m,.cb-q{animation:cbup .28s ease-out}
+  .cb-dots i{animation:cbdot 1s infinite}
+  .cb-dots i:nth-child(2){animation-delay:.15s}
+  .cb-dots i:nth-child(3){animation-delay:.3s}
+  @keyframes cbping{0%{box-shadow:0 0 0 0 rgba(242,169,59,.55)}80%,100%{box-shadow:0 0 0 14px rgba(242,169,59,0)}}
+  @keyframes cbin{from{opacity:0;transform:translateY(10px) scale(.97)}}
+  @keyframes cbup{from{opacity:0;transform:translateY(8px)}}
+  @keyframes cbdot{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+}
+@media (max-width:1000px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){
+  .svc-grid{grid-template-columns:1fr}
+  .svc h3{font-size:25px}
+  .cb{left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom,0px));width:auto;height:min(620px,calc(100dvh - 16px))}
+  .cb-fab{width:54px;height:54px}
+  .cb-fab.open{display:none}
+}
+
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;gap:10px}
   .stage{width:min(64vw,31vh,300px)}
@@ -211,15 +275,16 @@ button.btn{cursor:pointer}
   .mark span{display:none}
   /* en el teléfono la formación va en una línea compacta (sin Brisbane, que ya está arriba en escritorio) */
   .meta{font-size:11px;gap:0;margin:-4px 0 10px;line-height:1.35}
-  .stage{width:min(58vw,28vh,300px)}
+  #home .eyebrow{font-size:10.5px;letter-spacing:.05em;white-space:nowrap}
+  .stage{width:min(58vw,25.5vh,300px)}
   .chip{width:220px}
   h1{font-size:clamp(34px,10.4vw,44px);margin:8px 0 10px}
   h1 br{display:none}
-  .lede{font-size:16px;margin-bottom:14px}
+  .lede{font-size:15px;line-height:1.5;margin-bottom:14px}
   .btn{padding:10px 16px}
 }
 /* teléfonos bajos (p. ej. iPhone SE): sin la línea de formación para que la portada quepa */
-@media (max-width:560px) and (max-height:740px){.meta{display:none}.spot{display:none}.stage{width:min(58vw,23vh,300px)}}
+@media (max-width:560px) and (max-height:740px){.meta{display:none}.spot{display:none}.stage{width:min(58vw,20.5vh,300px)}}
 @media (max-height:640px){
   .meta{display:none}
   .spot{display:none}
@@ -257,7 +322,7 @@ button.btn{cursor:pointer}
           <p class="spot" id="spot" aria-live="polite"></p>
         </div>
         <div>
-          <div class="eyebrow"><span lang="es">Apps agénticas con IA · Análisis de datos solares</span><span lang="en">Agentic AI apps · Solar data analytics</span></div>
+          <div class="eyebrow"><span lang="es">Automatización con IA · Apps a medida · Datos</span><span lang="en">AI automation · Custom apps · Data</span></div>
           <h1>Patricio<br> Abarca</h1>
           <p class="lede">
             <span lang="es"><b>Construyo aplicaciones agénticas con IA:</b> agentes que reservan mesas, apps que reparten gastos y cursos que salen de un video. <b>En mi trabajo analizo datos</b> de performance de plantas solares y de un portafolio de proyectos.</span>
@@ -321,6 +386,13 @@ button.btn{cursor:pointer}
 
     <div class="list" id="list"></div>
 
+    <section class="svc" aria-labelledby="svc-t">
+      <div class="eyebrow"><span lang="es">Servicios</span><span lang="en">Services</span></div>
+      <h3 id="svc-t"><span lang="es">Automatización con IA, a la medida de tu negocio</span><span lang="en">AI automation, built around your business</span></h3>
+      <p class="sub"><span lang="es">Lo mismo que uso en mis apps, aplicado a lo que necesitas. Toca uno y el asistente te cuenta más.</span><span lang="en">The same tools I use in my apps, applied to what you need. Tap one and the assistant tells you more.</span></p>
+      <div class="svc-grid" id="svcgrid"></div>
+    </section>
+
     <section class="about" aria-label="Sobre mí">
       <div>
         <div class="eyebrow"><span lang="es">Sobre mí</span><span lang="en">About</span></div>
@@ -354,6 +426,22 @@ button.btn{cursor:pointer}
     <video id="vid" controls playsinline preload="none" poster="video/poster.jpg"></video>
     <button class="vunmute" type="button" id="vunmute" hidden><span aria-hidden="true">🔊</span> <span lang="es">Activar sonido</span><span lang="en">Tap for sound</span></button>
   </div>
+</div>
+
+<!-- chat animado (demo): respuestas escritas de antemano sobre los servicios -->
+<div class="cb-tease" id="cbtease" hidden><button class="go" type="button" id="cbtgo"><span lang="es">¿Automatizamos algo con IA? 👋</span><span lang="en">Shall we automate something with AI? 👋</span></button><button class="x" type="button" id="cbtx" aria-label="Cerrar / Close">✕</button></div>
+<button class="cb-fab" type="button" id="cbfab" aria-controls="cb" aria-expanded="false" aria-label="Abrir chat / Open chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.6"/></svg></button>
+<div class="cb" id="cb" hidden role="dialog" aria-label="Chat">
+  <div class="cb-h">
+    <img src="img/patricio-abarca.jpg" alt="" width="38" height="38">
+    <div><b><span lang="es">Asistente de Patricio</span><span lang="en">Patricio’s assistant</span></b><small><span lang="es">En línea · demo</span><span lang="en">Online · demo</span></small></div>
+    <button class="x" type="button" id="cbx" aria-label="Cerrar chat / Close chat">✕</button>
+  </div>
+  <div class="cb-b" id="cbb" aria-live="polite"></div>
+  <form class="cb-f" id="cbf" autocomplete="off">
+    <input id="cbi" name="q" maxlength="200" data-ph-es="Escribe o elige un tema…" data-ph-en="Type or pick a topic…" placeholder="Escribe o elige un tema…" aria-label="Mensaje / Message">
+    <button type="submit" aria-label="Enviar / Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
 </div>
 
 <div class="tmodal" id="tmodal" hidden role="dialog" aria-modal="true" aria-labelledby="ttitle">
@@ -513,6 +601,7 @@ button.btn{cursor:pointer}
     root.setAttribute('data-lang',l);root.lang=l;
     document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l?'true':'false');});
     document.querySelectorAll('option[data-es]').forEach(function(o){o.textContent=o.getAttribute('data-'+l);});
+    document.querySelectorAll('[data-ph-es]').forEach(function(o){o.placeholder=o.getAttribute('data-ph-'+l);});
     try{localStorage.setItem('pa-lang',l);}catch(e){}
   }
   var saved=null;try{saved=localStorage.getItem('pa-lang');}catch(e){}
@@ -573,6 +662,151 @@ button.btn{cursor:pointer}
     .catch(function(){tmsg.className='tmsg err';tmsg.innerHTML=L('No se pudo enviar. Prueba de nuevo o escríbeme por <a href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn</a>.','It couldn’t be sent. Try again or message me on <a href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn</a>.');})
     .then(function(){tsend.disabled=false;});
   });
+
+  // Services + animated chat. A scripted demo (no AI, no per-use cost): it looks like a web chatbot and walks through the services.
+  var IC={
+    wa:'<path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.4 8.4 0 1 1 21 11.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/>',
+    web:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 13h7M7 16h4"/>',
+    ag:'<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9.5 13h.01M14.5 13h.01M9.5 16h5"/>',
+    au:'<path d="M13 3 4 14h7l-1 7 9-11h-7z"/>',
+    saas:'<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>',
+    vid:'<rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/>',
+    dat:'<path d="M3 20h18M6 16v-5M11 16V6M16 16v-8"/>',
+    des:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>'
+  };
+  var SV=[
+    {k:'wa',kw:/whats|wsp|wasap|wpp/,
+     n:{es:'Bot de WhatsApp',en:'WhatsApp bot'},
+     s:{es:'Atiende, reserva y vende por WhatsApp, 24/7.',en:'Answers, books and sells on WhatsApp, 24/7.'},
+     a:{es:'Un asistente que atiende a tus clientes por WhatsApp a toda hora: responde preguntas, toma reservas y pedidos, hace seguimiento y te pasa la conversación cuando hace falta una persona.',en:'An assistant that looks after your customers on WhatsApp around the clock: it answers questions, takes bookings and orders, follows up, and hands the chat to you when a person is needed.'}},
+    {k:'web',kw:/chat|web|pagina|sitio|site/,
+     n:{es:'Chatbot para tu web',en:'Website chatbot'},
+     s:{es:'Responde dudas y capta clientes en tu sitio.',en:'Answers questions and captures leads on your site.'},
+     a:{es:'Un chat como este en tu sitio, pero con IA real que conoce tu negocio: responde dudas, capta contactos y agenda reuniones. (Este es una demo animada.)',en:'A chat like this one on your site, but with real AI that knows your business: it answers questions, captures leads and books meetings. (This one is an animated demo.)'}},
+    {k:'ag',kw:/agent/,
+     n:{es:'Agentes de IA',en:'AI agents'},
+     s:{es:'Hacen tareas completas: buscar, reservar, leer documentos.',en:'Do whole tasks: search, book, read documents.'},
+     a:{es:'Agentes que hacen tareas completas por ti: buscan, comparan, leen documentos y actúan en tus sistemas. HeyMesa, por ejemplo, recomienda restaurantes reales y te lleva hasta la reserva.',en:'Agents that do whole tasks for you: they search, compare, read documents and act in your systems. HeyMesa, for example, recommends real restaurants and takes you through to the booking.'}},
+    {k:'au',kw:/automat|proceso|process|flujo|workflow|zapier|n8n|integra|correo|email|factura|invoice/,
+     n:{es:'Automatización de procesos',en:'Process automation'},
+     s:{es:'El trabajo repetitivo, hecho solo.',en:'Repetitive work that runs by itself.'},
+     a:{es:'Conecto tu correo, planillas, formularios y sistemas para que el trabajo repetitivo se haga solo: reportes, facturas, seguimiento de clientes y alertas.',en:'I connect your email, spreadsheets, forms and systems so repetitive work runs by itself: reports, invoices, customer follow-ups and alerts.'}},
+    {k:'saas',kw:/saas|plataforma|platform|suscrip|subscri|startup|producto|product/,
+     n:{es:'SaaS a medida',en:'Custom SaaS'},
+     s:{es:'Productos con usuarios, pagos y app móvil.',en:'Products with accounts, payments and a mobile app.'},
+     a:{es:'Diseño y lanzo productos completos, con usuarios, pagos y app móvil. Settlia ya está en la App Store y Comandia está en piloto con un café.',en:'I design and launch complete products, with accounts, payments and a mobile app. Settlia is live on the App Store and Comandia is piloting with a café.'}},
+    {k:'vid',kw:/video|avatar|reel|tiktok|youtube|contenido|content|marketing/,
+     n:{es:'Videos con IA',en:'AI video'},
+     s:{es:'Avatar, voz y animación para marketing y redes.',en:'Avatar, voice and motion for marketing and social.'},
+     a:{es:'Videos con avatar, voz y animación hechos con IA, para marketing, cursos o redes. ManifestLifeAI crea videos personalizados, y la presentación de esta página la hice igual.',en:'Videos with an avatar, voiceover and motion made with AI, for marketing, courses or social. ManifestLifeAI makes personalised videos, and this page’s intro video was made the same way.'}},
+    {k:'dat',kw:/dato|data|dashboard|analis|analy|excel|power ?bi|metric|kpi|solar|reporte|report/,
+     n:{es:'Análisis de datos',en:'Data analytics'},
+     s:{es:'Dashboards y modelos para decidir con datos.',en:'Dashboards and models to decide with data.'},
+     a:{es:'Dashboards y modelos que convierten tus datos en decisiones. En mi trabajo analizo el rendimiento de plantas solares de gran escala con datos en vivo y machine learning.',en:'Dashboards and models that turn your data into decisions. In my day job I analyse the performance of utility-scale solar plants with live data and machine learning.'}},
+    {k:'des',kw:/disen|design|app|movil|mobile|ux|iphone|android/,
+     n:{es:'Diseño de apps',en:'App design'},
+     s:{es:'Web y móvil, ajustadas a tu negocio.',en:'Web and mobile, fitted to your business.'},
+     a:{es:'Apps web y móviles diseñadas según lo que necesita tu negocio, del prototipo al lanzamiento. Primero entiendo cómo trabajas; después construyo.',en:'Web and mobile apps designed around what your business needs, from prototype to launch. First I learn how you work; then I build.'}}
+  ];
+  // order used when matching typed text (more specific words first)
+  var MATCH=['wa','ag','vid','dat','au','saas','web','des'];
+  var CB={
+    hi:{es:'¡Hola! 👋 Soy el asistente de Patricio.',en:'Hi! 👋 I’m Patricio’s assistant.'},
+    intro:{es:'Patricio hace automatización con IA y apps a la medida de cada cliente. ¿Qué te interesa?',en:'Patricio does AI automation and apps built around each client. What are you interested in?'},
+    more:{es:'¿Te muestro otra cosa, o hablamos de tu proyecto?',en:'Want to see something else, or shall we talk about your project?'},
+    price:{es:'Depende del proyecto. Cuéntale tu idea a Patricio y te responde con una propuesta.',en:'It depends on the project. Tell Patricio your idea and you’ll get a proposal back.'},
+    miss:{es:'Esta es una demo animada, así que no entiendo todo 🙂 Elige un tema o cuéntale tu idea a Patricio.',en:'This is an animated demo, so I don’t understand everything 🙂 Pick a topic or tell Patricio your idea.'},
+    demo:{es:'¿Puedes hacer un bot de WhatsApp para mi negocio?',en:'Can you build a WhatsApp bot for my business?'},
+    talk:{es:'Hablemos →',en:'Let’s talk →'}
+  };
+  function svg(k){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+IC[k]+'</svg>';}
+  function byK(k){for(var i=0;i<SV.length;i++){if(SV[i].k===k)return SV[i];}return null;}
+
+  var cb=document.getElementById('cb'), cbb=document.getElementById('cbb'), cbf=document.getElementById('cbf'), cbi=document.getElementById('cbi'),
+      fab=document.getElementById('cbfab'), tease=document.getElementById('cbtease');
+  var quiet=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var started=false, busy=false, touched=false, asked={};
+  function wait(ms){return new Promise(function(r){setTimeout(r,quiet?Math.min(ms,150):ms);});}
+  function down(){cbb.scrollTop=cbb.scrollHeight;}
+  function add(cls,html){var d=document.createElement('div');d.className=cls;d.innerHTML=html;cbb.appendChild(d);down();return d;}
+  function bot(v){
+    var dots=add('cb-dots','<i></i><i></i><i></i>');
+    return wait(Math.min(1700,550+v.es.length*9)).then(function(){dots.remove();add('cb-m bot',t(v));return wait(250);});
+  }
+  function me(html){add('cb-m me',html);return wait(350);}
+  function qchips(){
+    var q=document.createElement('div');q.className='cb-q';
+    q.innerHTML=SV.filter(function(v){return !asked[v.k];}).map(function(v){return '<button type="button" data-k="'+v.k+'">'+t(v.n)+'</button>';}).join('')+
+      (Object.keys(asked).length?'<button type="button" class="go" data-k="talk">'+t(CB.talk)+'</button>':'');
+    cbb.appendChild(q);down();
+  }
+  function clearChips(){[].slice.call(cbb.querySelectorAll('.cb-q')).forEach(function(q){q.remove();});}
+  function reply(v){
+    if(v){asked[v.k]=1;}
+    return bot(v?v.a:CB.miss).then(function(){return v?bot(CB.more):null;}).then(function(){busy=false;qchips();});
+  }
+  function pick(k,said){
+    if(busy) return; touched=true;
+    if(k==='talk'){ openTalk({currentTarget:fab}); return; }
+    var v=byK(k); if(!v) return;
+    busy=true; clearChips();
+    me(said?esc(said):t(v.n)).then(function(){return reply(v);});
+  }
+  cbb.addEventListener('click',function(e){var b=e.target.closest('button[data-k]');if(b){pick(b.getAttribute('data-k'));}});
+  cbf.addEventListener('submit',function(e){
+    e.preventDefault();
+    var txt=cbi.value.trim(); if(!txt||busy) return;
+    touched=true; cbi.value='';
+    var n=txt.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+    if(/precio|cuest|cost|price|cobr|valor|presupuesto|quote|budget|tarifa|rate/.test(n)){
+      busy=true; clearChips(); me(esc(txt)).then(function(){return bot(CB.price);}).then(function(){busy=false;asked.__=1;qchips();}); return;
+    }
+    var v=null; for(var i=0;i<MATCH.length;i++){var c=byK(MATCH[i]);if(c.kw.test(n)){v=c;break;}}
+    busy=true; clearChips(); me(esc(txt)).then(function(){return reply(v);});
+  });
+  // the first time it opens: greeting, topics, and if nobody touches anything it "types" a sample question by itself
+  function start(){
+    started=true; busy=true;
+    bot(CB.hi).then(function(){return bot(CB.intro);}).then(function(){busy=false;qchips();return wait(2600);}).then(function(){
+      if(touched||busy||cb.hidden) return;
+      busy=true;
+      var q=L(CB.demo.es,CB.demo.en), i=0;
+      (function type(){
+        if(touched){busy=false;cbi.value='';return;}
+        cbi.value=q.slice(0,++i);
+        if(i<q.length){setTimeout(type,quiet?0:38);return;}
+        setTimeout(function(){ cbi.value=''; clearChips(); me(esc(q)).then(function(){return reply(byK('wa'));}); },quiet?0:350);
+      })();
+    });
+  }
+  function openChat(k){
+    tease.hidden=true; cb.hidden=false; fab.setAttribute('aria-expanded','true'); fab.classList.add('open');
+    if(!started){ if(k){touched=true;started=true;busy=true;bot(CB.hi).then(function(){busy=false;pick(k);});} else start(); }
+    else if(k){ pick(k); }
+    if(window.innerWidth>560){setTimeout(function(){cbi.focus({preventScroll:true});},50);}
+  }
+  function closeChat(){ cb.hidden=true; fab.setAttribute('aria-expanded','false'); fab.classList.remove('open'); fab.focus(); }
+  fab.addEventListener('click',function(){ if(cb.hidden) openChat(); else closeChat(); });
+  document.getElementById('cbx').addEventListener('click',closeChat);
+  cbi.addEventListener('input',function(){touched=true;});
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!cb.hidden&&tm.hidden&&vm.hidden) closeChat(); });
+  document.getElementById('cbtgo').addEventListener('click',function(){openChat();});
+  document.getElementById('cbtx').addEventListener('click',function(){tease.hidden=true;});
+  // services grid on What I Built: each card opens the chat on that topic
+  var grid=document.getElementById('svcgrid');
+  grid.innerHTML=SV.map(function(v){return '<button class="svc-card" type="button" data-k="'+v.k+'"><span class="ic">'+svg(v.k)+'</span><span><b>'+t(v.n)+'</b><small>'+t(v.s)+'</small></span></button>';}).join('');
+  grid.addEventListener('click',function(e){var b=e.target.closest('button[data-k]');if(b){openChat(b.getAttribute('data-k'));}});
+  // teaser bubble: once per visit, after the intro video is closed
+  var teased=false; try{teased=sessionStorage.getItem('pa-tease')==='1';}catch(e){}
+  function teaseLater(ms){
+    setTimeout(function(){
+      if(started||!cb.hidden) return;
+      if(!vm.hidden||!tm.hidden){teaseLater(3000);return;}
+      tease.hidden=false; try{sessionStorage.setItem('pa-tease','1');}catch(e){}
+      setTimeout(function(){tease.hidden=true;},14000);
+    },ms);
+  }
+  if(!teased){teaseLater(7000);}
 
   // views
   var home=document.getElementById('home'), built=document.getElementById('built');
