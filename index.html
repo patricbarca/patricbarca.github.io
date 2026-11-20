@@ -173,30 +173,26 @@ footer{border-top:1px solid var(--line);padding-block:24px 36px;display:flex;jus
 .vclose:hover{background:rgba(255,255,255,.22)}
 .vunmute{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:8px;font:600 16px var(--f-body);color:#1B1206;background:#F2A93B;border:0;border-radius:999px;padding:12px 20px;cursor:pointer;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.4)}
 
-/* Let's talk: formulario de consulta en una ventana; lo envía Web3Forms a mi correo */
+/* Let's talk: ahora es una conversación dentro del chat; la envía Web3Forms a mi correo */
 .btn.talk{background:var(--sun);border-color:var(--sun);color:#1B1206;cursor:pointer}
 button.btn{cursor:pointer}
-.tmodal{position:fixed;inset:0;z-index:60;background:rgba(6,10,14,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
-.tbox{position:relative;width:min(100%,520px);max-height:calc(100dvh - 32px);overflow-y:auto;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:26px 24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
-.tbox h2{font:700 28px/1.1 var(--f-display);margin:6px 0 6px}
-.tbox .lead{color:var(--muted);margin:0 0 18px;font-size:15px}
-.tx{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:999px;border:0;background:var(--bg);color:var(--ink);font-size:16px;cursor:pointer}
-.tform{display:grid;gap:12px}
-.tform .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tform label{display:grid;gap:5px;font:600 13px var(--f-body)}
-.tform label span.opt{font-weight:400;color:var(--muted)}
-.tform input,.tform select,.tform textarea{font:400 16px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
-.tform textarea{min-height:120px;resize:vertical}
-.tform input:focus,.tform select:focus,.tform textarea:focus{outline:2px solid var(--sun);outline-offset:1px;border-color:transparent}
-.tform .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.tform .send{justify-content:center;width:100%;margin-top:4px}
-.tform .send[disabled]{opacity:.6;cursor:wait}
-.tmsg{margin:2px 0 0;font-size:14px;min-height:1.2em}
-.tmsg.err{color:#C0392B}
-.tdone{text-align:center;padding:18px 0 6px}
-.tdone .ok{width:56px;height:56px;border-radius:999px;margin:0 auto 12px;display:grid;place-items:center;background:var(--live-soft);color:var(--live);font-size:26px}
-.tdone p{color:var(--muted);margin:6px 0 18px}
-@media (max-width:560px){.tform .row{grid-template-columns:1fr}.tbox{padding:22px 18px 18px}.tbox h2{font-size:24px}}
+/* LinkedIn: botón con el logo y el azul oficial (#0A66C2) */
+.btn.li{background:#0A66C2;border-color:#0A66C2;color:#fff}
+.btn.li:hover{background:#004182;border-color:#004182}
+.li-ic{width:18px;height:18px;fill:currentColor;flex:none}
+.fli{display:inline-flex;align-items:center;gap:7px;color:inherit;text-decoration:none}
+.fli:hover{color:#0A66C2}
+.fli .li-ic{width:14px;height:14px;color:#0A66C2}
+.cb-m.card{display:grid;gap:3px;font-size:14px}
+.cb-m.card b{font-weight:700}
+.cb-m.card span.k{color:var(--muted);font:500 11.5px var(--f-mono);text-transform:uppercase;letter-spacing:.04em;margin-top:4px}
+.cb-m.card span.k:first-child{margin-top:0}
+.cb-m.card p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.cb-m a{color:inherit;font-weight:600}
+.cb-q button.li{background:#0A66C2;border-color:#0A66C2;color:#fff;display:inline-flex;align-items:center;gap:6px}
+.cb-q button.li .li-ic{width:14px;height:14px}
+.cb-q button.ghost{border-color:var(--line);color:var(--muted)}
+.cb-f .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
 /* Servicios + chat animado. El chat es una demo con respuestas escritas de antemano (sin IA ni costo por uso):
    muestra cómo se ve un chatbot web y cuenta los servicios. */
@@ -337,7 +333,7 @@ button.btn{cursor:pointer}
             <a class="btn primary" href="#built">What I Built →</a>
             <button class="btn talk" type="button" data-talk>Let’s talk</button>
             <button class="btn play" type="button" id="play"><span aria-hidden="true">▶</span> <span lang="es">Presentación</span><span lang="en">Watch intro</span></button>
-            <a class="btn" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn li" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener"><svg class="li-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
           </div>
         </div>
       </div>
@@ -409,13 +405,13 @@ button.btn{cursor:pointer}
         <p lang="es">Fuera de eso, uso la IA para construir productos completos de principio a fin. También hago fotografía, que me enseña a mirar patrones, luz y lo que de verdad hay.</p>
         <p lang="en">I work between two worlds that rarely meet: the operation of utility-scale solar plants, and the software that makes their performance measurable and defensible. I build analytics platforms that take live data and turn it into the numbers the business runs on.</p>
         <p lang="en">Beyond that, I use AI to build complete products end to end. I also do photography, which keeps teaching me to look at patterns, light, and what's actually there.</p>
-        <div class="cta"><button class="btn primary" type="button" data-talk>Let’s talk</button><a class="btn" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener"><span lang="es">Conectemos en LinkedIn ↗</span><span lang="en">Connect on LinkedIn ↗</span></a></div>
+        <div class="cta"><button class="btn primary" type="button" data-talk>Let’s talk</button><a class="btn li" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener"><svg class="li-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span lang="es">Conectemos en LinkedIn</span><span lang="en">Connect on LinkedIn</span></a></div>
       </div>
     </section>
 
     <footer>
       <span>© 2026 Patricio Abarca</span>
-      <span>linkedin.com/in/patricioabarca</span>
+      <a class="fli" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener"><svg class="li-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>linkedin.com/in/patricioabarca</a>
     </footer>
   </div>
 </div>
@@ -439,44 +435,10 @@ button.btn{cursor:pointer}
   </div>
   <div class="cb-b" id="cbb" aria-live="polite"></div>
   <form class="cb-f" id="cbf" autocomplete="off">
+    <input class="hp" type="checkbox" name="botcheck" id="cbhp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <input id="cbi" name="q" maxlength="200" data-ph-es="Escribe o elige un tema…" data-ph-en="Type or pick a topic…" placeholder="Escribe o elige un tema…" aria-label="Mensaje / Message">
     <button type="submit" aria-label="Enviar / Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </form>
-</div>
-
-<div class="tmodal" id="tmodal" hidden role="dialog" aria-modal="true" aria-labelledby="ttitle">
-  <div class="tbox">
-    <button class="tx" type="button" id="tclose" aria-label="Cerrar / Close">✕</button>
-    <div id="tformwrap">
-      <div class="eyebrow"><span lang="es">Contacto</span><span lang="en">Contact</span></div>
-      <h2 id="ttitle">Let’s talk</h2>
-      <p class="lead"><span lang="es">Cuéntame tu idea o tu proyecto: IA, datos solares o una app. Te respondo por correo.</span><span lang="en">Tell me about your idea or project: AI, solar data or an app. I’ll reply by email.</span></p>
-      <form class="tform" id="tform" novalidate>
-        <div class="row">
-          <label><span lang="es">Nombre</span><span lang="en">Name</span><input name="name" autocomplete="name" required maxlength="120"></label>
-          <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
-        </div>
-        <label><span><span lang="es">Sobre qué</span><span lang="en">About</span></span>
-          <select name="topic">
-            <option value="Proyecto con IA / AI project" data-es="Un proyecto con IA" data-en="An AI project">Un proyecto con IA</option>
-            <option value="Datos solares / Solar data" data-es="Análisis de datos solares" data-en="Solar data analysis">Análisis de datos solares</option>
-            <option value="Construir una app / Build an app" data-es="Construir una app juntos" data-en="Building an app together">Construir una app juntos</option>
-            <option value="Otro / Other" data-es="Otra cosa" data-en="Something else">Otra cosa</option>
-          </select>
-        </label>
-        <label><span lang="es">Mensaje</span><span lang="en">Message</span><textarea name="message" required maxlength="5000"></textarea></label>
-        <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn primary send" type="submit" id="tsend"><span lang="es">Enviar consulta</span><span lang="en">Send message</span></button>
-        <p class="tmsg" id="tmsg" role="status"></p>
-      </form>
-    </div>
-    <div class="tdone" id="tdone" hidden>
-      <div class="ok" aria-hidden="true">✓</div>
-      <h2><span lang="es">¡Gracias!</span><span lang="en">Thanks!</span></h2>
-      <p><span lang="es">Recibí tu mensaje. Te respondo pronto por correo.</span><span lang="en">I got your message and will reply by email soon.</span></p>
-      <button class="btn" type="button" id="tok"><span lang="es">Cerrar</span><span lang="en">Close</span></button>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -630,38 +592,12 @@ button.btn{cursor:pointer}
   vm.addEventListener('click',function(e){ if(e.target===vm) closeVideo(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!vm.hidden) closeVideo(); });
 
-  // Let's talk: the form is sent by Web3Forms (free plan) to Pat's inbox; the access key is public by design
+  // Let's talk: a short conversation in the chat collects name, email, topic and message,
+  // then Web3Forms (free plan) emails it to Pat. The access key is public by design.
   var W3F_KEY='1bce3f55-e2b2-499d-a714-9e0bb17b751d';
-  var tm=document.getElementById('tmodal'), tf=document.getElementById('tform'), tmsg=document.getElementById('tmsg'), tsend=document.getElementById('tsend'), lastTalk=null;
+  var LI_URL='https://www.linkedin.com/in/patricioabarca/', LI_SVG='<svg class="li-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>';
   function L(es,en){return root.getAttribute('data-lang')==='en'?en:es;}
-  function openTalk(e){
-    lastTalk=e&&e.currentTarget||null;
-    document.getElementById('tformwrap').hidden=false; document.getElementById('tdone').hidden=true;
-    tmsg.textContent=''; tmsg.className='tmsg'; tm.hidden=false;
-    setTimeout(function(){tf.elements.name.focus();},30);
-  }
-  function closeTalk(){ tm.hidden=true; if(lastTalk){lastTalk.focus();} }
-  document.querySelectorAll('[data-talk]').forEach(function(b){b.addEventListener('click',openTalk);});
-  document.getElementById('tclose').addEventListener('click',closeTalk);
-  document.getElementById('tok').addEventListener('click',closeTalk);
-  tm.addEventListener('click',function(e){ if(e.target===tm) closeTalk(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!tm.hidden) closeTalk(); });
-  tf.addEventListener('submit',function(e){
-    e.preventDefault();
-    var f=tf.elements, name=f.name.value.trim(), email=f.email.value.trim(), msg=f.message.value.trim();
-    tmsg.className='tmsg err';
-    if(!name||!email||!msg){tmsg.textContent=L('Completa nombre, email y mensaje.','Please fill in name, email and message.');return;}
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){tmsg.textContent=L('Revisa el email.','Please check the email address.');f.email.focus();return;}
-    if(f.botcheck.checked){return;}
-    tsend.disabled=true; tmsg.className='tmsg'; tmsg.textContent=L('Enviando…','Sending…');
-    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-      body:JSON.stringify({access_key:W3F_KEY,subject:'Let’s talk: '+name+' ('+f.topic.value+')',from_name:'patricbarca.github.io',
-        name:name,email:email,replyto:email,topic:f.topic.value,message:msg,language:root.getAttribute('data-lang'),botcheck:''})})
-    .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||!j.success){throw new Error(j.message||r.status);}});})
-    .then(function(){tf.reset();document.getElementById('tformwrap').hidden=true;document.getElementById('tdone').hidden=false;document.getElementById('tok').focus();})
-    .catch(function(){tmsg.className='tmsg err';tmsg.innerHTML=L('No se pudo enviar. Prueba de nuevo o escríbeme por <a href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn</a>.','It couldn’t be sent. Try again or message me on <a href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener">LinkedIn</a>.');})
-    .then(function(){tsend.disabled=false;});
-  });
+  document.querySelectorAll('[data-talk]').forEach(function(b){b.addEventListener('click',function(){openChat('talk');});});
 
   // Services + animated chat. A scripted demo (no AI, no per-use cost): it looks like a web chatbot and walks through the services.
   var IC={
@@ -717,7 +653,26 @@ button.btn{cursor:pointer}
     price:{es:'Depende del proyecto. Cuéntale tu idea a Patricio y te responde con una propuesta.',en:'It depends on the project. Tell Patricio your idea and you’ll get a proposal back.'},
     miss:{es:'Esta es una demo animada, así que no entiendo todo 🙂 Elige un tema o cuéntale tu idea a Patricio.',en:'This is an animated demo, so I don’t understand everything 🙂 Pick a topic or tell Patricio your idea.'},
     demo:{es:'¿Puedes hacer un bot de WhatsApp para mi negocio?',en:'Can you build a WhatsApp bot for my business?'},
-    talk:{es:'Hablemos →',en:'Let’s talk →'}
+    talk:{es:'Hablemos →',en:'Let’s talk →'},
+    // contact conversation
+    want:{es:'Quiero hablar con Patricio',en:'I’d like to talk to Patricio'},
+    c0:{es:'¡Genial! Te hago 4 preguntas rápidas y se lo envío a Patricio. ¿Cómo te llamas?',en:'Great! I’ll ask you 4 quick questions and send it to Patricio. What’s your name?'},
+    cEmail:{es:'¿A qué email te responde?',en:'Which email should he reply to?'},
+    cBad:{es:'Ese email no parece correcto. ¿Lo revisas?',en:'That email doesn’t look right. Could you check it?'},
+    cShort:{es:'Cuéntame un poco más, aunque sea una frase 🙂',en:'Tell me a bit more, even one sentence 🙂'},
+    cTopic:{es:'¿Sobre qué es? Elige una opción o escríbelo.',en:'What is it about? Pick one or type it.'},
+    cMsg:{es:'Cuéntame tu idea o lo que necesitas. Mientras más detalle, mejor.',en:'Tell me your idea or what you need. The more detail, the better.'},
+    cCheck:{es:'Revisa que esté todo bien:',en:'Check that everything looks right:'},
+    cSending:{es:'Enviando…',en:'Sending…'},
+    cFail:{es:'No se pudo enviar. Prueba de nuevo o escríbele por LinkedIn.',en:'It couldn’t be sent. Try again or message him on LinkedIn.'},
+    cAfter:{es:'Mientras tanto, ¿te muestro algo más?',en:'Meanwhile, want to see anything else?'},
+    cStop:{es:'Listo, lo dejamos. ¿Te muestro algo más?',en:'No problem, we’ll leave it there. Want to see anything else?'},
+    other:{es:'Otra cosa',en:'Something else'},
+    send:{es:'Enviar ✓',en:'Send ✓'},
+    redo:{es:'Corregir',en:'Change something'},
+    retry:{es:'Reintentar',en:'Try again'},
+    cancel:{es:'Cancelar',en:'Cancel'},
+    li:{es:'LinkedIn',en:'LinkedIn'}
   };
   function svg(k){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+IC[k]+'</svg>';}
   function byK(k){for(var i=0;i<SV.length;i++){if(SV[i].k===k)return SV[i];}return null;}
@@ -737,7 +692,12 @@ button.btn{cursor:pointer}
   function qchips(){
     var q=document.createElement('div');q.className='cb-q';
     q.innerHTML=SV.filter(function(v){return !asked[v.k];}).map(function(v){return '<button type="button" data-k="'+v.k+'">'+t(v.n)+'</button>';}).join('')+
-      (Object.keys(asked).length?'<button type="button" class="go" data-k="talk">'+t(CB.talk)+'</button>':'');
+      (Object.keys(asked).length?'<button type="button" class="go" data-k="talk">'+t(CB.talk)+'</button><button type="button" class="li" data-k="li">'+LI_SVG+t(CB.li)+'</button>':'');
+    cbb.appendChild(q);down();
+  }
+  function chipRow(list){
+    var q=document.createElement('div');q.className='cb-q';
+    q.innerHTML=list.map(function(c){return '<button type="button" data-k="'+c[0]+'"'+(c[2]?' class="'+c[2]+'"':'')+'>'+c[1]+'</button>';}).join('');
     cbb.appendChild(q);down();
   }
   function clearChips(){[].slice.call(cbb.querySelectorAll('.cb-q')).forEach(function(q){q.remove();});}
@@ -746,17 +706,24 @@ button.btn{cursor:pointer}
     return bot(v?v.a:CB.miss).then(function(){return v?bot(CB.more):null;}).then(function(){busy=false;qchips();});
   }
   function pick(k,said){
-    if(busy) return; touched=true;
-    if(k==='talk'){ openTalk({currentTarget:fab}); return; }
+    if(busy){ if(k==='talk'){touched=true;setTimeout(function(){pick(k,said);},300);} return; }
+    touched=true;
+    if(k==='talk'){ startContact(); return; }
+    if(k.indexOf('ct:')===0){ contactChip(k.slice(3)); return; }
     var v=byK(k); if(!v) return;
     busy=true; clearChips();
     me(said?esc(said):t(v.n)).then(function(){return reply(v);});
   }
-  cbb.addEventListener('click',function(e){var b=e.target.closest('button[data-k]');if(b){pick(b.getAttribute('data-k'));}});
+  cbb.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-k]'); if(!b) return;
+    if(b.getAttribute('data-k')==='li'){ window.open(LI_URL,'_blank','noopener'); return; }
+    pick(b.getAttribute('data-k'));
+  });
   cbf.addEventListener('submit',function(e){
     e.preventDefault();
     var txt=cbi.value.trim(); if(!txt||busy) return;
     touched=true; cbi.value='';
+    if(ct){ contactInput(txt); return; }
     var n=txt.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
     if(/precio|cuest|cost|price|cobr|valor|presupuesto|quote|budget|tarifa|rate/.test(n)){
       busy=true; clearChips(); me(esc(txt)).then(function(){return bot(CB.price);}).then(function(){busy=false;asked.__=1;qchips();}); return;
@@ -764,6 +731,110 @@ button.btn{cursor:pointer}
     var v=null; for(var i=0;i<MATCH.length;i++){var c=byK(MATCH[i]);if(c.kw.test(n)){v=c;break;}}
     busy=true; clearChips(); me(esc(txt)).then(function(){return reply(v);});
   });
+  // ---- contact conversation (replaces the old Let's talk form) ----
+  var ct=null; // {step:'name'|'email'|'topic'|'msg'|'confirm'|'sending', d:{...}}
+  var PH={
+    name:{es:'Tu nombre',en:'Your name'}, email:{es:'tu@email.com',en:'you@email.com'},
+    topic:{es:'Elige arriba o escríbelo…',en:'Pick above or type it…'}, msg:{es:'Escribe tu idea…',en:'Write your idea…'}
+  };
+  function setInput(step){
+    var ph=step&&PH[step];
+    cbi.setAttribute('data-ph-es',ph?ph.es:'Escribe o elige un tema…');
+    cbi.setAttribute('data-ph-en',ph?ph.en:'Type or pick a topic…');
+    cbi.placeholder=cbi.getAttribute('data-ph-'+(root.getAttribute('data-lang')==='en'?'en':'es'));
+    cbi.type=step==='email'?'email':'text';
+    cbi.setAttribute('autocomplete',step==='email'?'email':step==='name'?'name':'off');
+    cbi.maxLength=step==='msg'?3000:200;
+    if(window.innerWidth>560||step){setTimeout(function(){cbi.focus({preventScroll:true});},30);}
+  }
+  function cancelChip(){chipRow([['ct:cancel',t(CB.cancel),'ghost']]);}
+  function ask(step,line){
+    ct.step=step; busy=true;
+    return bot(line).then(function(){
+      busy=false;
+      if(step==='topic'){
+        // topics the visitor already looked at come first
+        var list=SV.slice().sort(function(a,b){return (asked[b.k]?1:0)-(asked[a.k]?1:0);});
+        chipRow(list.map(function(v){return ['ct:tp:'+v.k,t(v.n)];}).concat([['ct:tp:other',t(CB.other)],['ct:cancel',t(CB.cancel),'ghost']]));
+      } else { cancelChip(); }
+      setInput(step);
+    });
+  }
+  function startContact(){
+    if(ct){ setInput(ct.step==='confirm'?null:ct.step); return; }
+    touched=true; clearChips();
+    ct={step:'name',d:{}}; busy=true;
+    me(t(CB.want)).then(function(){return ask('name',CB.c0);});
+  }
+  function stopContact(line){
+    ct=null; setInput(null); busy=true;
+    bot(line).then(function(){busy=false;qchips();});
+  }
+  function contactInput(txt){
+    clearChips(); busy=true;
+    var d=ct.d;
+    me(esc(txt)).then(function(){
+      if(ct.step==='name'){ d.name=txt.slice(0,120); return ask('email',{es:'Gracias, '+d.name+'. '+CB.cEmail.es,en:'Thanks, '+d.name+'. '+CB.cEmail.en}); }
+      if(ct.step==='email'){
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(txt)){ return ask('email',CB.cBad); }
+        d.email=txt.slice(0,200); return ask('topic',CB.cTopic);
+      }
+      if(ct.step==='topic'){ d.topic=txt.slice(0,120); return ask('msg',CB.cMsg); }
+      if(ct.step==='msg'){
+        if(txt.length<8){ return ask('msg',CB.cShort); }
+        d.msg=txt; return confirmContact();
+      }
+      if(ct.step==='confirm'){ d.msg+=String.fromCharCode(10)+txt; return confirmContact(); }
+      busy=false;
+    });
+  }
+  function confirmContact(){
+    ct.step='confirm'; setInput(null); var d=ct.d;
+    return bot(CB.cCheck).then(function(){
+      add('cb-m bot card',
+        '<span class="k">'+t({es:'Nombre',en:'Name'})+'</span><b>'+esc(d.name)+'</b>'+
+        '<span class="k">Email</span><b>'+esc(d.email)+'</b>'+
+        '<span class="k">'+t({es:'Tema',en:'Topic'})+'</span><b>'+(d.topicLabel||esc(d.topic))+'</b>'+
+        '<span class="k">'+t({es:'Mensaje',en:'Message'})+'</span><p>'+esc(d.msg)+'</p>');
+      busy=false;
+      chipRow([['ct:send',t(CB.send),'go'],['ct:redo',t(CB.redo)],['ct:cancel',t(CB.cancel),'ghost']]);
+    });
+  }
+  function contactChip(a){
+    if(!ct) return;
+    clearChips();
+    if(a==='cancel'){ me(t(CB.cancel)).then(function(){stopContact(CB.cStop);}); return; }
+    if(a.indexOf('tp:')===0&&ct.step==='topic'){
+      var k=a.slice(3), v=byK(k), lab=v?t(v.n):t(CB.other);
+      ct.d.topic=v?v.n.es+' / '+v.n.en:'Otro / Other'; ct.d.topicLabel=lab;
+      busy=true; me(lab).then(function(){return ask('msg',CB.cMsg);}); return;
+    }
+    if(a==='redo'){ ct.d={}; busy=true; me(t(CB.redo)).then(function(){return ask('name',{es:'Partamos de nuevo. ¿Cómo te llamas?',en:'Let’s start again. What’s your name?'});}); return; }
+    if(a==='send'||a==='retry'){ sendContact(); }
+  }
+  function sendContact(){
+    var d=ct.d; ct.step='sending'; busy=true;
+    if(document.getElementById('cbhp').checked){ return; } // bot filled the hidden box
+    var dots=add('cb-dots','<i></i><i></i><i></i>');
+    var seen=Object.keys(asked).filter(function(k){return k!=='__';}).map(function(k){var v=byK(k);return v?v.n.en:k;}).join(', ');
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:W3F_KEY,subject:'Let’s talk (chat): '+d.name+' ('+d.topic+')',from_name:'patricbarca.github.io',
+        name:d.name,email:d.email,replyto:d.email,topic:d.topic,message:d.msg,looked_at:seen||'-',language:root.getAttribute('data-lang'),botcheck:''})})
+    .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||!j.success){throw new Error(j.message||r.status);}});})
+    .then(function(){
+      dots.remove(); var email=d.email; ct=null;
+      return bot({es:'¡Listo! ✓ Se lo envié a Patricio. Te responde a '+email+' pronto.',en:'Done! ✓ I sent it to Patricio. He’ll reply to '+email+' soon.'})
+        .then(function(){return bot(CB.cAfter);}).then(function(){busy=false;qchips();});
+    })
+    .catch(function(){
+      dots.remove(); ct.step='confirm';
+      return bot(CB.cFail).then(function(){
+        busy=false;
+        chipRow([['ct:retry',t(CB.retry),'go'],['li',LI_SVG+t(CB.li),'li'],['ct:cancel',t(CB.cancel),'ghost']]);
+      });
+    });
+  }
+
   // the first time it opens: greeting, topics, and if nobody touches anything it "types" a sample question by itself
   function start(){
     started=true; busy=true;
@@ -782,6 +853,7 @@ button.btn{cursor:pointer}
   function openChat(k){
     tease.hidden=true; cb.hidden=false; fab.setAttribute('aria-expanded','true'); fab.classList.add('open');
     if(!started){ if(k){touched=true;started=true;busy=true;bot(CB.hi).then(function(){busy=false;pick(k);});} else start(); }
+    else if(k==='talk'&&ct){ startContact(); }
     else if(k){ pick(k); }
     if(window.innerWidth>560){setTimeout(function(){cbi.focus({preventScroll:true});},50);}
   }
@@ -789,7 +861,7 @@ button.btn{cursor:pointer}
   fab.addEventListener('click',function(){ if(cb.hidden) openChat(); else closeChat(); });
   document.getElementById('cbx').addEventListener('click',closeChat);
   cbi.addEventListener('input',function(){touched=true;});
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!cb.hidden&&tm.hidden&&vm.hidden) closeChat(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!cb.hidden&&vm.hidden) closeChat(); });
   document.getElementById('cbtgo').addEventListener('click',function(){openChat();});
   document.getElementById('cbtx').addEventListener('click',function(){tease.hidden=true;});
   // services grid on What I Built: each card opens the chat on that topic
@@ -801,7 +873,7 @@ button.btn{cursor:pointer}
   function teaseLater(ms){
     setTimeout(function(){
       if(started||!cb.hidden) return;
-      if(!vm.hidden||!tm.hidden){teaseLater(3000);return;}
+      if(!vm.hidden){teaseLater(3000);return;}
       tease.hidden=false; try{sessionStorage.setItem('pa-tease','1');}catch(e){}
       setTimeout(function(){tease.hidden=true;},14000);
     },ms);
@@ -827,7 +899,7 @@ button.btn{cursor:pointer}
   var seen=false; try{seen=sessionStorage.getItem('pa-intro')==='1';}catch(e){}
   if(!seen&&!home.hidden){
     try{sessionStorage.setItem('pa-intro','1');}catch(e){}
-    setTimeout(function(){ if(!home.hidden&&vm.hidden&&tm.hidden){openVideo(true);} },1200);
+    setTimeout(function(){ if(!home.hidden&&vm.hidden&&cb.hidden){openVideo(true);} },1200);
   }
 })();
 </script>
