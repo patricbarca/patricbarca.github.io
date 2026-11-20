@@ -64,6 +64,16 @@ html[data-lang="es"] [lang="en"], html[data-lang="en"] [lang="es"]{display:none!
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(7.4vw,10.5vh),96px);line-height:.92;letter-spacing:-.035em;margin:14px 0 18px;text-wrap:balance}
 .lede{font-size:clamp(16px,1.8vw,20px);max-width:38ch;margin:0 0 18px;text-wrap:pretty}
 .lede b{font-weight:600}
+/* la pregunta de la portada va cambiando: se escribe sola y luego aparece la respuesta.
+   Todas quedan apiladas en la misma celda, así la altura no salta (manda la más larga). */
+.lede.rot{display:grid}
+.lede.rot .it{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .45s}
+.lede.rot .it.on{visibility:visible;opacity:1}
+.lede.rot .it.out{opacity:0}
+.lede.rot .a{opacity:0;transition:opacity .6s}
+.lede.rot .it.ans .a{opacity:1}
+.lede.rot .q.typing::after{content:"";display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-.12em;background:var(--sun);animation:caret .8s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
 .meta{display:flex;flex-direction:column;gap:2px;font:400 13px var(--f-mono);color:var(--muted);margin-bottom:22px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 
@@ -206,14 +216,14 @@ button.btn{cursor:pointer}
 .svc-card small{display:block;font-size:13.5px;line-height:1.4;color:var(--muted)}
 .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
-.cb-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 30px -10px rgba(19,32,43,.6)}
+.cb-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + var(--fab-up,0px));z-index:40;width:58px;height:58px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 30px -10px rgba(19,32,43,.6)}
 .cb-fab svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .cb-fab::after{content:"";position:absolute;top:3px;right:3px;width:12px;height:12px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 2px var(--bg)}
 .cb-fab[aria-expanded="true"]::after{display:none}
-.cb-tease{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 70px);z-index:40;display:flex;align-items:center;gap:6px;max-width:min(300px,calc(100vw - 32px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px 16px 4px 16px;padding:10px 8px 10px 14px;box-shadow:0 14px 34px -14px rgba(19,32,43,.5);font:500 14.5px/1.35 var(--f-body)}
+.cb-tease{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 70px + var(--fab-up,0px));z-index:40;display:flex;align-items:center;gap:6px;max-width:min(300px,calc(100vw - 32px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px 16px 4px 16px;padding:10px 8px 10px 14px;box-shadow:0 14px 34px -14px rgba(19,32,43,.5);font:500 14.5px/1.35 var(--f-body)}
 .cb-tease button.go{all:unset;cursor:pointer;flex:1}
 .cb-tease button.x{border:0;background:none;color:var(--muted);font-size:14px;width:26px;height:26px;border-radius:50%;cursor:pointer;flex:none}
-.cb{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 72px);z-index:45;width:min(380px,calc(100vw - 32px));height:min(580px,calc(100dvh - 110px));display:flex;flex-direction:column;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px -18px rgba(6,10,14,.55);transform-origin:bottom right}
+.cb{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 72px + var(--fab-up,0px));z-index:45;width:min(380px,calc(100vw - 32px));height:min(580px,calc(100dvh - 110px - var(--fab-up,0px)));display:flex;flex-direction:column;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px -18px rgba(6,10,14,.55);transform-origin:bottom right}
 .cb-h{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;background:var(--ink);color:var(--bg)}
 .cb-h img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none}
 .cb-h b{display:block;font:700 15px/1.2 var(--f-display)}
@@ -267,8 +277,9 @@ button.btn{cursor:pointer}
   .about{grid-template-columns:1fr;gap:20px}
 }
 @media (max-width:560px){
-  .nav a.tab{padding:8px 8px}
-  .mark span{display:none}
+  .nav{gap:2px}
+  .nav a.tab{padding:8px 7px;font-size:13.5px}
+  .langs{margin-left:4px}
   /* en el teléfono la formación va en una línea compacta (sin Brisbane, que ya está arriba en escritorio) */
   .meta{font-size:11px;gap:0;margin:-4px 0 10px;line-height:1.35}
   #home .eyebrow{font-size:10.5px;letter-spacing:.05em;white-space:nowrap}
@@ -294,10 +305,11 @@ button.btn{cursor:pointer}
 <div id="home">
   <div class="wrap">
     <header class="top">
-      <a class="mark" href="#">PA <span>· Brisbane, QLD</span></a>
+      <a class="mark" href="#">PA</a>
       <div class="nav">
-        <a class="tab" href="#" aria-current="page"><span lang="es">Inicio</span><span lang="en">Home</span></a>
-        <a class="tab" href="#built">What I Built</a>
+        <a class="tab" href="#" data-v="home" aria-current="page"><span lang="es">Inicio</span><span lang="en">Home</span></a>
+        <a class="tab" href="#about" data-v="about">I am</a>
+        <a class="tab" href="#built" data-v="built">Products</a>
         <div class="langs" role="group" aria-label="Idioma / Language">
           <button id="lang-es-1" type="button" data-set="es">ES</button>
           <button id="lang-en-1" type="button" data-set="en">EN</button>
@@ -320,9 +332,15 @@ button.btn{cursor:pointer}
         <div>
           <div class="eyebrow"><span lang="es">Automatización con IA · Apps a medida · Datos</span><span lang="en">AI automation · Custom apps · Data</span></div>
           <h1>Patricio<br> Abarca</h1>
-          <p class="lede">
-            <span lang="es"><b>¿Tu equipo pierde horas respondiendo mensajes o pasando datos a mano?</b> Creo bots, agentes y apps con IA que hacen ese trabajo por ti, ajustados a cómo trabaja tu negocio.</span>
-            <span lang="en"><b>Is your team losing hours answering messages or copying data by hand?</b> I build AI bots, agents and apps that do that work for you, fitted to the way your business runs.</span>
+          <p class="lede rot" id="lede">
+            <span class="it on ans"><span lang="es"><b class="q">¿Tu equipo pierde horas respondiendo mensajes o pasando datos a mano?</b> <span class="a">Creo bots, agentes y apps con IA que hacen ese trabajo por ti, ajustados a cómo trabaja tu negocio.</span></span><span lang="en"><b class="q">Is your team losing hours answering messages or copying data by hand?</b> <span class="a">I build AI bots, agents and apps that do that work for you, fitted to the way your business runs.</span></span></span>
+            <span class="it"><span lang="es"><b class="q">¿Pierdes clientes porque nadie alcanza a contestar el WhatsApp?</b> <span class="a">Creo un bot que atiende, reserva y vende por WhatsApp las 24 horas.</span></span><span lang="en"><b class="q">Losing customers because nobody gets to WhatsApp in time?</b> <span class="a">I build a bot that answers, books and sells on WhatsApp around the clock.</span></span></span>
+            <span class="it"><span lang="es"><b class="q">¿Tu sitio web tiene visitas, pero pocos contactos?</b> <span class="a">Un chatbot con IA responde dudas y capta clientes mientras tú haces otra cosa.</span></span><span lang="en"><b class="q">Does your website get visits but few enquiries?</b> <span class="a">An AI chatbot answers questions and captures leads while you get on with your day.</span></span></span>
+            <span class="it"><span lang="es"><b class="q">¿Sigues haciendo a mano reportes, facturas y seguimientos?</b> <span class="a">Conecto tus sistemas para que ese trabajo se haga solo, todos los días.</span></span><span lang="en"><b class="q">Still doing reports, invoices and follow-ups by hand?</b> <span class="a">I connect your systems so that work runs by itself, every day.</span></span></span>
+            <span class="it"><span lang="es"><b class="q">¿Hay tareas que te comen el día buscando, comparando y leyendo documentos?</b> <span class="a">Construyo agentes de IA que las hacen de principio a fin.</span></span><span lang="en"><b class="q">Are there tasks that eat your day searching, comparing and reading documents?</b> <span class="a">I build AI agents that do them from start to finish.</span></span></span>
+            <span class="it"><span lang="es"><b class="q">¿Tienes datos, pero no sabes bien qué te están diciendo?</b> <span class="a">Armo dashboards y modelos que convierten tus datos en decisiones.</span></span><span lang="en"><b class="q">Do you have data but aren’t sure what it’s telling you?</b> <span class="a">I build dashboards and models that turn your data into decisions.</span></span></span>
+            <span class="it"><span lang="es"><b class="q">¿Necesitas videos para redes, pero no tienes tiempo de grabar?</b> <span class="a">Hago videos con avatar, voz y animación creados con IA.</span></span><span lang="en"><b class="q">Need videos for social media but no time to film?</b> <span class="a">I make videos with an avatar, voiceover and motion, created with AI.</span></span></span>
+            <span class="it"><span lang="es"><b class="q">¿Tienes la idea de una app y no sabes por dónde empezar?</b> <span class="a">La diseño y la lanzo contigo, del prototipo a la tienda de apps.</span></span><span lang="en"><b class="q">Got an idea for an app but don’t know where to start?</b> <span class="a">I design and launch it with you, from prototype to the app store.</span></span></span>
           </p>
           <div class="meta">
             <span>Master of AI</span>
@@ -330,7 +348,7 @@ button.btn{cursor:pointer}
             <span>Industrial Engineer</span>
           </div>
           <div class="cta">
-            <a class="btn primary" href="#built">What I Built →</a>
+            <a class="btn primary" href="#built">Products →</a>
             <button class="btn talk" type="button" data-talk>Let’s talk</button>
             <button class="btn play" type="button" id="play"><span aria-hidden="true">▶</span> <span lang="es">Presentación</span><span lang="en">Watch intro</span></button>
             <a class="btn li" href="https://www.linkedin.com/in/patricioabarca/" target="_blank" rel="noopener"><svg class="li-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
@@ -343,7 +361,7 @@ button.btn{cursor:pointer}
   <div class="belt">
     <div class="wrap">
       <div class="belt-head">
-        <span class="eyebrow"><span lang="es">9 apps construidas</span><span lang="en">9 apps built</span></span>
+        <span class="eyebrow"><span lang="es">Apps construidas</span><span lang="en">Apps built</span></span>
         <a href="#built"><span lang="es">Ver el detalle →</span><span lang="en">See the details →</span></a>
       </div>
     </div>
@@ -355,10 +373,11 @@ button.btn{cursor:pointer}
 <div id="built" hidden>
   <div class="wrap">
     <header class="top">
-      <a class="mark" href="#">PA <span>· Brisbane, QLD</span></a>
+      <a class="mark" href="#">PA</a>
       <div class="nav">
-        <a class="tab" href="#"><span lang="es">Inicio</span><span lang="en">Home</span></a>
-        <a class="tab" href="#built" aria-current="page">What I Built</a>
+        <a class="tab" href="#" data-v="home"><span lang="es">Inicio</span><span lang="en">Home</span></a>
+        <a class="tab" href="#about" data-v="about">I am</a>
+        <a class="tab" href="#built" data-v="built" aria-current="page">Products</a>
         <div class="langs" role="group" aria-label="Idioma / Language">
           <button id="lang-es-2" type="button" data-set="es">ES</button>
           <button id="lang-en-2" type="button" data-set="en">EN</button>
@@ -369,7 +388,7 @@ button.btn{cursor:pointer}
     <div class="page-head">
       <div>
         <div class="eyebrow"><span lang="es">Portafolio</span><span lang="en">Portfolio</span></div>
-        <h2>What I Built</h2>
+        <h2>Products</h2>
         <p class="sub"><span lang="es">Nueve productos hechos de principio a fin, del diseño al despliegue. Algunos ya tienen usuarios; otros están en camino.</span><span lang="en">Nine products built end to end, from design to deployment. Some already have users; others are on their way.</span></p>
       </div>
       <div class="filters" role="group" aria-label="Filtrar">
@@ -389,7 +408,7 @@ button.btn{cursor:pointer}
       <div class="svc-grid" id="svcgrid"></div>
     </section>
 
-    <section class="about" aria-label="Sobre mí">
+    <section class="about" id="about" aria-label="Sobre mí / About me">
       <div>
         <div class="eyebrow"><span lang="es">Sobre mí</span><span lang="en">About</span></div>
         <h3><span lang="es">Energía y software</span><span lang="en">Energy and software</span></h3>
@@ -891,18 +910,60 @@ button.btn{cursor:pointer}
   var home=document.getElementById('home'), built=document.getElementById('built');
   function route(){
     var h=(location.hash||'').slice(1);
-    var showBuilt=(h==='built'||h.indexOf('app-')===0);
+    var showBuilt=(h==='built'||h==='about'||h.indexOf('app-')===0);
+    var view=!showBuilt?'home':(h==='about'?'about':'built');
+    document.querySelectorAll('.nav a.tab').forEach(function(a){ if(a.dataset.v===view){a.setAttribute('aria-current','page');}else{a.removeAttribute('aria-current');} });
     home.hidden=showBuilt; built.hidden=!showBuilt;
     if(showBuilt){
       cards.forEach(function(c){c.hidden=false;});
       document.querySelectorAll('.filters button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.f==='all'?'true':'false');});
-      var target=h.indexOf('app-')===0?document.getElementById(h):null;
+      var target=(h==='about'||h.indexOf('app-')===0)?document.getElementById(h):null;
       if(target){requestAnimationFrame(function(){target.scrollIntoView({block:'start'});});}
       else{window.scrollTo(0,0);}
     } else { window.scrollTo(0,0); }
   }
   window.addEventListener('hashchange',route);
   route();
+
+  // chat button sits just above the apps belt on the home page, so it never covers the apps
+  var belt=document.querySelector('.belt');
+  function fabUp(){
+    var up=0;
+    if(!home.hidden&&belt){ up=Math.max(0,Math.round(window.innerHeight-belt.getBoundingClientRect().top)-8); }
+    root.style.setProperty('--fab-up',up+'px');
+  }
+  fabUp();
+  window.addEventListener('resize',fabUp);
+  window.addEventListener('hashchange',fabUp);
+
+  // home lede: the question types itself, then the answer fades in; every few seconds it moves to another service
+  (function(){
+    var lede=document.getElementById('lede'); if(!lede) return;
+    var its=[].slice.call(lede.querySelectorAll('.it')); if(its.length<2) return;
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var full=its.map(function(it){return [].slice.call(it.querySelectorAll('.q')).map(function(q){return q.textContent;});});
+    var i=0;
+    function vis(it){return it.querySelector('[lang="'+(root.getAttribute('data-lang')==='en'?'en':'es')+'"] .q');}
+    function next(){
+      if(home.hidden||document.hidden){ setTimeout(next,1500); return; }
+      var cur=its[i]; cur.classList.add('out');
+      setTimeout(function(){
+        cur.classList.remove('on','ans','out');
+        i=(i+1)%its.length;
+        var it=its[i];
+        it.querySelectorAll('.q').forEach(function(q,k){q.textContent=full[i][k];});
+        var q=vis(it), txt=q.textContent, n=0;
+        q.textContent=''; q.classList.add('typing'); it.classList.add('on');
+        (function type(){
+          n+=1; q.textContent=txt.slice(0,n);
+          if(n<txt.length){ setTimeout(type,txt.charAt(n-1)===' '?40:26); return; }
+          q.classList.remove('typing');
+          setTimeout(function(){ it.classList.add('ans'); setTimeout(next,4200); },250);
+        })();
+      },450);
+    }
+    setTimeout(next,6000);
+  })();
   var seen=false; try{seen=sessionStorage.getItem('pa-intro')==='1';}catch(e){}
   if(!seen&&!home.hidden){
     try{sessionStorage.setItem('pa-intro','1');}catch(e){}
