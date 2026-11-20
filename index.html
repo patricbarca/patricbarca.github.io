@@ -75,7 +75,7 @@ h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(7.4vw,1
 .ring.r2{inset:22cqw;background:radial-gradient(circle,var(--sun-soft) 0,transparent 70%)}
 .spark{position:absolute;inset:9cqw;border-radius:50%;pointer-events:none}
 .spark::before{content:"";position:absolute;left:50%;top:0;width:2.2cqw;height:2.2cqw;margin:-1.1cqw;border-radius:50%;background:var(--sun);box-shadow:0 0 0 1.4cqw var(--sun-soft)}
-.stage .me{position:absolute;left:30cqw;top:30cqw;width:40cqw;height:40cqw;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1.2cqw var(--surface),0 0 0 calc(1.2cqw + 1px) var(--line),0 18px 40px -18px rgba(19,32,43,.45)}
+.stage .me{display:block;background:var(--surface);pointer-events:none;position:absolute;left:30cqw;top:30cqw;width:40cqw;height:40cqw;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1.2cqw var(--surface),0 0 0 calc(1.2cqw + 1px) var(--line),0 18px 40px -18px rgba(19,32,43,.45)}
 .orbit{position:absolute;inset:0}
 .orb{position:absolute;left:50%;top:50%;width:15cqw;height:15cqw;margin:-7.5cqw 0 0 -7.5cqw;transform:rotate(var(--a)) translateY(-41cqw) rotate(calc(-1 * var(--a)))}
 .orb > span{display:block;width:100%;height:100%}
@@ -312,7 +312,7 @@ button.btn{cursor:pointer}
         <div class="stage-col">
           <div class="stage" id="stage">
             <div class="ring r2"></div><div class="ring r1"></div><div class="spark"></div>
-            <img class="me" src="img/patricio-abarca.jpg" alt="Patricio Abarca" width="188" height="188">
+            <video class="me" id="me" autoplay muted loop playsinline preload="auto" poster="img/avatar-poster.jpg" width="188" height="188" aria-label="Patricio Abarca" disablepictureinpicture><source src="video/avatar.webm" type="video/webm"><source src="video/avatar.mp4" type="video/mp4"><img src="img/patricio-abarca.jpg" alt="Patricio Abarca" width="188" height="188"></video>
             <div class="orbit" id="orbit"></div>
           </div>
           <p class="spot" id="spot" aria-live="polite"></p>
@@ -879,6 +879,13 @@ button.btn{cursor:pointer}
     },ms);
   }
   if(!teased){teaseLater(7000);}
+
+  // animated avatar on the home page: a muted loop; it stays on the still frame for visitors who prefer less motion
+  var meV=document.getElementById('me');
+  if(meV){
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){meV.removeAttribute('autoplay');meV.pause();}
+    else{var pp=meV.play();if(pp&&pp.catch){pp.catch(function(){});}}
+  }
 
   // views
   var home=document.getElementById('home'), built=document.getElementById('built');
