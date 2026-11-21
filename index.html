@@ -449,13 +449,13 @@ button.btn{cursor:pointer}
 <div class="cb" id="cb" hidden role="dialog" aria-label="Chat">
   <div class="cb-h">
     <img src="img/patricio-abarca.jpg" alt="" width="38" height="38">
-    <div><b><span lang="es">Asistente de Patricio</span><span lang="en">Patricio’s assistant</span></b><small><span lang="es">En línea · demo</span><span lang="en">Online · demo</span></small></div>
+    <div><b><span lang="es">Asistente de Patricio</span><span lang="en">Patricio’s assistant</span></b><small><span lang="es">En línea</span><span lang="en">Online</span></small></div>
     <button class="x" type="button" id="cbx" aria-label="Cerrar chat / Close chat">✕</button>
   </div>
   <div class="cb-b" id="cbb" aria-live="polite"></div>
   <form class="cb-f" id="cbf" autocomplete="off">
     <input class="hp" type="checkbox" name="botcheck" id="cbhp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <input id="cbi" name="q" maxlength="200" data-ph-es="Escribe o elige un tema…" data-ph-en="Type or pick a topic…" placeholder="Escribe o elige un tema…" aria-label="Mensaje / Message">
+    <input id="cbi" name="q" maxlength="200" data-ph-es="Escribe tu mensaje…" data-ph-en="Type a message…" placeholder="Escribe tu mensaje…" aria-label="Mensaje / Message">
     <button type="submit" aria-label="Enviar / Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </form>
 </div>
@@ -618,7 +618,8 @@ button.btn{cursor:pointer}
   function L(es,en){return root.getAttribute('data-lang')==='en'?en:es;}
   document.querySelectorAll('[data-talk]').forEach(function(b){b.addEventListener('click',function(){openChat('talk');});});
 
-  // Services + animated chat. A scripted demo (no AI, no per-use cost): it looks like a web chatbot and walks through the services.
+  // Services + chat assistant. Rule-based (no LLM, no API key, no per-use cost): it explains the services,
+  // asks about the visitor's case, and sends name, email and their own words to Pat through Web3Forms.
   var IC={
     wa:'<path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.4 8.4 0 1 1 21 11.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/>',
     web:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 13h7M7 16h4"/>',
@@ -637,7 +638,7 @@ button.btn{cursor:pointer}
     {k:'web',kw:/chat|web|pagina|sitio|site/,
      n:{es:'Chatbot para tu web',en:'Website chatbot'},
      s:{es:'Responde dudas y capta clientes en tu sitio.',en:'Answers questions and captures leads on your site.'},
-     a:{es:'Un chat como este en tu sitio, pero con IA real que conoce tu negocio: responde dudas, capta contactos y agenda reuniones. (Este es una demo animada.)',en:'A chat like this one on your site, but with real AI that knows your business: it answers questions, captures leads and books meetings. (This one is an animated demo.)'}},
+     a:{es:'Un asistente como este en tu sitio, con la información de tu negocio: responde dudas, capta contactos y agenda reuniones, a cualquier hora.',en:'An assistant like this one on your site, loaded with your business information: it answers questions, captures leads and books meetings, at any hour.'}},
     {k:'ag',kw:/agent/,
      n:{es:'Agentes de IA',en:'AI agents'},
      s:{es:'Hacen tareas completas: buscar, reservar, leer documentos.',en:'Do whole tasks: search, book, read documents.'},
@@ -645,33 +646,42 @@ button.btn{cursor:pointer}
     {k:'au',kw:/automat|proceso|process|flujo|workflow|zapier|n8n|integra|correo|email|factura|invoice/,
      n:{es:'Automatización de procesos',en:'Process automation'},
      s:{es:'El trabajo repetitivo, hecho solo.',en:'Repetitive work that runs by itself.'},
-     a:{es:'Conecto tu correo, planillas, formularios y sistemas para que el trabajo repetitivo se haga solo: reportes, facturas, seguimiento de clientes y alertas.',en:'I connect your email, spreadsheets, forms and systems so repetitive work runs by itself: reports, invoices, customer follow-ups and alerts.'}},
+     a:{es:'Patricio conecta tu correo, planillas, formularios y sistemas para que el trabajo repetitivo se haga solo: reportes, facturas, seguimiento de clientes y alertas.',en:'Patricio connects your email, spreadsheets, forms and systems so repetitive work runs by itself: reports, invoices, customer follow-ups and alerts.'}},
     {k:'saas',kw:/saas|plataforma|platform|suscrip|subscri|startup|producto|product/,
      n:{es:'SaaS a medida',en:'Custom SaaS'},
      s:{es:'Productos con usuarios, pagos y app móvil.',en:'Products with accounts, payments and a mobile app.'},
-     a:{es:'Diseño y lanzo productos completos, con usuarios, pagos y app móvil. Settlia ya está en la App Store y Comandia está en piloto con un café.',en:'I design and launch complete products, with accounts, payments and a mobile app. Settlia is live on the App Store and Comandia is piloting with a café.'}},
+     a:{es:'Patricio diseña y lanza productos completos, con usuarios, pagos y app móvil. Settlia ya está en la App Store y Comandia está en piloto con un café.',en:'Patricio designs and launches complete products, with accounts, payments and a mobile app. Settlia is live on the App Store and Comandia is piloting with a café.'}},
     {k:'vid',kw:/video|avatar|reel|tiktok|youtube|contenido|content|marketing/,
      n:{es:'Videos con IA',en:'AI video'},
      s:{es:'Avatar, voz y animación para marketing y redes.',en:'Avatar, voice and motion for marketing and social.'},
-     a:{es:'Videos con avatar, voz y animación hechos con IA, para marketing, cursos o redes. ManifestLifeAI crea videos personalizados, y la presentación de esta página la hice igual.',en:'Videos with an avatar, voiceover and motion made with AI, for marketing, courses or social. ManifestLifeAI makes personalised videos, and this page’s intro video was made the same way.'}},
+     a:{es:'Videos con avatar, voz y animación hechos con IA, para marketing, cursos o redes. ManifestLifeAI crea videos personalizados, y el video de presentación de esta página se hizo igual.',en:'Videos with an avatar, voiceover and motion made with AI, for marketing, courses or social. ManifestLifeAI makes personalised videos, and this page’s intro video was made the same way.'}},
     {k:'dat',kw:/dato|data|dashboard|analis|analy|excel|power ?bi|metric|kpi|solar|reporte|report/,
      n:{es:'Análisis de datos',en:'Data analytics'},
      s:{es:'Dashboards y modelos para decidir con datos.',en:'Dashboards and models to decide with data.'},
-     a:{es:'Dashboards y modelos que convierten tus datos en decisiones. En mi trabajo analizo el rendimiento de plantas solares de gran escala con datos en vivo y machine learning.',en:'Dashboards and models that turn your data into decisions. In my day job I analyse the performance of utility-scale solar plants with live data and machine learning.'}},
+     a:{es:'Dashboards y modelos que convierten tus datos en decisiones. En su trabajo, Patricio analiza el rendimiento de plantas solares de gran escala con datos en vivo y machine learning.',en:'Dashboards and models that turn your data into decisions. In his day job, Patricio analyses the performance of utility-scale solar plants with live data and machine learning.'}},
     {k:'des',kw:/disen|design|app|movil|mobile|ux|iphone|android/,
      n:{es:'Diseño de apps',en:'App design'},
      s:{es:'Web y móvil, ajustadas a tu negocio.',en:'Web and mobile, fitted to your business.'},
-     a:{es:'Apps web y móviles diseñadas según lo que necesita tu negocio, del prototipo al lanzamiento. Primero entiendo cómo trabajas; después construyo.',en:'Web and mobile apps designed around what your business needs, from prototype to launch. First I learn how you work; then I build.'}}
+     a:{es:'Apps web y móviles diseñadas según lo que necesita tu negocio, del prototipo al lanzamiento. Patricio primero entiende cómo trabajas; después construye.',en:'Web and mobile apps designed around what your business needs, from prototype to launch. Patricio first learns how you work; then he builds.'}}
   ];
   // order used when matching typed text (more specific words first)
   var MATCH=['wa','ag','vid','dat','au','saas','web','des'];
   var CB={
     hi:{es:'¡Hola! 👋 Soy el asistente de Patricio.',en:'Hi! 👋 I’m Patricio’s assistant.'},
-    intro:{es:'Patricio hace automatización con IA y apps a la medida de cada cliente. ¿Qué te interesa?',en:'Patricio does AI automation and apps built around each client. What are you interested in?'},
-    more:{es:'¿Te muestro otra cosa, o hablamos de tu proyecto?',en:'Want to see something else, or shall we talk about your project?'},
-    price:{es:'Depende del proyecto. Cuéntale tu idea a Patricio y te responde con una propuesta.',en:'It depends on the project. Tell Patricio your idea and you’ll get a proposal back.'},
-    miss:{es:'Esta es una demo animada, así que no entiendo todo 🙂 Elige un tema o cuéntale tu idea a Patricio.',en:'This is an animated demo, so I don’t understand everything 🙂 Pick a topic or tell Patricio your idea.'},
-    demo:{es:'¿Puedes hacer un bot de WhatsApp para mi negocio?',en:'Can you build a WhatsApp bot for my business?'},
+    intro:{es:'Patricio crea automatizaciones con IA y apps a la medida de cada negocio. Cuéntame qué necesitas o elige un tema:',en:'Patricio builds AI automation and apps around each business. Tell me what you need or pick a topic:'},
+    price:{es:'Depende del alcance: cada proyecto se cotiza a la medida.',en:'It depends on the scope: every project is quoted to fit.'},
+    time:{es:'Depende del alcance. Patricio te da un plazo junto con la propuesta.',en:'It depends on the scope. Patricio gives you a timeline along with the proposal.'},
+    ask4:{es:'Para que te prepare una propuesta, ¿me cuentas qué necesitas?',en:'So he can put a proposal together, can you tell me what you need?'},
+    who:{es:'Patricio es ingeniero industrial, estudia un Máster en IA y trabaja en análisis de datos de plantas solares en Brisbane. Ha construido 9 apps, desde bots hasta productos SaaS.',en:'Patricio is an industrial engineer studying a Master of AI who works in solar plant data analysis in Brisbane. He has built 9 apps, from bots to SaaS products.'},
+    hello:{es:'¡Hola! 😊 ¿En qué te puedo ayudar? Cuéntame qué necesitas o elige un tema.',en:'Hi! 😊 How can I help? Tell me what you need or pick a topic.'},
+    thanks:{es:'¡De nada! ¿Te ayudo con algo más?',en:'You’re welcome! Anything else I can help with?'},
+    unsure:{es:'Quiero entenderte bien. ¿Me cuentas un poco más de lo que necesitas? También puedes elegir un tema.',en:'I want to get this right. Could you tell me a bit more about what you need? You can also pick a topic.'},
+    offer:{es:'¿Quieres que le pase esto a Patricio para que te prepare una propuesta? Solo me faltan tu nombre y tu email.',en:'Shall I pass this to Patricio so he can prepare a proposal? I just need your name and email.'},
+    yes:{es:'Sí, envíaselo',en:'Yes, send it'},
+    others:{es:'Ver otros servicios',en:'See other services'},
+    which:{es:'Claro, ¿cuál te interesa?',en:'Sure, which one are you interested in?'},
+    c1:{es:'Perfecto. ¿Cómo te llamas?',en:'Great. What’s your name?'},
+    ack:[{es:'Perfecto, eso se puede hacer.',en:'Great, that can be done.'},{es:'Entendido. Es un buen caso para automatizar con IA.',en:'Got it. That’s a good case for AI automation.'},{es:'Muy bien, tiene mucho sentido.',en:'Makes a lot of sense.'}],
     talk:{es:'Hablemos →',en:'Let’s talk →'},
     // contact conversation
     want:{es:'Quiero hablar con Patricio',en:'I’d like to talk to Patricio'},
@@ -692,6 +702,16 @@ button.btn{cursor:pointer}
     retry:{es:'Reintentar',en:'Try again'},
     cancel:{es:'Cancelar',en:'Cancel'},
     li:{es:'LinkedIn',en:'LinkedIn'}
+  };
+  var QQ={
+    wa:{es:'¿Qué tipo de negocio tienes y qué te gustaría que resolviera el bot?',en:'What kind of business do you have, and what should the bot handle?'},
+    web:{es:'¿Qué es lo que más te preguntan tus clientes en el sitio?',en:'What do your customers ask most often on your site?'},
+    ag:{es:'¿Qué tarea te gustaría delegarle a un agente?',en:'Which task would you like to hand over to an agent?'},
+    au:{es:'¿Qué proceso te quita más tiempo hoy?',en:'Which process takes up most of your time today?'},
+    saas:{es:'¿Cuál es la idea del producto y para quién es?',en:'What’s the product idea, and who is it for?'},
+    vid:{es:'¿Para qué usarías los videos: redes, cursos o publicidad?',en:'What would the videos be for: social media, courses or ads?'},
+    dat:{es:'¿Qué datos tienes hoy y qué te gustaría saber de ellos?',en:'What data do you have today, and what would you like to learn from it?'},
+    des:{es:'¿Qué debería hacer la app y quién la usaría?',en:'What should the app do, and who would use it?'}
   };
   function svg(k){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+IC[k]+'</svg>';}
   function byK(k){for(var i=0;i<SV.length;i++){if(SV[i].k===k)return SV[i];}return null;}
@@ -720,15 +740,34 @@ button.btn{cursor:pointer}
     cbb.appendChild(q);down();
   }
   function clearChips(){[].slice.call(cbb.querySelectorAll('.cb-q')).forEach(function(q){q.remove();});}
+  // need = what the visitor told us about their case; it becomes the message sent to Patricio
+  var need=null, ackN=0;
   function reply(v){
-    if(v){asked[v.k]=1;}
-    return bot(v?v.a:CB.miss).then(function(){return v?bot(CB.more):null;}).then(function(){busy=false;qchips();});
+    asked[v.k]=1;
+    need={k:v.k,text:need&&need.text||''};
+    return bot(v.a).then(function(){return bot(QQ[v.k]);}).then(function(){
+      busy=false; chipRow([['talk',t(CB.talk),'go'],['more',t(CB.others)]]);
+    });
+  }
+  function takeNeed(txt){
+    if(!need){need={k:null,text:''};}
+    need.text=need.text?need.text+String.fromCharCode(10)+txt:txt;
+    var a=CB.ack[ackN++%CB.ack.length];
+    return bot(a).then(function(){return bot(CB.offer);}).then(function(){
+      busy=false; chipRow([['lead',t(CB.yes),'go'],['more',t(CB.others)]]);
+    });
+  }
+  function leadFromNeed(){
+    if(!need||!need.text) return null;
+    var v=need.k&&byK(need.k);
+    return v?{topic:v.n.es+' / '+v.n.en,topicLabel:t(v.n),msg:need.text}:{msg:need.text};
   }
   function pick(k,said){
     if(busy){ if(k==='talk'){touched=true;setTimeout(function(){pick(k,said);},300);} return; }
     touched=true;
-    if(k==='talk'){ startContact(); return; }
+    if(k==='talk'||k==='lead'){ startContact(leadFromNeed(),k==='lead'); return; }
     if(k.indexOf('ct:')===0){ contactChip(k.slice(3)); return; }
+    if(k==='more'){ busy=true; clearChips(); me(t(CB.others)).then(function(){return bot(CB.which);}).then(function(){busy=false;qchips();}); return; }
     var v=byK(k); if(!v) return;
     busy=true; clearChips();
     me(said?esc(said):t(v.n)).then(function(){return reply(v);});
@@ -743,12 +782,34 @@ button.btn{cursor:pointer}
     var txt=cbi.value.trim(); if(!txt||busy) return;
     touched=true; cbi.value='';
     if(ct){ contactInput(txt); return; }
-    var n=txt.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-    if(/precio|cuest|cost|price|cobr|valor|presupuesto|quote|budget|tarifa|rate/.test(n)){
-      busy=true; clearChips(); me(esc(txt)).then(function(){return bot(CB.price);}).then(function(){busy=false;asked.__=1;qchips();}); return;
+    var n=txt.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    var short=n.length<28;
+    busy=true; clearChips();
+    var said=me(esc(txt));
+    function then(f){ said.then(f); }
+    if(short&&/^(hola|holi|buenas|buen dia|buenos dias|buenas tardes|buenas noches|hi|hello|hey|good (morning|afternoon|evening))\b/.test(n)){
+      then(function(){return bot(CB.hello).then(function(){busy=false;qchips();});}); return;
+    }
+    if(short&&/gracias|thank|genial|perfecto|great|\bok\b|\bvale\b/.test(n)&&!need){
+      then(function(){return bot(CB.thanks).then(function(){busy=false;qchips();});}); return;
+    }
+    if(/precio|cuest|cost|price|cobr|valor|presupuesto|quote|budget|tarifa|rate|how much/.test(n)){
+      asked.__=1;
+      then(function(){return bot(CB.price).then(function(){return need&&need.text?bot(CB.offer).then(function(){busy=false;chipRow([['lead',t(CB.yes),'go'],['more',t(CB.others)]]);}):bot(CB.ask4).then(function(){need=need||{k:null,text:''};busy=false;chipRow([['talk',t(CB.talk),'go'],['more',t(CB.others)]]);});});}); return;
+    }
+    if(/cuanto (tiempo|demora|tarda)|plazo|demora|how long|timeline|deadline/.test(n)){
+      then(function(){return bot(CB.time).then(function(){return bot(CB.ask4);}).then(function(){need=need||{k:null,text:''};busy=false;chipRow([['talk',t(CB.talk),'go'],['more',t(CB.others)]]);});}); return;
+    }
+    if(/quien es|quien eres|who is|who are you|sobre patricio|about patricio|experiencia|experience/.test(n)){
+      then(function(){return bot(CB.who).then(function(){busy=false;qchips();});}); return;
     }
     var v=null; for(var i=0;i<MATCH.length;i++){var c=byK(MATCH[i]);if(c.kw.test(n)){v=c;break;}}
-    busy=true; clearChips(); me(esc(txt)).then(function(){return reply(v);});
+    // a short message naming a service opens that service; anything longer is the visitor describing their case
+    if(v&&short&&!asked[v.k]){ then(function(){return reply(v);}); return; }
+    // a longer message that names a service already describes the case: explain the service, then offer to pass it on
+    if(v&&!asked[v.k]&&!(need&&need.k)){ asked[v.k]=1; need={k:v.k,text:need&&need.text||''}; then(function(){return bot(v.a).then(function(){return takeNeed(txt);});}); return; }
+    if(need||n.length>=18||v){ then(function(){return takeNeed(txt);}); return; }
+    then(function(){return bot(CB.unsure).then(function(){need={k:null,text:''};busy=false;qchips();});});
   });
   // ---- contact conversation (replaces the old Let's talk form) ----
   var ct=null; // {step:'name'|'email'|'topic'|'msg'|'confirm'|'sending', d:{...}}
@@ -758,8 +819,8 @@ button.btn{cursor:pointer}
   };
   function setInput(step){
     var ph=step&&PH[step];
-    cbi.setAttribute('data-ph-es',ph?ph.es:'Escribe o elige un tema…');
-    cbi.setAttribute('data-ph-en',ph?ph.en:'Type or pick a topic…');
+    cbi.setAttribute('data-ph-es',ph?ph.es:'Escribe tu mensaje…');
+    cbi.setAttribute('data-ph-en',ph?ph.en:'Type a message…');
     cbi.placeholder=cbi.getAttribute('data-ph-'+(root.getAttribute('data-lang')==='en'?'en':'es'));
     cbi.type=step==='email'?'email':'text';
     cbi.setAttribute('autocomplete',step==='email'?'email':step==='name'?'name':'off');
@@ -779,14 +840,20 @@ button.btn{cursor:pointer}
       setInput(step);
     });
   }
-  function startContact(){
+  function startContact(pre,yes){
     if(ct){ setInput(ct.step==='confirm'?null:ct.step); return; }
     touched=true; clearChips();
-    ct={step:'name',d:{}}; busy=true;
-    me(t(CB.want)).then(function(){return ask('name',CB.c0);});
+    ct={step:'name',d:pre||{}}; need=null; busy=true;
+    me(t(yes?CB.yes:CB.want)).then(function(){return ask('name',pre?CB.c1:CB.c0);});
+  }
+  function afterEmail(){
+    var d=ct.d;
+    if(d.topic&&d.msg){ return confirmContact(); }
+    if(d.msg){ d.topic='Otro / Other'; d.topicLabel=t(CB.other); return confirmContact(); }
+    return d.topic?ask('msg',CB.cMsg):ask('topic',CB.cTopic);
   }
   function stopContact(line){
-    ct=null; setInput(null); busy=true;
+    ct=null; need=null; setInput(null); busy=true;
     bot(line).then(function(){busy=false;qchips();});
   }
   function contactInput(txt){
@@ -796,7 +863,7 @@ button.btn{cursor:pointer}
       if(ct.step==='name'){ d.name=txt.slice(0,120); return ask('email',{es:'Gracias, '+d.name+'. '+CB.cEmail.es,en:'Thanks, '+d.name+'. '+CB.cEmail.en}); }
       if(ct.step==='email'){
         if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(txt)){ return ask('email',CB.cBad); }
-        d.email=txt.slice(0,200); return ask('topic',CB.cTopic);
+        d.email=txt.slice(0,200); return afterEmail();
       }
       if(ct.step==='topic'){ d.topic=txt.slice(0,120); return ask('msg',CB.cMsg); }
       if(ct.step==='msg'){
@@ -854,20 +921,10 @@ button.btn{cursor:pointer}
     });
   }
 
-  // the first time it opens: greeting, topics, and if nobody touches anything it "types" a sample question by itself
+  // the first time it opens: greeting and topics; then it waits for the visitor
   function start(){
     started=true; busy=true;
-    bot(CB.hi).then(function(){return bot(CB.intro);}).then(function(){busy=false;qchips();return wait(2600);}).then(function(){
-      if(touched||busy||cb.hidden) return;
-      busy=true;
-      var q=L(CB.demo.es,CB.demo.en), i=0;
-      (function type(){
-        if(touched){busy=false;cbi.value='';return;}
-        cbi.value=q.slice(0,++i);
-        if(i<q.length){setTimeout(type,quiet?0:38);return;}
-        setTimeout(function(){ cbi.value=''; clearChips(); me(esc(q)).then(function(){return reply(byK('wa'));}); },quiet?0:350);
-      })();
-    });
+    bot(CB.hi).then(function(){return bot(CB.intro);}).then(function(){busy=false;qchips();});
   }
   function openChat(k){
     tease.hidden=true; cb.hidden=false; fab.setAttribute('aria-expanded','true'); fab.classList.add('open');
