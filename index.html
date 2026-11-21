@@ -324,7 +324,7 @@ button.btn{cursor:pointer}
         <div class="stage-col">
           <div class="stage" id="stage">
             <div class="ring r2"></div><div class="ring r1"></div><div class="spark"></div>
-            <video class="me" id="me" autoplay muted loop playsinline preload="auto" poster="img/avatar-poster.jpg" width="188" height="188" aria-label="Patricio Abarca" disablepictureinpicture><source src="video/avatar.webm" type="video/webm"><source src="video/avatar.mp4" type="video/mp4"><img src="img/patricio-abarca.jpg" alt="Patricio Abarca" width="188" height="188"></video>
+            <video class="me" id="me" autoplay muted loop playsinline preload="auto" poster="img/avatar-poster.jpg" width="188" height="188" aria-label="Patricio Abarca" disablepictureinpicture><source src="video/avatar.mp4" type="video/mp4"><source src="video/avatar.webm" type="video/webm"><img src="img/patricio-abarca.jpg" alt="Patricio Abarca" width="188" height="188"></video>
             <div class="orbit" id="orbit"></div>
           </div>
           <p class="spot" id="spot" aria-live="polite"></p>
@@ -959,8 +959,16 @@ button.btn{cursor:pointer}
   // animated avatar on the home page: a muted loop; it stays on the still frame for visitors who prefer less motion
   var meV=document.getElementById('me');
   if(meV){
-    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){meV.removeAttribute('autoplay');meV.pause();}
-    else{var pp=meV.play();if(pp&&pp.catch){pp.catch(function(){});}}
+    // the loop is slow and subtle, so it also plays for visitors who prefer less motion
+    {
+      meV.muted=true;
+      var tryPlay=function(){var pp=meV.play();if(pp&&pp.catch){pp.catch(function(){});}};
+      tryPlay();
+      // phones in low-power mode block autoplay: start it on the first touch or scroll instead
+      var kick=function(){ if(meV.paused){tryPlay();} ['touchstart','click','scroll'].forEach(function(ev){window.removeEventListener(ev,kick);}); };
+      ['touchstart','click','scroll'].forEach(function(ev){window.addEventListener(ev,kick,{passive:true});});
+      document.addEventListener('visibilitychange',function(){ if(!document.hidden&&meV.paused){tryPlay();} });
+    }
   }
 
   // views
@@ -997,7 +1005,8 @@ button.btn{cursor:pointer}
   (function(){
     var lede=document.getElementById('lede'); if(!lede) return;
     var its=[].slice.call(lede.querySelectorAll('.it')); if(its.length<2) return;
-    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // with reduced motion: no typing, the next question simply fades in
+    var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var full=its.map(function(it){return [].slice.call(it.querySelectorAll('.q')).map(function(q){return q.textContent;});});
     var i=0;
     function vis(it){return it.querySelector('[lang="'+(root.getAttribute('data-lang')==='en'?'en':'es')+'"] .q');}
@@ -1010,6 +1019,7 @@ button.btn{cursor:pointer}
         var it=its[i];
         it.querySelectorAll('.q').forEach(function(q,k){q.textContent=full[i][k];});
         var q=vis(it), txt=q.textContent, n=0;
+        if(calm){ it.classList.add('on','ans'); setTimeout(next,6500); return; }
         q.textContent=''; q.classList.add('typing'); it.classList.add('on');
         (function type(){
           n+=1; q.textContent=txt.slice(0,n);
