@@ -322,6 +322,23 @@ button.btn{cursor:pointer}
   .spot{display:none}
   h1{margin:8px 0 12px}
 }
+/* portada minimalista: íconos planos sin sombra ni rebote, una sola franja de apps (la rueda),
+   y solo dos botones con relleno; presentación y LinkedIn quedan como links */
+.orb img{box-shadow:none;border:1px solid var(--line)}
+.orb.on img{box-shadow:0 0 0 1.4cqw var(--bg),0 0 0 1.8cqw var(--ink)}
+@media (prefers-reduced-motion:no-preference){.orb img{animation:none}}
+.stage .me{box-shadow:none}
+.spot a{color:inherit;text-decoration:none}
+.spot a:hover b{text-decoration:underline}
+.spot-all{font:600 13px var(--f-body);color:var(--muted);text-decoration:none;margin-top:-4px}
+.spot-all:hover{color:var(--ink)}
+.hero .cta .btn.play,.hero .cta .btn.li{background:none;border-color:transparent;color:var(--ink);padding-inline:8px}
+.hero .cta .btn.play:hover,.hero .cta .btn.li:hover{background:none;text-decoration:underline}
+.hero .cta .btn.li .li-ic{fill:#0A66C2}
+@media (max-width:900px){.stage-col{gap:6px}}
+@media (max-width:560px){.stage{width:min(62vw,30vh,300px)}.spot-all{font-size:12.5px}}
+@media (max-width:560px) and (max-height:740px){.spot{display:block}.stage{width:min(56vw,25vh,300px)}}
+@media (max-height:640px){.spot{display:block}}
 </style>
 
 <script type="application/ld+json">
@@ -745,11 +762,11 @@ button.btn{cursor:pointer}
       <div class="hero">
         <div class="stage-col">
           <div class="stage" id="stage">
-            <div class="ring r2"></div><div class="ring r1"></div><div class="spark"></div>
             <video class="me" id="me" autoplay muted loop playsinline preload="auto" poster="img/avatar-poster.jpg?v=2" width="188" height="188" aria-label="Patricio Abarca" disablepictureinpicture><source src="video/avatar.mp4?v=2" type="video/mp4"><source src="video/avatar.webm?v=2" type="video/webm"><img src="img/patricio-abarca.jpg" alt="Patricio Abarca" width="188" height="188"></video>
             <div class="orbit" id="orbit"></div>
           </div>
           <p class="spot" id="spot" aria-live="polite"></p>
+          <a class="spot-all" href="#built"><span lang="es">Apps construidas · ver el detalle →</span><span lang="en">Apps built · see the details →</span></a>
         </div>
         <div>
           <div class="eyebrow"><span lang="es">Automatización con IA · Apps a medida · Datos</span><span lang="en">AI automation · Custom apps · Data</span></div>
@@ -775,15 +792,6 @@ button.btn{cursor:pointer}
     </div>
   </main>
 
-  <div class="belt">
-    <div class="wrap">
-      <div class="belt-head">
-        <span class="eyebrow"><span lang="es">Apps construidas</span><span lang="en">Apps built</span></span>
-        <a href="#built"><span lang="es">Ver el detalle →</span><span lang="en">See the details →</span></a>
-      </div>
-    </div>
-    <div class="marquee" aria-label="Apps"><div class="track" id="track"></div></div>
-  </div>
 </div>
 
 <!-- ============ WHAT I BUILT ============ -->
@@ -945,7 +953,7 @@ button.btn{cursor:pointer}
   // marquee (two copies for a seamless loop)
   var chips=APPS.map(function(a){return '<a class="chip" href="#app-'+a.id+'">'+img(a,44)+'<span><b>'+esc(a.name)+'</b><small>'+t(a.tag)+'</small></span></a>';}).join('');
   var dup=APPS.map(function(a){return '<a class="chip dup" href="#app-'+a.id+'" tabindex="-1" aria-hidden="true">'+img(a,44)+'<span><b>'+esc(a.name)+'</b><small>'+t(a.tag)+'</small></span></a>';}).join('');
-  document.getElementById('track').innerHTML=chips+dup;
+  var trk=document.getElementById('track'); if(trk) trk.innerHTML=chips+dup;
 
   // orbit around the photo: one app is highlighted at a time and the caption says what it does
   var orbit=document.getElementById('orbit'), spot=document.getElementById('spot'), stage=document.getElementById('stage');
@@ -957,7 +965,7 @@ button.btn{cursor:pointer}
     if(i===cur) return; cur=i;
     orbs.forEach(function(o,k){o.classList.toggle('on',k===i);});
     var a=APPS[i];
-    spot.innerHTML='<span class="in"><b>'+esc(a.name)+'</b> · '+t(a.tag)+'</span>';
+    spot.innerHTML='<a class="in" href="#app-'+a.id+'"><b>'+esc(a.name)+'</b> · '+t(a.tag)+'</a>';
   }
   show(0);
   setInterval(function(){ if(!held && !document.hidden) show((cur+1)%APPS.length); },2600);
