@@ -3,15 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Patricio Abarca automatiza negocios con IA: chatbots, bots de WhatsApp, agentes y apps a medida. 9 apps construidas y análisis de datos solares.">
-<meta property="og:title" content="Patricio Abarca">
-<meta property="og:description" content="Automatización con IA: chatbots, bots de WhatsApp, agentes y apps a medida.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://patricbarca.github.io/img/patricio-abarca.jpg">
+<title>Patricio Abarca · AI Automation &amp; Chatbots, Brisbane · Automatización con IA</title>
+<meta name="description" content="Patricio Abarca builds AI automation for businesses in Brisbane, Australia: WhatsApp bots, website chatbots, AI agents, dashboards and custom apps. Automatización con IA, bots y apps a medida.">
+<meta name="author" content="Patricio Abarca">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="canonical" href="https://patricbarca.github.io/">
+<!-- social cards (LinkedIn, WhatsApp, Facebook, X) -->
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Patricio Abarca">
+<meta property="og:title" content="Patricio Abarca · AI automation, chatbots &amp; apps · Brisbane">
+<meta property="og:description" content="AI bots, agents and custom apps for businesses. Automatización con IA: bots de WhatsApp, chatbots, agentes y apps a medida.">
 <meta property="og:url" content="https://patricbarca.github.io/">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2313202B'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-weight='700' font-size='26' fill='%23F2A93B' text-anchor='middle'%3EPA%3C/text%3E%3C/svg%3E">
+<meta property="og:image" content="https://patricbarca.github.io/img/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Patricio Abarca, AI automation and custom apps, Brisbane, Australia">
+<meta property="og:locale" content="en_AU">
+<meta property="og:locale:alternate" content="es_LA">
+<meta property="profile:first_name" content="Patricio">
+<meta property="profile:last_name" content="Abarca">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Patricio Abarca · AI automation, chatbots &amp; apps · Brisbane">
+<meta name="twitter:description" content="AI bots, agents and custom apps for businesses. Automatización con IA y apps a medida.">
+<meta name="twitter:image" content="https://patricbarca.github.io/img/og-image.jpg">
+<meta name="twitter:image:alt" content="Patricio Abarca, AI automation and custom apps, Brisbane, Australia">
+<!-- icons: real files so Google can show the favicon in results (data: URIs are not used there) -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- LCP: the avatar's still frame is the largest image on the first screen -->
+<link rel="preload" as="image" href="img/avatar-poster.jpg?v=2" fetchpriority="high">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Patricio Abarca</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -64,6 +87,8 @@ html[data-lang="es"] [lang="en"], html[data-lang="en"] [lang="es"]{display:none!
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,min(7.4vw,10.5vh),96px);line-height:.92;letter-spacing:-.035em;margin:14px 0 18px;text-wrap:balance}
 .lede{font-size:clamp(16px,1.8vw,20px);max-width:38ch;margin:0 0 18px;text-wrap:pretty}
 .lede b{font-weight:600}
+/* text for search engines and screen readers only: no visual change */
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 /* la pregunta de la portada va cambiando: se escribe sola y luego aparece la respuesta.
    Todas quedan apiladas en la misma celda, así la altura no salta (manda la más larga). */
 .lede.rot{display:grid}
@@ -166,7 +191,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:clamp(38px,6vw,68px);l
 
 .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;border-top:1px solid var(--line);padding-block:40px 32px}
 .about > *{min-width:0}
-.about h3{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:-.02em;margin:6px 0 18px}
+.about h2{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:-.02em;line-height:1.55;margin:6px 0 18px}
 .about p{margin:0 0 14px;max-width:62ch}
 .facts{margin:0}
 .facts div{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
@@ -207,7 +232,7 @@ button.btn{cursor:pointer}
 /* Servicios + chat animado. El chat es una demo con respuestas escritas de antemano (sin IA ni costo por uso):
    muestra cómo se ve un chatbot web y cuenta los servicios. */
 .svc{border-top:1px solid var(--line);padding-block:36px 40px}
-.svc h3{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:-.02em;margin:6px 0 8px}
+.svc h2{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:-.02em;line-height:1.55;margin:6px 0 8px}
 .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
 .svc-card{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;cursor:pointer}
 .svc-card:hover{border-color:var(--sun)}
@@ -262,7 +287,7 @@ button.btn{cursor:pointer}
 @media (max-width:1000px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){
   .svc-grid{grid-template-columns:1fr}
-  .svc h3{font-size:25px}
+  .svc h2{font-size:25px}
   .cb{left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom,0px));width:auto;height:min(620px,calc(100dvh - 16px))}
   .cb-fab{width:54px;height:54px}
   .cb-fab.open{display:none}
@@ -299,6 +324,403 @@ button.btn{cursor:pointer}
 }
 </style>
 
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://patricbarca.github.io/#website",
+   "url": "https://patricbarca.github.io/",
+   "name": "Patricio Abarca",
+   "inLanguage": [
+    "es",
+    "en"
+   ],
+   "publisher": {
+    "@id": "https://patricbarca.github.io/#person"
+   }
+  },
+  {
+   "@type": "ProfilePage",
+   "@id": "https://patricbarca.github.io/#profile",
+   "url": "https://patricbarca.github.io/",
+   "name": "Patricio Abarca · AI automation, chatbots and apps · Brisbane",
+   "isPartOf": {
+    "@id": "https://patricbarca.github.io/#website"
+   },
+   "inLanguage": [
+    "es",
+    "en"
+   ],
+   "mainEntity": {
+    "@id": "https://patricbarca.github.io/#person"
+   },
+   "primaryImageOfPage": {
+    "@id": "https://patricbarca.github.io/#photo"
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "@id": "https://patricbarca.github.io/#photo",
+   "url": "https://patricbarca.github.io/img/patricio-abarca.jpg",
+   "contentUrl": "https://patricbarca.github.io/img/patricio-abarca.jpg",
+   "width": 480,
+   "height": 480,
+   "caption": "Patricio Abarca"
+  },
+  {
+   "@type": "Person",
+   "@id": "https://patricbarca.github.io/#person",
+   "name": "Patricio Abarca",
+   "url": "https://patricbarca.github.io/",
+   "image": {
+    "@id": "https://patricbarca.github.io/#photo"
+   },
+   "jobTitle": "AI automation and app developer",
+   "description": "Builds AI bots, agents, automation and apps for businesses, and analyses the performance of utility-scale solar plants with data and machine learning. Based in Brisbane, Australia.",
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Brisbane",
+    "addressRegion": "QLD",
+    "addressCountry": "AU"
+   },
+   "homeLocation": {
+    "@type": "City",
+    "name": "Brisbane",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Brisbane",
+     "addressRegion": "QLD",
+     "addressCountry": "AU"
+    }
+   },
+   "sameAs": [
+    "https://www.linkedin.com/in/patricioabarca/"
+   ],
+   "knowsLanguage": [
+    "es",
+    "en"
+   ],
+   "knowsAbout": [
+    "Artificial intelligence",
+    "AI automation",
+    "AI agents",
+    "Chatbots",
+    "WhatsApp bots",
+    "Process automation",
+    "Data analysis",
+    "Machine learning",
+    "Solar plant performance",
+    "Web and mobile app development"
+   ]
+  },
+  {
+   "@type": "ProfessionalService",
+   "@id": "https://patricbarca.github.io/#service",
+   "name": "Patricio Abarca · AI automation",
+   "alternateName": "Patricio Abarca · Automatización con IA",
+   "url": "https://patricbarca.github.io/",
+   "image": "https://patricbarca.github.io/img/og-image.jpg",
+   "logo": "https://patricbarca.github.io/img/icon-192.png",
+   "description": "AI automation for businesses: WhatsApp bots, website chatbots, AI agents, process automation, data dashboards, AI video and custom apps.",
+   "founder": {
+    "@id": "https://patricbarca.github.io/#person"
+   },
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Brisbane",
+    "addressRegion": "QLD",
+    "addressCountry": "AU"
+   },
+   "areaServed": [
+    {
+     "@type": "City",
+     "name": "Brisbane"
+    },
+    {
+     "@type": "State",
+     "name": "Queensland"
+    },
+    {
+     "@type": "Country",
+     "name": "Australia"
+    }
+   ],
+   "availableLanguage": [
+    "Spanish",
+    "English"
+   ],
+   "sameAs": [
+    "https://www.linkedin.com/in/patricioabarca/"
+   ],
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "AI automation services",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "WhatsApp bot",
+       "alternateName": "Bot de WhatsApp",
+       "description": "Answers, books and sells on WhatsApp, 24/7.",
+       "provider": {
+        "@id": "https://patricbarca.github.io/#person"
+       }
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Website chatbot",
+       "alternateName": "Chatbot para tu web",
+       "description": "Answers questions and captures leads on your site.",
+       "provider": {
+        "@id": "https://patricbarca.github.io/#person"
+       }
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "AI agents",
+       "alternateName": "Agentes de IA",
+       "description": "Do whole tasks: search, book, read documents.",
+       "provider": {
+        "@id": "https://patricbarca.github.io/#person"
+       }
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Process automation",
+       "alternateName": "Automatización de procesos",
+       "description": "Repetitive work that runs by itself.",
+       "provider": {
+        "@id": "https://patricbarca.github.io/#person"
+       }
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Custom SaaS",
+       "alternateName": "SaaS a medida",
+       "description": "Products with accounts, payments and a mobile app.",
+       "provider": {
+        "@id": "https://patricbarca.github.io/#person"
+       }
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "AI video",
+       "alternateName": "Videos con IA",
+       "description": "Avatar, voice and motion for marketing and social.",
+       "provider": {
+        "@id": "https://patricbarca.github.io/#person"
+       }
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Data analytics",
+       "alternateName": "Análisis de datos",
+       "description": "Dashboards and models to decide with data.",
+       "provider": {
+        "@id": "https://patricbarca.github.io/#person"
+       }
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "App design",
+       "alternateName": "Diseño de apps",
+       "description": "Web and mobile, fitted to your business.",
+       "provider": {
+        "@id": "https://patricbarca.github.io/#person"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "@type": "ItemList",
+   "@id": "https://patricbarca.github.io/#apps",
+   "name": "Apps built by Patricio Abarca",
+   "numberOfItems": 9,
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-settlia",
+      "name": "Settlia",
+      "description": "Split group expenses without the arguments: trips, shared houses or a dinner out. Live on the App Store and the web.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "iOS, Web",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/settlia.png",
+      "url": "https://settlia.app",
+      "sameAs": [
+       "https://apps.apple.com/app/id6787267468"
+      ]
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-heymesa",
+      "name": "HeyMesa",
+      "description": "AI restaurant concierge: recommends real restaurants in Australia and helps you book.",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Web",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/heymesa.svg",
+      "url": "https://heymesa.app"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-cachos",
+      "name": "Cachos",
+      "description": "Chile’s classic dice game, Cacho, as a 3D multiplayer game in the browser.",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Web",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/cachos.svg",
+      "url": "https://cachos.app"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 4,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-desliza",
+      "name": "Desliza",
+      "description": "Read the Bible verse by verse like a feed, with context to understand each passage.",
+      "applicationCategory": "ReferenceApplication",
+      "operatingSystem": "Web",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/deslia.png",
+      "url": "https://patricbarca.github.io/desliza/"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 5,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-geospots",
+      "name": "GeoSpots",
+      "description": "Open georeferenced PDF maps on your phone and see where you are standing. Built for fieldwork in Australia.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/geospots.svg",
+      "url": "https://geospots.patricbarca.workers.dev/"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 6,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-walls",
+      "name": "Walls",
+      "description": "Upload a contract or document and it breaks it into its key sections, each one a wall of cards linked to the original text.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, iPadOS",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/walls-muro.svg"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 7,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-manifest",
+      "name": "ManifestLifeAI",
+      "description": "Upload a few selfies, write your goals, and get a two-minute AI video of yourself living them.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Web",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/manifest.png",
+      "url": "https://manifestlife.ai"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 8,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-comandia",
+      "name": "Comandia",
+      "description": "Point of sale, kitchen screen and recipe-based stock for cafes and restaurants, piloting with a cafe.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/comandia.svg"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 9,
+     "item": {
+      "@type": "SoftwareApplication",
+      "@id": "https://patricbarca.github.io/#app-vidacta",
+      "name": "Vidacta",
+      "description": "Paste a YouTube link and get an interactive course in Spanish or English (in development).",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "author": {
+       "@id": "https://patricbarca.github.io/#person"
+      },
+      "image": "https://patricbarca.github.io/logos/vidacta.svg"
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <!-- ============ INICIO ============ -->
@@ -331,7 +753,7 @@ button.btn{cursor:pointer}
         </div>
         <div>
           <div class="eyebrow"><span lang="es">Automatización con IA · Apps a medida · Datos</span><span lang="en">AI automation · Custom apps · Data</span></div>
-          <h1>Patricio<br> Abarca</h1>
+          <h1>Patricio<br> Abarca<span class="vh"><span lang="es"> · automatización con IA, chatbots y apps en Brisbane, Australia</span><span lang="en"> · AI automation, chatbots and apps in Brisbane, Australia</span></span></h1>
           <p class="lede rot" id="lede">
             <span class="it on ans"><span lang="es"><b class="q">¿Tu equipo pierde horas respondiendo mensajes o pasando datos a mano?</b> <span class="a">Creo bots, agentes y apps con IA que hacen ese trabajo por ti, ajustados a cómo trabaja tu negocio.</span></span><span lang="en"><b class="q">Is your team losing hours answering messages or copying data by hand?</b> <span class="a">I build AI bots, agents and apps that do that work for you, fitted to the way your business runs.</span></span></span>
             <span class="it"><span lang="es"><b class="q">¿Pierdes clientes porque nadie alcanza a contestar el WhatsApp?</b> <span class="a">Creo un bot que atiende, reserva y vende por WhatsApp las 24 horas.</span></span><span lang="en"><b class="q">Losing customers because nobody gets to WhatsApp in time?</b> <span class="a">I build a bot that answers, books and sells on WhatsApp around the clock.</span></span></span>
@@ -403,7 +825,7 @@ button.btn{cursor:pointer}
 
     <section class="svc" aria-labelledby="svc-t">
       <div class="eyebrow"><span lang="es">Servicios</span><span lang="en">Services</span></div>
-      <h3 id="svc-t"><span lang="es">Automatización con IA, a la medida de tu negocio</span><span lang="en">AI automation, built around your business</span></h3>
+      <h2 id="svc-t"><span lang="es">Automatización con IA, a la medida de tu negocio</span><span lang="en">AI automation, built around your business</span></h2>
       <p class="sub"><span lang="es">Lo mismo que uso en mis apps, aplicado a lo que necesitas. Toca uno y el asistente te cuenta más.</span><span lang="en">The same tools I use in my apps, applied to what you need. Tap one and the assistant tells you more.</span></p>
       <div class="svc-grid" id="svcgrid"></div>
     </section>
@@ -411,7 +833,7 @@ button.btn{cursor:pointer}
     <section class="about" id="about" aria-label="Sobre mí / About me">
       <div>
         <div class="eyebrow"><span lang="es">Sobre mí</span><span lang="en">About</span></div>
-        <h3><span lang="es">Energía y software</span><span lang="en">Energy and software</span></h3>
+        <h2><span lang="es">Energía y software</span><span lang="en">Energy and software</span></h2>
         <dl class="facts">
           <div><dt><span lang="es">Base</span><span lang="en">Based in</span></dt><dd>Brisbane, Australia</dd></div>
           <div><dt><span lang="es">Formación</span><span lang="en">Education</span></dt><dd><span lang="es">Ingeniería Industrial · Máster en IA (La Trobe, en curso) · Data Science &amp; AI (Institute of Data, UTS)</span><span lang="en">Industrial Engineering · Master of AI (La Trobe, in progress) · Data Science &amp; AI (Institute of Data, UTS)</span></dd></div>
@@ -448,7 +870,7 @@ button.btn{cursor:pointer}
 <button class="cb-fab" type="button" id="cbfab" aria-controls="cb" aria-expanded="false" aria-label="Abrir chat / Open chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.6"/></svg></button>
 <div class="cb" id="cb" hidden role="dialog" aria-label="Chat">
   <div class="cb-h">
-    <img src="img/patricio-abarca.jpg" alt="" width="38" height="38">
+    <img src="img/patricio-abarca.jpg" alt="" width="38" height="38" loading="lazy">
     <div><b><span lang="es">Asistente de Patricio</span><span lang="en">Patricio’s assistant</span></b><small><span lang="es">En línea</span><span lang="en">Online</span></small></div>
     <button class="x" type="button" id="cbx" aria-label="Cerrar chat / Close chat">✕</button>
   </div>
@@ -557,7 +979,7 @@ button.btn{cursor:pointer}
     var stack='<div class="stack">'+a.stack.map(function(s){return '<span>'+t(s)+'</span>';}).join('')+'</div>';
     var links=a.links.length?a.links.map(function(l){return '<a class="link" href="'+l[1]+'" target="_blank" rel="noopener">'+t(l[0])+' ↗</a>';}).join(''):'<span class="link none">'+t(a.nolink||NOLINK[a.s])+'</span>';
     return '<article class="app" id="app-'+a.id+'" data-s="'+a.s+'">'+
-      '<div class="app-head">'+img(a,56).replace('<img','<img alt="Logo de '+esc(a.name)+'"').replace(' alt=""','')+'<div><h3>'+esc(a.name)+'</h3><p class="tag">'+t(a.tag)+'</p></div><span class="pill '+a.s+'">'+t(ST[a.s])+'</span></div>'+
+      '<div class="app-head">'+img(a,56).replace('<img','<img loading="lazy" alt="Logo '+esc(a.name)+'"').replace(' alt=""','')+'<div><h3>'+esc(a.name)+'</h3><p class="tag">'+t(a.tag)+'</p></div><span class="pill '+a.s+'">'+t(ST[a.s])+'</span></div>'+
       '<p class="desc">'+t(a.desc)+'</p>'+feats+stack+'<div class="foot">'+links+'</div></article>';
   }).join('');
 

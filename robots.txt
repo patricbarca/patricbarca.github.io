@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://patricbarca.github.io/sitemap.xml
