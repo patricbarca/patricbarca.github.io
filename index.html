@@ -1036,13 +1036,13 @@ button.btn{cursor:pointer}
   setLang(saved);
   document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set);});});
 
-  // intro video (English only, made with fal: HeyGen avatar, Kling, ElevenLabs, Sonilo): opens over the page, with sound since the visitor asked for it
+  // intro video: just the greeting "Hi, I'm Patricio" (1.5 s, cut from the long English intro); opens over the page, with sound since the visitor asked for it
   var vm=document.getElementById('vmodal'), vid=document.getElementById('vid'), playBtn=document.getElementById('play');
   // it also opens by itself once per visit, muted (browsers block sound until the visitor taps), with a big "sound on" button
   var unm=document.getElementById('vunmute');
   function openVideo(e){
     var auto=e===true;
-    var src='video/presentation-en.mp4';
+    var src='video/intro-hi.mp4?v=3';
     if(vid.getAttribute('src')!==src){vid.setAttribute('src',src);}
     vid.muted=auto; unm.hidden=!auto;
     vm.hidden=false; document.getElementById('vclose').focus();
@@ -1050,8 +1050,11 @@ button.btn{cursor:pointer}
   }
   unm.addEventListener('click',function(){ vid.muted=false; unm.hidden=true; vid.currentTime=0; vid.play(); });
   vid.addEventListener('volumechange',function(){ if(!vid.muted){unm.hidden=true;} });
-  vid.addEventListener('ended',function(){ if(!unm.hidden){closeVideo();} });
-  function closeVideo(){ vid.pause(); vm.hidden=true; playBtn.focus(); }
+  // the clip is short: when it ends, close after a beat; if it played muted, leave the sound button up a little longer so it can be replayed with sound
+  var vEnd=0;
+  vid.addEventListener('play',function(){ clearTimeout(vEnd); });
+  vid.addEventListener('ended',function(){ clearTimeout(vEnd); vEnd=setTimeout(function(){ if(!vm.hidden&&vid.ended){closeVideo();} }, unm.hidden?900:4000); });
+  function closeVideo(){ clearTimeout(vEnd); vid.pause(); vm.hidden=true; playBtn.focus(); }
   playBtn.addEventListener('click',openVideo);
   document.getElementById('vclose').addEventListener('click',closeVideo);
   vm.addEventListener('click',function(e){ if(e.target===vm) closeVideo(); });
