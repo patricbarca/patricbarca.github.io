@@ -542,6 +542,12 @@ h1{font-weight:300;letter-spacing:-.045em}
 @media (max-width:560px){.sp-steps ol{grid-template-columns:1fr}.sp-row h3{font-size:26px}}
 @media (prefers-reduced-motion:reduce){.blip,.cur{display:none}}
 html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:none}
+/* carrusel más alto (medido para que la portada siga en una pantalla): en el teléfono la rueda de apps se achica un poco
+   y el espacio que se guardaba abajo para el botón del chat baja de 110 a 70 px */
+.sa{height:clamp(150px,32.5vh,300px)}
+@media (max-width:900px){.home-main{padding-bottom:clamp(0px,calc(100dvh - 700px),70px)}}
+@media (max-width:560px){.stage{width:min(58vw,22vh,300px)}.sa{height:clamp(110px,23.5vh,230px)}}
+@media (max-width:560px) and (max-height:740px){.stage{width:min(58vw,19vh,300px)}.sa{height:110px}}
 </style>
 
 <script type="application/ld+json">
