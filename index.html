@@ -563,6 +563,73 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
 .svs-dots button::before{content:"";position:absolute;inset:-12px -3px}
 /* teléfono: sin el nombre de la app bajo la rueda (deja espacio a la línea de quién eres y es una cosa menos moviéndose) */
 @media (max-width:560px){.spot{display:none!important}}
+/* ===== Estilo "Gradiente neutro" (28-11-2026): fondo blanco con manchas grises suaves detrás,
+   tarjetas de vidrio blanco y acentos en negro. Va al final para pisar la capa Photon (oscura). ===== */
+:root,:root:not([data-theme="light"]),:root[data-theme="dark"]{
+  --bg:#FFFFFF; --surface:rgba(255,255,255,.72); --ink:#0B0B0C; --muted:#55575C; --line:rgba(11,11,12,.10);
+  --sun:#0B0B0C; --sun-soft:rgba(11,11,12,.06);
+  --live:#1E7F55; --live-soft:#E2F3EA; --beta:#3A3D44; --beta-soft:#ECEDEF;
+  --spec:linear-gradient(90deg,#0B0B0C,#6B6E75);
+  --glass:rgba(255,255,255,.66); --glass-b:rgba(255,255,255,.95);
+  --shadow:0 12px 34px -16px rgba(11,11,12,.28);
+  color-scheme:light}
+html{background:var(--bg)}
+body{color:var(--ink);background:transparent}
+/* manchas de fondo: grises suaves, fijas, para dar profundidad sin color */
+body::before{content:"";position:fixed;inset:-10%;z-index:-1;pointer-events:none;filter:blur(30px);background:
+  radial-gradient(42% 30% at 92% 6%,rgba(11,11,12,.26),transparent 70%),
+  radial-gradient(46% 34% at 0% 40%,rgba(11,11,12,.18),transparent 70%),
+  radial-gradient(44% 30% at 90% 80%,rgba(11,11,12,.20),transparent 70%),
+  radial-gradient(36% 26% at 24% 104%,rgba(11,11,12,.12),transparent 70%)}
+@media (prefers-reduced-motion:no-preference){body::before{animation:blobs 18s ease-in-out infinite alternate}}
+@keyframes blobs{to{transform:translate3d(-3%,2%,0) scale(1.05)}}
+::selection{background:#0B0B0C;color:#fff}
+h1{font-weight:600;letter-spacing:-.04em}
+.svc h2,.page-head h2,.about h2,h2{font-weight:600;letter-spacing:-.035em}
+.sp-row h3,.sp-steps h3,.sp-end h3{font-weight:600;letter-spacing:-.035em}
+.eyebrow,.sp-n,.sp-sub{color:var(--muted)}
+/* menú */
+.nav a.tab{color:var(--muted)}
+.nav a.tab:hover{color:var(--ink)}
+.nav a.tab[aria-current="page"]{color:var(--ink);background:#fff;box-shadow:0 2px 12px -4px rgba(11,11,12,.22)}
+.langs{background:var(--glass);border-color:var(--line);backdrop-filter:blur(10px)}
+.langs button{color:var(--muted)}
+.langs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+/* botones: negro sólido el principal, vidrio blanco los demás */
+.btn{background:var(--glass-b);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line),0 4px 14px -8px rgba(11,11,12,.3)}
+.btn.primary,.btn.talk{background:var(--ink);color:#fff;box-shadow:0 8px 22px -10px rgba(11,11,12,.6)}
+.btn.li{background:#0A66C2;color:#fff}
+.hero .btn.play.top{background:none;box-shadow:none;color:var(--ink)}
+.filters button{background:var(--glass);color:var(--ink);border-color:var(--line)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* tarjetas de vidrio blanco */
+.app,.svc-card,.sv-s,.chip,.sp-row,.sp-steps li{background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow);color:var(--ink)}
+.app:hover,.svc-card:hover,.sv-s:hover{border-color:rgba(11,11,12,.25)}
+.svs-view{overflow:hidden;border-radius:20px}
+.stack span{border-color:var(--line);color:var(--muted)}
+/* pantallitas animadas: negras, como un teléfono, con los dibujos en blanco */
+.svc-card .ic,.sa,.sp-mk{background:radial-gradient(120% 90% at 20% 0%,#2A2B2F,#0B0B0C 70%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.svc-card .ic{background:var(--ink)}
+.svs-dots button{background:rgba(11,11,12,.16)}
+.svs-dots button[aria-current="true"]{background:var(--ink)}
+.sp-row li::before{background:var(--ink)}
+.sp-index a{color:var(--muted);background:var(--glass);box-shadow:inset 0 0 0 1px var(--line)}
+.sp-index a:hover{color:var(--ink);box-shadow:inset 0 0 0 1px rgba(11,11,12,.35)}
+.sp-steps .num{color:var(--muted)}
+.sp-fit b,.who b{color:var(--ink);font-weight:600}
+/* portada: rueda de apps sobre blanco, foto con anillo blanco */
+.stage-col::before{background:radial-gradient(circle,rgba(11,11,12,.16),transparent 70%);opacity:.9}
+.stage .me{background:#fff;box-shadow:0 0 0 1.2cqw #fff,0 0 0 calc(1.2cqw + 1px) rgba(11,11,12,.12),0 18px 50px -14px rgba(11,11,12,.45)}
+.orb img{background:#fff;box-shadow:0 0 0 1px rgba(11,11,12,.08),0 8px 20px -10px rgba(11,11,12,.45)}
+.orb.on img{box-shadow:0 0 0 .9cqw #fff,0 0 0 1.4cqw var(--ink),0 10px 30px -8px rgba(11,11,12,.45)}
+.ring{border-color:rgba(11,11,12,.08)}
+.spark::before{background:var(--ink);box-shadow:0 0 0 1.4cqw rgba(11,11,12,.08)}
+/* chat */
+.cb-fab{background:var(--ink);color:#fff;box-shadow:0 10px 30px -10px rgba(11,11,12,.6)}
+.cb-fab::after{background:#fff;box-shadow:0 0 0 2px var(--ink)}
+.cb-q button.go,.cb-f button{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cb-q button{border-color:rgba(11,11,12,.25)}
+.home-foot,.home-foot a{color:var(--muted)}
 </style>
 
 <script type="application/ld+json">
