@@ -548,6 +548,19 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
 @media (max-width:900px){.home-main{padding-bottom:clamp(0px,calc(100dvh - 700px),70px)}}
 @media (max-width:560px){.stage{width:min(58vw,22vh,300px)}.sa{height:clamp(110px,23.5vh,230px)}}
 @media (max-width:560px) and (max-height:740px){.stage{width:min(58vw,19vh,300px)}.sa{height:110px}}
+/* mejoras del análisis de la portada (27-11-2026) */
+/* 2: quién y dónde, en una línea chica sobre el carrusel */
+.who{margin:0 0 12px;font-size:15px;color:var(--muted)}
+.who b{color:#fff;font-weight:500}
+@media (max-width:560px){.who{font-size:14px;margin-bottom:10px}}
+/* 3: la rueda de apps queda quieta; el carrusel es lo único que se mueve */
+.orbit,.orb > span,.orb img{animation:none!important}
+/* 5: etiquetas grises más claras (contraste 3,9:1 -> 6,4:1) y puntos del carrusel con más área de toque */
+.eyebrow,.sp-n,.sp-sub{color:rgba(255,255,255,.62)}
+.svs-dots button{position:relative}
+.svs-dots button::before{content:"";position:absolute;inset:-12px -3px}
+/* teléfono: sin el nombre de la app bajo la rueda (deja espacio a la línea de quién eres y es una cosa menos moviéndose) */
+@media (max-width:560px){.spot{display:none!important}}
 </style>
 
 <script type="application/ld+json">
@@ -983,8 +996,8 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
       <a class="mark" href="#">PA</a>
       <div class="nav">
         <a class="tab" href="#" data-v="home" aria-current="page"><span lang="es">Inicio</span><span lang="en">Home</span></a>
-        <a class="tab" href="#about" data-v="about">I am</a>
-        <a class="tab" href="#built" data-v="built">Products</a>
+        <a class="tab" href="#about" data-v="about"><span lang="es">Sobre mí</span><span lang="en">I am</span></a>
+        <a class="tab" href="#built" data-v="built"><span lang="es">Productos</span><span lang="en">Products</span></a>
         <a class="tab tab-svc" href="#services" data-v="services"><span lang="es">Servicios</span><span lang="en">Services</span></a>
         <div class="langs" role="group" aria-label="Idioma / Language">
           <button id="lang-es-1" type="button" data-set="es">ES</button>
@@ -1007,13 +1020,14 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
         <div class="intro">
           <button class="btn play top" type="button" id="play"><span aria-hidden="true">▶</span> <span lang="es">Presentación</span><span lang="en">Watch intro</span></button>
           <h1 class="vh">Patricio Abarca<span class="vh"><span lang="es"> · automatización con IA, chatbots y apps en Brisbane, Australia</span><span lang="en"> · AI automation, chatbots and apps in Brisbane, Australia</span></span></h1>
+          <p class="who"><b>Patricio</b> · <span lang="es">IA para negocios en Brisbane</span><span lang="en">AI for businesses in Brisbane</span></p>
           <div class="svs" id="svs" role="region" aria-roledescription="carousel" aria-label="Servicios / Services">
             <div class="svs-view" id="svsview"></div>
             <div class="svs-dots" id="svsdots"></div>
           </div>
           <div class="cta">
-            <a class="btn primary" href="#services"><span lang="es">Servicios</span><span lang="en">Services</span> →</a>
-            <a class="btn" href="#built">Products</a>
+            <a class="btn" href="#services"><span lang="es">Servicios</span><span lang="en">Services</span> →</a>
+            <a class="btn" href="#built"><span lang="es">Productos</span><span lang="en">Products</span></a>
             <button class="btn talk" type="button" data-talk>Let’s talk</button>
           </div>
         </div>
@@ -1034,8 +1048,8 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
       <a class="mark" href="#">PA</a>
       <div class="nav">
         <a class="tab" href="#" data-v="home"><span lang="es">Inicio</span><span lang="en">Home</span></a>
-        <a class="tab" href="#about" data-v="about">I am</a>
-        <a class="tab" href="#built" data-v="built">Products</a>
+        <a class="tab" href="#about" data-v="about"><span lang="es">Sobre mí</span><span lang="en">I am</span></a>
+        <a class="tab" href="#built" data-v="built"><span lang="es">Productos</span><span lang="en">Products</span></a>
         <a class="tab tab-svc" href="#services" data-v="services" aria-current="page"><span lang="es">Servicios</span><span lang="en">Services</span></a>
         <div class="langs" role="group" aria-label="Idioma / Language">
           <button id="lang-es-3" type="button" data-set="es">ES</button>
@@ -1062,7 +1076,7 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
     <section class="sp-end">
       <h3><span lang="es">¿Tienes un caso en mente?</span><span lang="en">Got a case in mind?</span></h3>
       <p><span lang="es">Cuéntamelo y te digo cómo lo resolvería.</span><span lang="en">Tell me about it and I’ll tell you how I’d solve it.</span></p>
-      <div class="cta"><button class="btn talk" type="button" data-talk>Let’s talk</button><a class="btn" href="#built">Products</a></div>
+      <div class="cta"><button class="btn talk" type="button" data-talk>Let’s talk</button><a class="btn" href="#built"><span lang="es">Productos</span><span lang="en">Products</span></a></div>
     </section>
 
     <footer>
@@ -1079,8 +1093,8 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
       <a class="mark" href="#">PA</a>
       <div class="nav">
         <a class="tab" href="#" data-v="home"><span lang="es">Inicio</span><span lang="en">Home</span></a>
-        <a class="tab" href="#about" data-v="about">I am</a>
-        <a class="tab" href="#built" data-v="built" aria-current="page">Products</a>
+        <a class="tab" href="#about" data-v="about"><span lang="es">Sobre mí</span><span lang="en">I am</span></a>
+        <a class="tab" href="#built" data-v="built" aria-current="page"><span lang="es">Productos</span><span lang="en">Products</span></a>
         <a class="tab tab-svc" href="#services" data-v="services"><span lang="es">Servicios</span><span lang="en">Services</span></a>
         <div class="langs" role="group" aria-label="Idioma / Language">
           <button id="lang-es-2" type="button" data-set="es">ES</button>
@@ -1092,7 +1106,7 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
     <div class="page-head">
       <div>
         <div class="eyebrow"><span lang="es">Portafolio</span><span lang="en">Portfolio</span></div>
-        <h2>Products</h2>
+        <h2><span lang="es">Productos</span><span lang="en">Products</span></h2>
         <p class="sub"><span lang="es">Nueve productos hechos de principio a fin, del diseño al despliegue. Algunos ya tienen usuarios; otros están en camino.</span><span lang="en">Nine products built end to end, from design to deployment. Some already have users; others are on their way.</span></p>
         <p class="svc-jump"><a href="#services"><span lang="es">Ver todos los servicios →</span><span lang="en">See all services →</span></a></p>
       </div>
@@ -1248,7 +1262,7 @@ html.fab-tuck .cb-fab,html.fab-tuck .cb-tease{visibility:hidden;pointer-events:n
     spot.innerHTML='<a class="in" href="#app-'+a.id+'"><b>'+esc(a.name)+'</b> · '+t(a.tag)+'</a>';
   }
   show(0);
-  setInterval(function(){ if(!held && !document.hidden) show((cur+1)%APPS.length); },2600);
+  setInterval(function(){ if(!held && !document.hidden) show((cur+1)%APPS.length); },7000);
   orbs.forEach(function(o,k){
     o.addEventListener('mouseenter',function(){show(k);});
     o.addEventListener('focus',function(){show(k);});
