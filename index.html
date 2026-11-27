@@ -465,6 +465,19 @@ h1{font-weight:300;letter-spacing:-.045em}
 /* chat */
 .cb-fab{box-shadow:var(--glow),0 10px 30px -10px rgba(41,152,217,.6)}
 .home-foot{padding-inline:max(24px,env(safe-area-inset-left,0px))}
+/* portada sin el nombre a la vista (sigue en el h1 oculto, para Google y lectores de pantalla):
+   las tarjetas de servicios crecen, con la animación grande arriba y el texto abajo */
+.hero .btn.play.top{margin-bottom:14px}
+.svs{max-width:520px}
+.sv-s{grid-template-columns:1fr;gap:12px;padding:12px}
+.sa{width:100%;height:clamp(120px,24vh,210px);border-radius:14px}
+.sa svg{width:auto;height:100%;stroke-width:1.5}
+.sv-s b{font-size:20px;margin-bottom:4px}
+.sv-s small{font-size:15px}
+.sv-s > span:last-child{padding:0 6px 4px}
+@media (max-width:900px){.sv-s{text-align:center}}
+@media (max-width:560px){.sv-s{padding:10px;gap:10px}.sa{width:100%;height:clamp(96px,17vh,150px)}.sa svg{width:auto;height:100%}.sv-s b{font-size:17px}.sv-s small{font-size:14px}}
+@media (max-width:560px) and (max-height:740px){.sa{height:84px}.sv-s b{font-size:16px}}
 </style>
 
 <script type="application/ld+json">
@@ -922,7 +935,7 @@ h1{font-weight:300;letter-spacing:-.045em}
         </div>
         <div class="intro">
           <button class="btn play top" type="button" id="play"><span aria-hidden="true">▶</span> <span lang="es">Presentación</span><span lang="en">Watch intro</span></button>
-          <h1>Patricio<br> Abarca<span class="vh"><span lang="es"> · automatización con IA, chatbots y apps en Brisbane, Australia</span><span lang="en"> · AI automation, chatbots and apps in Brisbane, Australia</span></span></h1>
+          <h1 class="vh">Patricio Abarca<span class="vh"><span lang="es"> · automatización con IA, chatbots y apps en Brisbane, Australia</span><span lang="en"> · AI automation, chatbots and apps in Brisbane, Australia</span></span></h1>
           <div class="svs" id="svs" role="region" aria-roledescription="carousel" aria-label="Servicios / Services">
             <div class="svs-view" id="svsview"></div>
             <div class="svs-dots" id="svsdots"></div>
